@@ -1,0 +1,3764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBDC AI Prompt House</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --navy: #0f2233;
+            --navy-light: #1a3a5c;
+            --sky: #4a90d9;
+            --sky-light: #7eb3f1;
+            --sky-pale: #e8f2fc;
+            --white: #ffffff;
+            --gray-10: #f4f4f4;
+            --gray-20: #e0e0e0;
+            --gray-30: #c6c6c6;
+            --gray-50: #8d8d8d;
+            --gray-70: #525252;
+            --gray-90: #262626;
+            --gray-100: #161616;
+            --focus: #0f62fe;
+            --success: #24a148;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-90);
+            background: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grid Pattern Background */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Hamburger Menu Button */
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: -8px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .menu-btn:hover .menu-line {
+            background: var(--sky-light);
+        }
+        .menu-btn.active .menu-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-btn.active .menu-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        .menu-btn.active .menu-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        .menu-line {
+            width: 20px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        /* Slide-out Side Menu */
+        .side-menu-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 34, 51, 0.6);
+            z-index: 300;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .side-menu-overlay.active {
+            display: block;
+        }
+        .side-menu-overlay.visible {
+            opacity: 1;
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 380px;
+            height: 100%;
+            background: var(--white);
+            z-index: 301;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+        }
+        .side-menu-overlay.visible .side-menu {
+            transform: translateX(0);
+        }
+        .side-menu-header {
+            background: var(--navy);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .side-menu-logo {
+            height: 32px;
+            width: auto;
+        }
+        .side-menu-close {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .side-menu-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .side-menu-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 24px;
+        }
+        .side-menu-section {
+            margin-bottom: 32px;
+        }
+        .side-menu-section:last-child {
+            margin-bottom: 0;
+        }
+        .side-menu-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-50);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .side-menu-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-70);
+        }
+        .side-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-90);
+            text-decoration: none;
+            border-radius: 6px;
+            background: var(--gray-10);
+            border: 1px solid var(--gray-20);
+            transition: all 0.2s;
+            margin-bottom: 12px;
+        }
+        .side-menu-link:hover {
+            background: var(--sky-pale);
+            border-color: var(--sky);
+            color: var(--navy);
+            transform: translateX(4px);
+        }
+        .side-menu-link svg {
+            width: 20px;
+            height: 20px;
+            color: var(--sky);
+            flex-shrink: 0;
+        }
+        .side-menu-link:hover svg {
+            color: var(--navy);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--gray-70);
+        }
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--sky);
+            flex-shrink: 0;
+        }
+        .contact-item a {
+            color: var(--navy);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .contact-item a:hover {
+            color: var(--sky);
+        }
+        .side-menu-footer {
+            padding: 20px 24px;
+            background: var(--gray-10);
+            border-top: 1px solid var(--gray-20);
+        }
+        .side-menu-footer-text {
+            font-size: 12px;
+            color: var(--gray-50);
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background: var(--navy);
+            border-bottom: 3px solid var(--sky);
+            position: relative;
+            z-index: 200;
+        }
+        .header-inner {
+            max-width: 1584px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-svg {
+            height: 28px;
+            width: auto;
+        }
+        .logo-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(255,255,255,0.3);
+        }
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 0.01em;
+        }
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: var(--sky);
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.03em;
+        }
+        .ai-badge svg {
+            width: 12px;
+            height: 12px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Header Policy Button */
+        .header-inner {
+            justify-content: flex-start;
+        }
+        .policy-header-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .policy-header-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+        }
+        .policy-header-btn:hover .policy-ping {
+            opacity: 0;
+        }
+        .policy-header-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--sky-light);
+        }
+        .policy-header-btn-text {
+            color: inherit;
+        }
+        .policy-ping {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--white);
+            background: #e74c3c;
+            border-radius: 50%;
+            animation: policyPulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes policyPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.9); }
+        }
+        @media (max-width: 768px) {
+            .policy-header-btn-text {
+                display: none;
+            }
+            .policy-header-btn {
+                padding: 8px 10px;
+            }
+            .policy-ping {
+                top: -5px;
+                right: -5px;
+                width: 14px;
+                height: 14px;
+                font-size: 10px;
+            }
+        }
+
+        /* Hero Search Section */
+        .hero {
+            background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 80px 2rem 96px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+        .hero-title span {
+            color: var(--sky-light);
+        }
+        .hero-desc {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Box - Enhanced Style */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-box-wrapper {
+            position: relative;
+            border-radius: 8px;
+        }
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .search-box-wrapper:hover .search-box,
+        .search-box:focus-within {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+        }
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            width: 22px;
+            height: 22px;
+            color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .search-box-wrapper:hover .search-icon,
+        .search-box:focus-within .search-icon {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .search-input {
+            width: 100%;
+            padding: 18px 18px 18px 56px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: var(--white);
+            background: transparent;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+        }
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .search-shortcut {
+            position: absolute;
+            right: 16px;
+            padding: 5px 10px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        /* Animated Typing Placeholder */
+        .search-placeholder {
+            position: absolute;
+            left: 56px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
+        .search-placeholder.hidden {
+            display: none;
+        }
+        .typing-text {
+            display: inline;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: var(--sky);
+            margin-left: 1px;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Filter Tabs - Carbon Style */
+        .filters-section {
+            background: var(--gray-10);
+            border-bottom: 1px solid var(--gray-20);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .filters-inner {
+            max-width: 1584px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        .filter-tab {
+            position: relative;
+            padding: 14px 20px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-70);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .filter-tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--sky);
+            transform: scaleX(0);
+            transition: transform 0.15s;
+        }
+        .filter-tab:hover {
+            background: rgba(0,0,0,0.04);
+            color: var(--gray-90);
+        }
+        .filter-tab.active {
+            color: var(--navy);
+        }
+        .filter-tab.active::after {
+            transform: scaleX(1);
+        }
+        .filter-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 20px;
+            height: 20px;
+            margin-left: 8px;
+            padding: 0 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-50);
+            background: var(--gray-20);
+            border-radius: 10px;
+        }
+        .filter-tab.active .filter-count {
+            background: var(--sky);
+            color: var(--white);
+        }
+
+        /* Prompts Section */
+        .prompts-section {
+            max-width: 1584px;
+            margin: 0 auto;
+            padding: 0 2rem 80px;
+            position: relative;
+            z-index: 1;
+        }
+        .prompts-header {
+            padding: 32px 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .prompts-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-70);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        .prompts-count {
+            font-size: 14px;
+            color: var(--gray-50);
+        }
+
+        /* Prompt Cards - Grid */
+        .prompts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1px;
+            background: var(--gray-20);
+            border: 1px solid var(--gray-20);
+        }
+        .prompt-card {
+            background: var(--white);
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            flex-direction: column;
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+        .prompt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--sky);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.2s;
+        }
+        .prompt-card:hover {
+            background: var(--sky-pale);
+        }
+        .prompt-card:hover::before {
+            transform: scaleY(1);
+        }
+        .prompt-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .prompt-category {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--sky);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .prompt-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--gray-30);
+        }
+        .prompt-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-100);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .prompt-desc {
+            font-size: 14px;
+            color: var(--gray-70);
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .prompt-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-20);
+        }
+        .prompt-card:hover .prompt-card-footer {
+            border-top-color: rgba(74, 144, 217, 0.3);
+        }
+        .prompt-tags {
+            display: flex;
+            gap: 8px;
+        }
+        .prompt-tag {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--gray-70);
+            padding: 2px 8px;
+            background: var(--gray-10);
+            border-radius: 2px;
+        }
+        .prompt-card:hover .prompt-tag {
+            background: var(--white);
+        }
+        .prompt-arrow {
+            width: 20px;
+            height: 20px;
+            color: var(--gray-30);
+            transition: all 0.15s;
+        }
+        .prompt-card:hover .prompt-arrow {
+            color: var(--sky);
+            transform: translateX(4px);
+        }
+
+        /* Empty State */
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 80px 24px;
+            text-align: center;
+            background: var(--white);
+        }
+        .empty-state-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            color: var(--gray-30);
+        }
+        .empty-state-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-90);
+            margin-bottom: 4px;
+        }
+        .empty-state-desc {
+            font-size: 14px;
+            color: var(--gray-50);
+        }
+
+        /* Modal - Carbon Style */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(22, 22, 22, 0.7);
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+        .modal-overlay.active {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+        }
+        .modal {
+            width: 100%;
+            max-width: 640px;
+            height: 100%;
+            background: var(--gray-10);
+            transform: translateX(100%);
+            transition: transform 0.25s cubic-bezier(0.2, 0, 0.38, 0.9);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .modal-overlay.visible .modal {
+            transform: translateX(0);
+        }
+        .modal-header {
+            background: var(--navy);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-header-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .modal-category {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--sky-light);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            transition: background 0.15s;
+            flex-shrink: 0;
+        }
+        .modal-close:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        .modal-desc {
+            font-size: 14px;
+            color: var(--gray-70);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--gray-20);
+        }
+        .prompt-box {
+            background: var(--gray-100);
+            border-left: 3px solid var(--sky);
+            padding: 20px;
+        }
+        .prompt-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--gray-10);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .prompt-text .placeholder {
+            background: rgba(74, 144, 217, 0.3);
+            color: var(--sky-light);
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+        .modal-footer {
+            background: var(--white);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--gray-20);
+        }
+        .modal-tip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--gray-50);
+        }
+        .modal-tip svg {
+            width: 16px;
+            height: 16px;
+            color: var(--sky);
+        }
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            background: var(--navy);
+            border: none;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-copy:hover {
+            background: var(--navy-light);
+        }
+        .btn-copy.copied {
+            background: var(--success);
+        }
+        .btn-copy svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Policy Modal - Center Modal */
+        .policy-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(22, 22, 22, 0.7);
+            z-index: 400;
+            opacity: 0;
+            transition: opacity 0.2s;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+        .policy-modal-overlay.active {
+            display: flex;
+        }
+        .policy-modal-overlay.visible {
+            opacity: 1;
+        }
+        .policy-modal {
+            width: 100%;
+            max-width: 720px;
+            max-height: 90vh;
+            background: var(--white);
+            border-radius: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.25s cubic-bezier(0.2, 0, 0.38, 0.9);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+        }
+        .policy-modal-overlay.visible .policy-modal {
+            transform: scale(1) translateY(0);
+        }
+        .policy-modal-header {
+            background: var(--navy);
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .policy-modal-header-content {
+            flex: 1;
+        }
+        .policy-modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.4);
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffc107;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .policy-modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.3;
+        }
+        .policy-modal-subtitle {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
+        }
+        .policy-modal-close {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            transition: background 0.15s;
+            flex-shrink: 0;
+            margin: -8px -8px 0 0;
+        }
+        .policy-modal-close:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .policy-modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+        }
+        .policy-section {
+            padding: 24px;
+            border-bottom: 1px solid var(--gray-20);
+        }
+        .policy-section:last-child {
+            border-bottom: none;
+        }
+        .policy-section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .policy-section-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .policy-section-icon.green {
+            background: rgba(36, 161, 72, 0.15);
+            color: #24a148;
+        }
+        .policy-section-icon.red {
+            background: rgba(218, 30, 40, 0.15);
+            color: #da1e28;
+        }
+        .policy-section-icon.warning {
+            background: rgba(255, 193, 7, 0.15);
+            color: #f1c21b;
+        }
+        .policy-section-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+        .policy-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-100);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .policy-section-title.green {
+            color: #24a148;
+        }
+        .policy-section-title.red {
+            color: #da1e28;
+        }
+        .policy-subsection {
+            margin-bottom: 20px;
+        }
+        .policy-subsection:last-child {
+            margin-bottom: 0;
+        }
+        .policy-subsection-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-90);
+            margin-bottom: 8px;
+        }
+        .policy-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .policy-list li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--gray-70);
+            margin-bottom: 6px;
+        }
+        .policy-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gray-30);
+        }
+        .policy-list.green li::before {
+            background: #24a148;
+        }
+        .policy-list.red li::before {
+            background: #da1e28;
+        }
+        .policy-warning-box {
+            background: rgba(255, 193, 7, 0.08);
+            border-left: 3px solid #f1c21b;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        .policy-warning-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-90);
+            margin-bottom: 8px;
+        }
+        .policy-warning-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--gray-70);
+        }
+        .policy-warning-compact {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(255, 193, 7, 0.08);
+            padding: 16px 20px;
+        }
+        .policy-warning-icon-inline {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            color: #f1c21b;
+            margin-top: 2px;
+        }
+        .policy-warning-inline-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--gray-70);
+        }
+        .policy-warning-inline-text strong {
+            color: var(--gray-90);
+        }
+        .policy-modal-footer {
+            background: var(--gray-10);
+            padding: 16px 24px;
+            border-top: 1px solid var(--gray-20);
+        }
+        .policy-contact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--gray-70);
+        }
+        .policy-contact svg {
+            width: 16px;
+            height: 16px;
+            color: var(--sky);
+            flex-shrink: 0;
+        }
+        .policy-contact a {
+            color: var(--navy);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .policy-contact a:hover {
+            color: var(--sky);
+            text-decoration: underline;
+        }
+
+        /* Custom Right-Click Menu - Business Card Style */
+        .custom-context-menu {
+            position: fixed;
+            z-index: 10000;
+            display: none;
+            min-width: 280px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            font-family: 'IBM Plex Sans', sans-serif;
+            animation: cardSlideIn 0.2s ease-out;
+        }
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .context-card-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .context-card-copyright {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 4px;
+        }
+        .context-card-org {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .context-card-body {
+            padding: 16px 24px 20px;
+        }
+        .context-card-question {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--sky-light);
+            margin-bottom: 12px;
+        }
+        .context-card-person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .context-card-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--sky) 0%, var(--sky-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        .context-card-info {
+            flex: 1;
+        }
+        .context-card-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+        .context-card-title {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6px;
+        }
+        .context-card-email {
+            font-size: 13px;
+            color: var(--sky-light);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .context-card-email:hover {
+            color: var(--white);
+        }
+        .context-card-email svg {
+            width: 14px;
+            height: 14px;
+        }
+        .context-card-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .context-card-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .context-card-close svg {
+            width: 12px;
+            height: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-100);
+            padding: 32px 2rem;
+            position: relative;
+            z-index: 5;
+        }
+        .footer-inner {
+            max-width: 1584px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-text {
+            font-size: 13px;
+            color: var(--gray-50);
+        }
+        .footer-copyright {
+            font-size: 13px;
+            color: var(--gray-50);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 0 1rem;
+            }
+            .logo-text {
+                display: none;
+            }
+            .hero {
+                padding: 48px 1rem 64px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-desc {
+                font-size: 1rem;
+            }
+            .search-shortcut {
+                display: none;
+            }
+            .filters-inner {
+                padding: 0 1rem;
+                overflow-x: auto;
+            }
+            .filter-tab {
+                padding: 14px 16px;
+                white-space: nowrap;
+            }
+            .prompts-section {
+                padding: 0 1rem 48px;
+            }
+            .prompts-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal {
+                max-width: 100%;
+            }
+            .modal-footer {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+            .modal-tip {
+                justify-content: center;
+            }
+            .btn-copy {
+                justify-content: center;
+            }
+            footer {
+                padding: 24px 1rem;
+            }
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid Background Pattern -->
+    <div class="grid-bg"></div>
+
+    <!-- Side Menu Overlay -->
+    <div class="side-menu-overlay" id="sideMenuOverlay">
+        <aside class="side-menu">
+            <div class="side-menu-header">
+                <svg class="side-menu-logo" viewBox="0 0 222.28 106.92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#fff" d="M12.78,86.94c1.49,2.32,2.77,4.26,7.33,5.76,2.17.75,4.86,1.2,7.4,1.2,1.35,0,7.92-.15,7.92-3.96,0-.37,0-2.32-2.92-3.29-1.87-.67-11.59-2.39-13.75-2.92-4.86-1.27-14.35-4.26-14.35-15.4,0-2.32.52-4.71,1.49-6.8,3.44-7.78,12.33-10.84,21.83-10.84,6.06,0,11.59,1.2,15.92,3.36,3.96,1.94,5.91,4.04,7.77,5.98l-10.47,8.74c-.82-1.04-1.72-2.24-4.04-3.44-3.07-1.5-7.1-1.94-9.79-1.94-2.84,0-5.98.75-5.98,3.44,0,2.54,2.69,3.21,7.25,4.04,11.74,2.02,23.4,4.11,23.4,17.19,0,5.53-2.32,9.42-4.71,11.89-6.65,6.8-17.27,6.8-20.18,6.8-3.96,0-8.15-.37-12.26-1.57-8.37-2.39-12.26-7.1-14.65-10.02l12.78-8.22h0Z"/>
+                    <path fill="#fff" d="M75.12,64v8.97h9.19c1.57,0,5.46,0,5.46-4.41s-3.59-4.49-5.08-4.56h-9.57ZM75.04,84.04v10.24h10.47c1.5-.07,3.07-.15,4.34-1.57.82-.82,1.35-2.09,1.35-3.44,0-4.93-4.48-5.16-6.05-5.23h-10.09ZM58.45,52.86h31.25c3.29.15,9.42.38,13.38,4.26,2.39,2.24,3.59,5.76,3.59,9.12,0,3.89-1.65,7.18-3.74,9.27-1.42,1.42-2.77,2.02-4.49,2.84,2.17.6,4.11,1.12,6.2,3.21,2.99,2.92,3.51,6.35,3.51,8.97,0,3.96-1.2,8.07-3.89,10.76-3.96,4.04-9.42,4.19-13.53,4.34h-32.29v-52.78h0Z"/>
+                    <path fill="#fff" d="M131.18,65.61v28.33h6.35c2.39-.15,4.71-.23,7.03-2.47,2.54-2.39,3.96-6.88,3.96-11.81,0-3.07-.52-5.61-1.35-7.77-2.24-5.98-6.43-6.13-9.72-6.28h-6.28ZM114.44,53.28h17.94c11.81.15,19.44.22,25.64,6.05,5.46,5.08,7.33,12.63,7.33,20.11,0,11.14-4.19,21.68-14.8,25.19-4.26,1.42-8.97,1.42-14.13,1.42h-21.98v-52.78h0Z"/>
+                    <path fill="#fff" d="M222.28,91.67c-1.35,2.54-2.62,4.93-5.16,7.47-5.38,5.31-12.93,7.77-20.48,7.77-18.84,0-27.36-14.2-27.36-27.73,0-14.2,9.49-28.63,27.36-28.63,8,0,15.62,2.84,21.15,8.52,2.24,2.32,3.29,4.11,4.41,6.2l-13.98,6.95c-1.35-3.14-3.89-8.75-10.91-8.75-3.66,0-5.98,1.72-7.1,2.84-3.96,3.81-3.96,9.79-3.96,11.89,0,7.85,2.92,15.25,11.14,15.25,7.77,0,10.09-6.88,10.69-8.67l14.21,6.88h0Z"/>
+                    <polygon fill="#fff" points="180.22 13.31 186.19 14.47 188.51 9.68 189.78 15.22 197.17 15.95 189.92 19.48 191.79 26.81 191.76 26.77 195.14 32.77 191.99 20.44 203.55 14.81 191.22 13.59 189.11 4.39 185.2 12.48 175.76 10.65 176.09 11.07 180.22 13.31"/>
+                    <path fill="#fff" d="M178.06,4.5S113.69-11.07,32.95,15.72c0,0,80.78-22.04,143.99-8.77l1.12-2.45h0Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M20.9,29.39v12.38h-1.49l-6.79-10.06.14,10.06h-1.54v-12.38h1.54l6.72,9.92-.07-9.92h1.49Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M61.58,35.46c0,.94-.13,1.81-.4,2.61-.27.81-.67,1.51-1.19,2.1-.53.6-1.18,1.06-1.96,1.4s-1.69.51-2.72.51c-.95,0-1.8-.16-2.56-.47-.76-.32-1.41-.76-1.95-1.33-.54-.57-.95-1.26-1.24-2.05-.29-.79-.44-1.68-.44-2.65,0-1.15.18-2.13.54-2.95s.84-1.5,1.43-2.03c.59-.53,1.26-.91,2-.16.74-.25,1.5-.37,2.27-.37.87,0,1.68.14,2.44.43.76.29,1.42.7,1.98,1.25.56.54,1,1.21,1.32,2.01.32.79.48,1.69.48,2.7ZM59.79,35.48c0-.75-.1-1.43-.3-2.05-.2-.62-.48-1.15-.86-1.6-.37-.45-.84-.8-1.39-1.04-.55-.25-1.18-.37-1.89-.37-.78,0-1.46.14-2.02.42s-1.02.66-1.39,1.13c-.36.47-.63,1.02-.8,1.65-.17.63-.25,1.29-.25,1.99,0,.65.08,1.29.25,1.91.16.62.43,1.17.79,1.66s.83.88,1.39,1.17c.57.3,1.25.45,2.04.45s1.53-.16,2.1-.47c.57-.32,1.02-.72,1.37-1.23.34-.5.59-1.07.74-1.71.15-.64.22-1.27.22-1.9Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M91.38,36.51v5.26h-1.61v-12.38h4.59c.43,0,.82,0,1.17.02s.67.04.96.09c.3.05.57.12.82.22.25.1.5.24.75.43.46.34.79.76.99,1.25.2.5.31,1.03.31,1.6,0,.72-.12,1.3-.38,1.74-.25.43-.54.77-.87,1.01-.33.24-.65.4-.97.49-.32.09-.56.14-.71.17l3.47,5.37h-1.96l-3.37-5.26h-3.19ZM91.38,35.14h3.28c.27,0,.53,0,.77-.02.25-.01.49-.05.74-.11.57-.14.97-.4,1.2-.77.23-.37.34-.78.34-1.23,0-.08,0-.19-.02-.32-.01-.13-.04-.28-.09-.45s-.12-.33-.22-.5c-.1-.17-.24-.32-.41-.46-.33-.27-.69-.42-1.09-.46-.4-.04-.84-.06-1.31-.06h-3.19v4.38Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M139.06,37.28c-.13.58-.35,1.16-.67,1.74-.32.57-.73,1.09-1.24,1.54-.51.46-1.11.82-1.81,1.1-.7.28-1.49.42-2.39.42-1.02,0-1.91-.18-2.67-.53s-1.39-.83-1.89-1.43c-.5-.6-.88-1.29-1.12-2.07-.25-.78-.37-1.61-.37-2.47s.13-1.71.39-2.5c.26-.79.64-1.48,1.16-2.07.51-.59,1.17-1.06,1.96-1.41s1.71-.53,2.78-.53c.71,0,1.34.07,1.88.22.54.15,1.01.34,1.41.58.4.24.73.5,1.01.79.27.29.5.57.68.85.18.28.32.54.42.78s.17.43.22.57l-1.67.35c-.08-.23-.17-.46-.25-.67-.09-.21-.25-.45-.48-.72-.3-.37-.72-.71-1.26-1-.54-.29-1.2-.44-1.98-.44-.67,0-1.3.13-1.89.39-.6.26-1.1.65-1.51,1.17-.4.49-.67,1.05-.82,1.67-.15.62-.22,1.24-.22,1.88,0,.77.1,1.48.29,2.11.19.64.48,1.19.85,1.65.37.46.84.82,1.38,1.08.55.26,1.18.39,1.89.39.46,0,.91-.07,1.36-.2.45-.13.86-.35,1.24-.64.37-.29.7-.67.96-1.13s.45-1.02.54-1.67l1.81.21Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M173.18,37.98h-4.72l-1.38,3.79h-1.75l4.72-12.38h1.72l4.51,12.38h-1.74l-1.35-3.79ZM172.68,36.6l-1.81-5.15-1.89,5.15h3.7Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M205.26,40.32h6v1.46h-7.64v-12.4h1.65v10.94Z"/>
+                </svg>
+                <button class="side-menu-close" onclick="closeSideMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6 6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="side-menu-body">
+                <!-- About Section -->
+                <div class="side-menu-section">
+                    <div class="side-menu-label">About SBDC</div>
+                    <p class="side-menu-text">
+                        The NorCal Small Business Development Center (SBDC) is part of a national network that provides no-cost business consulting and low-cost training to help entrepreneurs start, grow, and succeed. We are one of the pillars of America's small business support ecosystem, funded in part through a cooperative agreement with the U.S. Small Business Administration.
+                    </p>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="side-menu-section">
+                    <div class="side-menu-label">Resources</div>
+                    <a href="https://youtube.com/@norcalsbdc" target="_blank" rel="noopener" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                        </svg>
+                        Training Videos on YouTube
+                    </a>
+                    <a href="mailto:phelps@norcalsbdc.org?subject=SBDC%20AI%20Prompt%20House%20Question&body=Hi%20Aaron%2C%0A%0AI%20have%20a%20question%20about%20the%20AI%20Prompt%20House.%0A%0AMy%20name%3A%20%5BYOUR%20NAME%5D%0AMy%20SBDC%20center%3A%20%5BYOUR%20CENTER%5D%0A%0AMy%20question%3A%0A%5BDESCRIBE%20YOUR%20QUESTION%20HERE%5D%0A%0AThanks!" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                        Ask a Question
+                    </a>
+                    <a href="#" onclick="openPolicyModal(); return false;" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        AI Usage Policy
+                    </a>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="side-menu-section">
+                    <div class="side-menu-label">Contact Us</div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <a href="mailto:phelps@norcalsbdc.org">phelps@norcalsbdc.org</a>
+                    </div>
+                    </div>
+            </div>
+            <div class="side-menu-footer">
+                <p class="side-menu-footer-text">Funded in part through a cooperative agreement with the U.S. Small Business Administration.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <button class="menu-btn" id="menuBtn" onclick="toggleSideMenu()" aria-label="Open menu">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+            <a href="#" class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 222.28 106.92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#fff" d="M12.78,86.94c1.49,2.32,2.77,4.26,7.33,5.76,2.17.75,4.86,1.2,7.4,1.2,1.35,0,7.92-.15,7.92-3.96,0-.37,0-2.32-2.92-3.29-1.87-.67-11.59-2.39-13.75-2.92-4.86-1.27-14.35-4.26-14.35-15.4,0-2.32.52-4.71,1.49-6.8,3.44-7.78,12.33-10.84,21.83-10.84,6.06,0,11.59,1.2,15.92,3.36,3.96,1.94,5.91,4.04,7.77,5.98l-10.47,8.74c-.82-1.04-1.72-2.24-4.04-3.44-3.07-1.5-7.1-1.94-9.79-1.94-2.84,0-5.98.75-5.98,3.44,0,2.54,2.69,3.21,7.25,4.04,11.74,2.02,23.4,4.11,23.4,17.19,0,5.53-2.32,9.42-4.71,11.89-6.65,6.8-17.27,6.8-20.18,6.8-3.96,0-8.15-.37-12.26-1.57-8.37-2.39-12.26-7.1-14.65-10.02l12.78-8.22h0Z"/>
+                    <path fill="#fff" d="M75.12,64v8.97h9.19c1.57,0,5.46,0,5.46-4.41s-3.59-4.49-5.08-4.56h-9.57ZM75.04,84.04v10.24h10.47c1.5-.07,3.07-.15,4.34-1.57.82-.82,1.35-2.09,1.35-3.44,0-4.93-4.48-5.16-6.05-5.23h-10.09ZM58.45,52.86h31.25c3.29.15,9.42.38,13.38,4.26,2.39,2.24,3.59,5.76,3.59,9.12,0,3.89-1.65,7.18-3.74,9.27-1.42,1.42-2.77,2.02-4.49,2.84,2.17.6,4.11,1.12,6.2,3.21,2.99,2.92,3.51,6.35,3.51,8.97,0,3.96-1.2,8.07-3.89,10.76-3.96,4.04-9.42,4.19-13.53,4.34h-32.29v-52.78h0Z"/>
+                    <path fill="#fff" d="M131.18,65.61v28.33h6.35c2.39-.15,4.71-.23,7.03-2.47,2.54-2.39,3.96-6.88,3.96-11.81,0-3.07-.52-5.61-1.35-7.77-2.24-5.98-6.43-6.13-9.72-6.28h-6.28ZM114.44,53.28h17.94c11.81.15,19.44.22,25.64,6.05,5.46,5.08,7.33,12.63,7.33,20.11,0,11.14-4.19,21.68-14.8,25.19-4.26,1.42-8.97,1.42-14.13,1.42h-21.98v-52.78h0Z"/>
+                    <path fill="#fff" d="M222.28,91.67c-1.35,2.54-2.62,4.93-5.16,7.47-5.38,5.31-12.93,7.77-20.48,7.77-18.84,0-27.36-14.2-27.36-27.73,0-14.2,9.49-28.63,27.36-28.63,8,0,15.62,2.84,21.15,8.52,2.24,2.32,3.29,4.11,4.41,6.2l-13.98,6.95c-1.35-3.14-3.89-8.75-10.91-8.75-3.66,0-5.98,1.72-7.1,2.84-3.96,3.81-3.96,9.79-3.96,11.89,0,7.85,2.92,15.25,11.14,15.25,7.77,0,10.09-6.88,10.69-8.67l14.21,6.88h0Z"/>
+                    <polygon fill="#fff" points="180.22 13.31 186.19 14.47 188.51 9.68 189.78 15.22 197.17 15.95 189.92 19.48 191.79 26.81 191.76 26.77 195.14 32.77 191.99 20.44 203.55 14.81 191.22 13.59 189.11 4.39 185.2 12.48 175.76 10.65 176.09 11.07 180.22 13.31"/>
+                    <path fill="#fff" d="M178.06,4.5S113.69-11.07,32.95,15.72c0,0,80.78-22.04,143.99-8.77l1.12-2.45h0Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M20.9,29.39v12.38h-1.49l-6.79-10.06.14,10.06h-1.54v-12.38h1.54l6.72,9.92-.07-9.92h1.49Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M61.58,35.46c0,.94-.13,1.81-.4,2.61-.27.81-.67,1.51-1.19,2.1-.53.6-1.18,1.06-1.96,1.4s-1.69.51-2.72.51c-.95,0-1.8-.16-2.56-.47-.76-.32-1.41-.76-1.95-1.33-.54-.57-.95-1.26-1.24-2.05-.29-.79-.44-1.68-.44-2.65,0-1.15.18-2.13.54-2.95s.84-1.5,1.43-2.03c.59-.53,1.26-.91,2-1.16.74-.25,1.5-.37,2.27-.37.87,0,1.68.14,2.44.43.76.29,1.42.7,1.98,1.25.56.54,1,1.21,1.32,2.01.32.79.48,1.69.48,2.7ZM59.79,35.48c0-.75-.1-1.43-.3-2.05-.2-.62-.48-1.15-.86-1.6-.37-.45-.84-.8-1.39-1.04-.55-.25-1.18-.37-1.89-.37-.78,0-1.46.14-2.02.42s-1.02.66-1.39,1.13c-.36.47-.63,1.02-.8,1.65-.17.63-.25,1.29-.25,1.99,0,.65.08,1.29.25,1.91.16.62.43,1.17.79,1.66s.83.88,1.39,1.17c.57.3,1.25.45,2.04.45s1.53-.16,2.1-.47c.57-.32,1.02-.72,1.37-1.23.34-.5.59-1.07.74-1.71.15-.64.22-1.27.22-1.9Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M91.38,36.51v5.26h-1.61v-12.38h4.59c.43,0,.82,0,1.17.02s.67.04.96.09c.3.05.57.12.82.22.25.1.5.24.75.43.46.34.79.76.99,1.25.2.5.31,1.03.31,1.6,0,.72-.12,1.3-.38,1.74-.25.43-.54.77-.87,1.01-.33.24-.65.4-.97.49-.32.09-.56.14-.71.17l3.47,5.37h-1.96l-3.37-5.26h-3.19ZM91.38,35.14h3.28c.27,0,.53,0,.77-.02.25-.01.49-.05.74-.11.57-.14.97-.4,1.2-.77.23-.37.34-.78.34-1.23,0-.08,0-.19-.02-.32-.01-.13-.04-.28-.09-.45s-.12-.33-.22-.5c-.1-.17-.24-.32-.41-.46-.33-.27-.69-.42-1.09-.46-.4-.04-.84-.06-1.31-.06h-3.19v4.38Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M139.06,37.28c-.13.58-.35,1.16-.67,1.74-.32.57-.73,1.09-1.24,1.54-.51.46-1.11.82-1.81,1.1-.7.28-1.49.42-2.39.42-1.02,0-1.91-.18-2.67-.53s-1.39-.83-1.89-1.43c-.5-.6-.88-1.29-1.12-2.07-.25-.78-.37-1.61-.37-2.47s.13-1.71.39-2.5c.26-.79.64-1.48,1.16-2.07.51-.59,1.17-1.06,1.96-1.41s1.71-.53,2.78-.53c.71,0,1.34.07,1.88.22.54.15,1.01.34,1.41.58.4.24.73.5,1.01.79.27.29.5.57.68.85.18.28.32.54.42.78s.17.43.22.57l-1.67.35c-.08-.23-.17-.46-.25-.67-.09-.21-.25-.45-.48-.72-.3-.37-.72-.71-1.26-1-.54-.29-1.2-.44-1.98-.44-.67,0-1.3.13-1.89.39-.6.26-1.1.65-1.51,1.17-.4.49-.67,1.05-.82,1.67-.15.62-.22,1.24-.22,1.88,0,.77.1,1.48.29,2.11.19.64.48,1.19.85,1.65.37.46.84.82,1.38,1.08.55.26,1.18.39,1.89.39.46,0,.91-.07,1.36-.2.45-.13.86-.35,1.24-.64.37-.29.7-.67.96-1.13s.45-1.02.54-1.67l1.81.21Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M173.18,37.98h-4.72l-1.38,3.79h-1.75l4.72-12.38h1.72l4.51,12.38h-1.74l-1.35-3.79ZM172.68,36.6l-1.81-5.15-1.89,5.15h3.7Z"/>
+                    <path fill="#fff" stroke="#fff" stroke-miterlimit="10" d="M205.26,40.32h6v1.46h-7.64v-12.4h1.65v10.94Z"/>
+                </svg>
+                <div class="logo-divider"></div>
+                <span class="logo-text">
+                    AI Resources
+                    <span class="ai-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="4"/>
+                        </svg>
+                        LIVE
+                    </span>
+                </span>
+            </a>
+            <button class="policy-header-btn" onclick="openPolicyModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <span class="policy-header-btn-text">AI Policy</span>
+                <span class="policy-ping">!</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero with Search -->
+    <section class="hero">
+        <div class="hero-inner">
+            <h1 class="hero-title">AI <span>Prompt House</span></h1>
+            <p class="hero-desc">Ready-to-use AI prompts for SBDC advisors. Search, copy, and customize for your client work.</p>
+            <div class="search-container">
+                <div class="search-box-wrapper">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" class="search-input" id="searchInput" placeholder="">
+                        <div class="search-placeholder" id="searchPlaceholder">
+                            <span class="typing-text" id="typingText"></span><span class="typing-cursor"></span>
+                        </div>
+                        <span class="search-shortcut">⌘K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <nav class="filters-section">
+        <div class="filters-inner">
+            <button class="filter-tab active" data-filter="all">
+                All Prompts<span class="filter-count">49</span>
+            </button>
+            <button class="filter-tab" data-filter="marketing">
+                Marketing<span class="filter-count">34</span>
+            </button>
+            <button class="filter-tab" data-filter="advising">
+                Client Advising<span class="filter-count">6</span>
+            </button>
+            <button class="filter-tab" data-filter="admin">
+                Admin & Reporting<span class="filter-count">5</span>
+            </button>
+            <button class="filter-tab" data-filter="training">
+                Training<span class="filter-count">4</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Prompts Grid -->
+    <main class="prompts-section">
+        <div class="prompts-header">
+            <span class="prompts-title">Prompt Library</span>
+            <span class="prompts-count" id="promptsCount">49 prompts</span>
+        </div>
+        <div class="prompts-grid" id="promptsGrid"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-text">Replace [bracketed text] with your specific client information before using prompts.</p>
+            <span class="footer-copyright">© NorCal SBDC AI Pillar. 2026</span>
+        </div>
+    </footer>
+
+    <!-- Modal (Slide-in Panel) -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" role="dialog">
+            <div class="modal-header">
+                <div class="modal-header-content">
+                    <span class="modal-category" id="modalCategory"></span>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                </div>
+                <button class="modal-close" onclick="closeModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6 6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="prompt-box">
+                    <div class="prompt-text" id="modalPrompt"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-tip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    Replace [brackets] with your details
+                </div>
+                <button class="btn-copy" id="copyBtn" onclick="copyPrompt()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    Copy Prompt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Policy Modal -->
+    <div class="policy-modal-overlay" id="policyModalOverlay">
+        <div class="policy-modal" role="dialog" aria-labelledby="policyModalTitle">
+            <div class="policy-modal-header">
+                <div class="policy-modal-header-content">
+                    <span class="policy-modal-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        DRAFT
+                    </span>
+                    <h2 class="policy-modal-title" id="policyModalTitle">NorCal SBDC AI Policy Quick Reference Guide</h2>
+                    <p class="policy-modal-subtitle">Effective: 11.22.2025</p>
+                </div>
+                <button class="policy-modal-close" onclick="closePolicyModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6 6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="policy-modal-body">
+                <!-- Green Light Section -->
+                <div class="policy-section">
+                    <div class="policy-section-header">
+                        <div class="policy-section-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <span class="policy-section-title green">Green Light — Approved</span>
+                    </div>
+
+                    <div class="policy-subsection">
+                        <div class="policy-subsection-title">Secure AI Tools</div>
+                        <ul class="policy-list green">
+                            <li>ChatGPT Teams SBDC account (data protected)</li>
+                            <li>Notebook LM (approved for research synthesis)</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-subsection">
+                        <div class="policy-subsection-title">Appropriate Applications</div>
+                        <ul class="policy-list green">
+                            <li>Drafting communications, reports & session notes</li>
+                            <li>Creating training materials</li>
+                            <li>Process optimization</li>
+                            <li>Aggregate data analysis (de-identified only)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Red Light Section -->
+                <div class="policy-section">
+                    <div class="policy-section-header">
+                        <div class="policy-section-icon red">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                        </div>
+                        <span class="policy-section-title red">Red Light — Prohibited</span>
+                    </div>
+
+                    <div class="policy-subsection">
+                        <div class="policy-subsection-title">Absolute Prohibitions</div>
+                        <ul class="policy-list red">
+                            <li>NEVER upload client data/PII to non-SBDC tools</li>
+                            <li>NEVER let AI replace human judgment in advising</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-subsection">
+                        <div class="policy-subsection-title">Data Privacy</div>
+                        <ul class="policy-list red">
+                            <li>No client names, SSNs, financials in unapproved tools</li>
+                            <li>No screenshots containing sensitive data</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-subsection">
+                        <div class="policy-subsection-title">Content Integrity</div>
+                        <ul class="policy-list red">
+                            <li>No unverified AI-generated facts in client materials</li>
+                            <li>No AI-generated legal or financial advice</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Warning Section -->
+                <div class="policy-section policy-warning-compact">
+                    <svg class="policy-warning-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <span class="policy-warning-inline-text"><strong>Violations impact:</strong> Federal grant compliance (2 CFR 130), client trust, and disciplinary action. When in doubt, ask before using AI with any client information.</span>
+                </div>
+            </div>
+            <div class="policy-modal-footer">
+                <div class="policy-contact">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Questions? Contact <a href="mailto:phelps@norcalsbdc.org">phelps@norcalsbdc.org</a> or AI Pillar leads
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Right-Click Context Menu -->
+    <div class="custom-context-menu" id="customContextMenu">
+        <button class="context-card-close" onclick="hideContextMenu()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <div class="context-card-header">
+            <div class="context-card-copyright">© 2026</div>
+            <div class="context-card-org">NorCal SBDC AI Pillar Group</div>
+        </div>
+        <div class="context-card-body">
+            <div class="context-card-question">Questions?</div>
+            <div class="context-card-person">
+                <div class="context-card-avatar">AP</div>
+                <div class="context-card-info">
+                    <div class="context-card-name">Aaron Phelps</div>
+                    <div class="context-card-title">Marketing & Technology Director</div>
+                    <a href="mailto:phelps@norcalsbdc.org" class="context-card-email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                        phelps@norcalsbdc.org
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Custom Right-Click Menu
+        const contextMenu = document.getElementById('customContextMenu');
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+
+            // Position the menu
+            const x = e.clientX;
+            const y = e.clientY;
+
+            // Make sure menu doesn't go off screen
+            const menuWidth = 280;
+            const menuHeight = 200;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            let posX = x;
+            let posY = y;
+
+            if (x + menuWidth > windowWidth) {
+                posX = windowWidth - menuWidth - 10;
+            }
+            if (y + menuHeight > windowHeight) {
+                posY = windowHeight - menuHeight - 10;
+            }
+
+            contextMenu.style.left = posX + 'px';
+            contextMenu.style.top = posY + 'px';
+            contextMenu.style.display = 'block';
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!contextMenu.contains(e.target)) {
+                hideContextMenu();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideContextMenu();
+            }
+        });
+
+        function hideContextMenu() {
+            contextMenu.style.display = 'none';
+        }
+
+        const prompts = [
+            {
+                id: 1,
+                title: "Business Plan Review",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Comprehensive analysis of a client's business plan with actionable feedback",
+                tags: ["planning", "analysis"],
+                prompt: `You are an experienced SBDC business advisor. Please review the following business plan for [CLIENT NAME]'s [BUSINESS TYPE] business.
+
+Business Plan Summary:
+[PASTE BUSINESS PLAN OR KEY SECTIONS HERE]
+
+Please provide:
+1. Executive Summary Assessment - Is it compelling and complete?
+2. Market Analysis Feedback - Are the target market and competition well-defined?
+3. Financial Projections Review - Are assumptions realistic?
+4. Operational Plan Gaps - What's missing or needs strengthening?
+5. Top 3 Strengths of this plan
+6. Top 3 Areas for Improvement with specific suggestions
+7. Questions I should ask the client in our next session
+
+Format your response in clear sections that I can share with my client.`
+            },
+            {
+                id: 2,
+                title: "Cash Flow Analysis",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Help clients understand and improve their cash flow management",
+                tags: ["financial", "analysis"],
+                prompt: `I'm advising a small business client on cash flow management. Here's their situation:
+
+Business: [BUSINESS NAME] - [INDUSTRY/TYPE]
+Monthly Revenue: [AMOUNT]
+Key Expenses: [LIST MAJOR EXPENSES]
+Current Challenge: [DESCRIBE CASH FLOW ISSUE]
+
+Please help me:
+1. Identify potential cash flow red flags based on this information
+2. Suggest 5-7 specific strategies to improve their cash flow
+3. Create a simple cash flow talking points list I can use in our advising session
+4. Recommend metrics they should track monthly
+5. Suggest questions I should ask to better understand their situation
+
+Keep recommendations practical for a small business owner without a finance background.`
+            },
+            {
+                id: 3,
+                title: "Market Research Kickstart",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Guide clients through market and competitive analysis",
+                tags: ["research", "strategy"],
+                prompt: `I'm helping an SBDC client conduct market research for their [NEW/EXISTING] business.
+
+Business Concept: [DESCRIBE THE BUSINESS]
+Target Location: [CITY/REGION]
+Proposed Target Customer: [CUSTOMER DESCRIPTION]
+Main Products/Services: [LIST OFFERINGS]
+
+Please provide:
+1. Key market research questions they should answer
+2. Free or low-cost resources for finding market data in this industry
+3. A simple competitive analysis framework they can complete
+4. 5 questions to ask potential customers for validation
+5. Red flags or assumptions they should test before proceeding
+6. A suggested 2-week market research action plan
+
+Make this actionable for a first-time entrepreneur.`
+            },
+            {
+                id: 4,
+                title: "SWOT Analysis Facilitator",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Structured session guide for facilitating client SWOT meetings",
+                tags: ["strategy", "planning"],
+                prompt: `Help me facilitate a SWOT analysis session with my SBDC client.
+
+Business: [BUSINESS NAME]
+Industry: [INDUSTRY]
+Years in Operation: [NUMBER] years
+Current Situation: [BRIEF CONTEXT - e.g., "considering expansion" or "facing new competition"]
+
+Based on this context, please:
+1. Suggest 5 probing questions for each SWOT category that I can ask the client
+2. Provide industry-relevant examples for each category to spark their thinking
+3. Create a framework for prioritizing the findings
+4. Suggest how to turn this SWOT into 3-5 strategic action items
+5. Give me a suggested agenda for a 60-minute SWOT session
+
+Format as a facilitator's guide I can reference during the meeting.`
+            },
+            {
+                id: 5,
+                title: "Funding Readiness Assessment",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Evaluate if a client is ready to seek financing",
+                tags: ["funding", "assessment"],
+                prompt: `I'm assessing whether my SBDC client is ready to seek [LOAN/INVESTMENT/GRANT] funding.
+
+Business: [BUSINESS NAME]
+Industry: [INDUSTRY]
+Time in Business: [DURATION]
+Funding Amount Sought: [AMOUNT]
+Intended Use of Funds: [PURPOSE]
+Current Annual Revenue: [REVENUE]
+Credit Score Range: [RANGE if known]
+
+Please provide:
+1. A readiness checklist - what documents and metrics should they have prepared?
+2. Likely lender/investor questions they should be ready to answer
+3. Red flags that might hurt their application
+4. Steps to improve their fundability if not ready
+5. Suggested funding sources appropriate for their profile
+6. Timeline expectations for different funding types
+
+Help me give them realistic expectations and a clear path forward.`
+            },
+            {
+                id: 6,
+                title: "Resource Recommendations",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Match clients with appropriate resources and referrals",
+                tags: ["resources", "referral"],
+                prompt: `Help me identify the best resources and referrals for my SBDC client.
+
+Client Need: [PRIMARY CHALLENGE OR GOAL]
+Business Stage: [IDEA/STARTUP/GROWTH/ESTABLISHED]
+Industry: [INDUSTRY]
+Location: [CITY/STATE]
+Budget for Services: [RANGE OR "LIMITED"]
+Specific Constraints: [ANY LIMITATIONS - time, language, accessibility, etc.]
+
+Already Tried/Using:
+- [EXISTING RESOURCES]
+
+Please suggest:
+1. Free resources (government, nonprofit, online)
+2. Low-cost options (workshops, programs, tools)
+3. Professional referrals that might be needed (accountant, attorney, etc.)
+4. Industry-specific resources
+5. Funding programs they might qualify for
+6. Peer networks or mentorship opportunities
+7. Online tools and templates
+
+For each, briefly explain why it's relevant to their situation.`
+            },
+            {
+                id: 7,
+                title: "Impact Narrative Writer",
+                category: "admin",
+                categoryLabel: "Admin & Reporting",
+                description: "Transform client outcomes into compelling impact stories",
+                tags: ["reporting", "writing"],
+                prompt: `Help me write an impact narrative for SBDC reporting purposes.
+
+Client Business: [BUSINESS NAME]
+Industry: [INDUSTRY]
+Services Provided: [LIST SBDC SERVICES - e.g., business planning, financial analysis, marketing strategy]
+Advising Hours: [NUMBER] hours over [TIMEFRAME]
+
+Outcomes Achieved:
+- [OUTCOME 1 - e.g., "Secured $50,000 SBA loan"]
+- [OUTCOME 2 - e.g., "Hired 3 new employees"]
+- [OUTCOME 3 - e.g., "Increased revenue by 25%"]
+
+Client Quote (if available): "[QUOTE]"
+
+Please write:
+1. A 100-word impact summary suitable for reports
+2. A 250-word success story for newsletters/marketing
+3. Key metrics to highlight
+4. A compelling headline for this story
+
+Use professional tone appropriate for SBA reporting while making the human impact clear.`
+            },
+            {
+                id: 8,
+                title: "Session Notes Formatter",
+                category: "admin",
+                categoryLabel: "Admin & Reporting",
+                description: "Convert rough notes into structured CRM documentation",
+                tags: ["documentation", "CRM"],
+                prompt: `Please help me format my SBDC client session notes for our CRM system.
+
+Raw Notes from Session:
+[PASTE YOUR ROUGH NOTES HERE]
+
+Client: [CLIENT NAME]
+Business: [BUSINESS NAME]
+Date: [DATE]
+Session Type: [IN-PERSON/VIRTUAL/PHONE]
+Duration: [LENGTH]
+
+Please organize into:
+1. Session Summary (2-3 sentences)
+2. Topics Discussed (bullet points)
+3. Advice/Recommendations Given
+4. Action Items for Client (with suggested deadlines)
+5. Follow-up Items for Advisor
+6. Next Session Focus Areas
+7. Milestones to Track
+
+Keep the language professional but concise for database entry.`
+            },
+            {
+                id: 9,
+                title: "Quarterly Report Draft",
+                category: "admin",
+                categoryLabel: "Admin & Reporting",
+                description: "Generate quarterly performance report content",
+                tags: ["reporting", "metrics"],
+                prompt: `Help me draft content for our SBDC quarterly report.
+
+Reporting Period: [Q1/Q2/Q3/Q4] [YEAR]
+Center Name: [SBDC CENTER NAME]
+
+Key Metrics This Quarter:
+- Clients Served: [NUMBER]
+- Advising Hours: [NUMBER]
+- Training Attendees: [NUMBER]
+- Businesses Started: [NUMBER]
+- Jobs Created: [NUMBER]
+- Capital Infusion: $[AMOUNT]
+
+Notable Achievements:
+[LIST 3-5 HIGHLIGHTS]
+
+Challenges Faced:
+[LIST ANY CHALLENGES]
+
+Please generate:
+1. Executive summary paragraph (100 words)
+2. Metrics analysis with context (what do these numbers mean?)
+3. 3 spotlight stories structure based on achievements
+4. Goals/outlook for next quarter
+5. Resource needs or support requests language
+
+Match the professional tone expected in SBA reporting.`
+            },
+            {
+                id: 10,
+                title: "Milestone Tracking Summary",
+                category: "admin",
+                categoryLabel: "Admin & Reporting",
+                description: "Create client milestone reports for tracking and reporting",
+                tags: ["tracking", "reporting"],
+                prompt: `Help me create a milestone tracking summary for an SBDC client.
+
+Client: [CLIENT NAME]
+Business: [BUSINESS NAME]
+Engagement Start Date: [DATE]
+Primary Goal: [MAIN OBJECTIVE - e.g., "Launch business" or "Secure funding"]
+
+Milestones Completed:
+- [DATE]: [MILESTONE 1]
+- [DATE]: [MILESTONE 2]
+- [DATE]: [MILESTONE 3]
+
+In Progress:
+- [CURRENT MILESTONE]
+
+Please create:
+1. A timeline visualization description
+2. Progress summary paragraph for reporting
+3. Estimated completion path for remaining goals
+4. Risk factors or blockers to note
+5. Recommended next milestones to set
+
+Format for both internal tracking and potential inclusion in impact reports.`
+            },
+            {
+                id: 11,
+                title: "Email Follow-up Templates",
+                category: "admin",
+                categoryLabel: "Admin & Reporting",
+                description: "Professional follow-up emails for various client situations",
+                tags: ["email", "communication"],
+                prompt: `Generate professional SBDC advisor email templates for the following scenario:
+
+Scenario: [CHOOSE ONE]
+- Post-session follow-up
+- Checking in after no contact for [X] weeks
+- Congratulating on milestone achieved
+- Reminder about upcoming deadline
+- Request for outcome data/metrics
+- Referral to another resource/partner
+
+Client Name: [NAME]
+Business: [BUSINESS NAME]
+Specific Context: [ANY RELEVANT DETAILS]
+
+Please provide:
+1. Subject line options (3)
+2. Email body (professional but warm tone)
+3. Clear call-to-action
+4. Shorter alternative version for quick sends
+
+Keep SBDC's supportive, professional voice throughout.`
+            },
+            {
+                id: 12,
+                title: "New Advisor Orientation",
+                category: "training",
+                categoryLabel: "Training",
+                description: "Onboarding content for new SBDC advisors",
+                tags: ["onboarding", "training"],
+                prompt: `Help me create orientation content for a new SBDC business advisor.
+
+New Advisor Background: [INDUSTRY EXPERIENCE/EXPERTISE AREAS]
+Center Focus Areas: [YOUR CENTER'S SPECIALTIES]
+Client Base Description: [TYPICAL CLIENT PROFILE]
+
+Please generate:
+1. "First 30 Days" checklist with key learning priorities
+2. Overview of core SBDC services they'll be providing
+3. Common client scenarios they'll encounter with suggested approaches
+4. Key metrics and reporting requirements to understand
+5. Professional development resources for business advising
+6. Tips for effective client intake conversations
+7. Do's and Don'ts from experienced advisors
+
+Make this practical and immediately useful for someone new to SBDC work.`
+            },
+            {
+                id: 13,
+                title: "Advising Best Practices",
+                category: "training",
+                categoryLabel: "Training",
+                description: "Training content on effective advising techniques",
+                tags: ["skills", "training"],
+                prompt: `Create a best practices refresher for SBDC business advisors on effective advising.
+
+Focus Area: [CHOOSE OR SPECIFY]
+- Active listening techniques
+- Asking powerful questions
+- Delivering difficult feedback
+- Setting appropriate boundaries
+- Managing client expectations
+- Cultural competency in advising
+- Virtual advising effectiveness
+
+Experience Level: [NEW/EXPERIENCED] advisors
+Session Length: [TIME] for training
+
+Please provide:
+1. Key principles with brief explanations
+2. Common mistakes to avoid
+3. Practical techniques with examples
+4. Role-play scenarios for practice
+5. Self-assessment questions
+6. Resources for deeper learning
+
+Format as a training facilitator guide or self-study resource.`
+            },
+            {
+                id: 14,
+                title: "Difficult Conversation Prep",
+                category: "training",
+                categoryLabel: "Training",
+                description: "Prepare for challenging client conversations",
+                tags: ["communication", "skills"],
+                prompt: `Help me prepare for a difficult conversation with an SBDC client.
+
+Situation: [DESCRIBE THE CHALLENGE]
+Examples:
+- Client's business idea isn't viable
+- Client isn't following through on commitments
+- Need to deliver negative news about funding denial
+- Client has unrealistic expectations
+- Addressing a failing business situation
+
+Client Context: [RELEVANT BACKGROUND]
+Relationship History: [BRIEF DESCRIPTION]
+Desired Outcome: [WHAT YOU HOPE TO ACHIEVE]
+
+Please provide:
+1. Key talking points and how to frame them
+2. Phrases to use (and avoid)
+3. Anticipated client reactions and responses
+4. How to maintain the advising relationship
+5. Follow-up plan regardless of how it goes
+6. Self-care reminders for the advisor
+
+Keep the approach empathetic but professionally honest.`
+            },
+            {
+                id: 15,
+                title: "Workshop Curriculum Builder",
+                category: "training",
+                categoryLabel: "Training",
+                description: "Design engaging SBDC training workshops",
+                tags: ["workshop", "curriculum"],
+                prompt: `Help me design an SBDC workshop/training session.
+
+Topic: [WORKSHOP TOPIC]
+Target Audience: [WHO WILL ATTEND - e.g., "aspiring entrepreneurs" or "existing business owners"]
+Duration: [LENGTH - e.g., "2 hours" or "half-day"]
+Format: [IN-PERSON/VIRTUAL/HYBRID]
+Expected Attendance: [NUMBER]
+
+Learning Objectives (what should they know/do after?):
+1. [OBJECTIVE 1]
+2. [OBJECTIVE 2]
+3. [OBJECTIVE 3]
+
+Please create:
+1. Session outline with timing
+2. Engaging opening activity
+3. Key content sections with delivery notes
+4. Interactive elements/exercises
+5. Handout or takeaway content outline
+6. Q&A facilitation tips
+7. Follow-up resources to share
+8. Evaluation questions to assess effectiveness
+
+Make it engaging and practical, not lecture-heavy.`
+            },
+            {
+                id: 16,
+                title: "AI Search Visibility Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Optimize content and brand presence for AI search engines like ChatGPT, Claude, and Perplexity",
+                tags: ["SEO", "AI", "content"],
+                prompt: `You are an AI search optimization strategist and AEO (AI Engine Optimization) expert who specializes in optimizing content and brand presence for AI search engines like ChatGPT, Claude, Perplexity, and Google's AI Overview.
+
+# CONTEXT
+I need to optimize our content strategy and brand presence for AI search engines, ensuring our brand gets mentioned and cited when potential customers ask AI tools questions related to our industry.
+
+# CURRENT CONTENT STATE
+- Website content: [YOUR CURRENT WEBSITE CONTENT AND STRUCTURE]
+- Blog content: [YOUR BLOG CONTENT TOPICS AND DEPTH]
+- Resource library: [GUIDES, WHITEPAPERS, CASE STUDIES, ETC.]
+- Current SEO performance: [CURRENT GOOGLE SEARCH PERFORMANCE]
+
+# TARGET QUERIES
+- Customer problem queries: [QUESTIONS CUSTOMERS ASK ABOUT PROBLEMS YOU SOLVE]
+- Solution research queries: [QUESTIONS ABOUT SOLUTION TYPES AND APPROACHES]
+- Industry trend queries: [QUESTIONS ABOUT INDUSTRY TRENDS AND FUTURE]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY AND EXPERTISE AREAS]
+- Competitive landscape: [KEY COMPETITORS]
+
+Please provide:
+1. AI Search Optimization Strategy Overview
+2. Content Authority Building Strategy
+3. Query-Specific Content Recommendations
+4. Citation Enhancement Tactics
+5. Implementation Roadmap (30/60/90 days)
+6. Success Measurement Framework`
+            },
+            {
+                id: 17,
+                title: "Account-Based Personalization",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create highly customized marketing approaches for strategic target accounts",
+                tags: ["ABM", "personalization", "B2B"],
+                prompt: `You are an account-based marketing strategist and personalization expert who specializes in creating highly customized marketing approaches for strategic target accounts.
+
+# CONTEXT
+I need to develop sophisticated account-based personalization strategies that treat high-value accounts as markets of one, with customized messaging, content, and engagement approaches.
+
+# TARGET ACCOUNT INFORMATION
+**Account Tier Structure:**
+- Tier 1 accounts: [TOP 10-25 HIGHEST VALUE TARGET ACCOUNTS]
+- Tier 2 accounts: [NEXT 25-50 HIGH VALUE TARGET ACCOUNTS]
+- Tier 3 accounts: [BROADER SET OF 100-200 TARGET ACCOUNTS]
+
+**Account Selection Criteria:**
+- Revenue potential: [EXPECTED REVENUE FROM TARGET ACCOUNTS]
+- Strategic importance: [WHY THESE ACCOUNTS ARE STRATEGICALLY IMPORTANT]
+- Fit assessment: [HOW WELL THESE ACCOUNTS FIT YOUR IDEAL CUSTOMER PROFILE]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- ABM experience level: [YOUR CURRENT ACCOUNT-BASED MARKETING MATURITY]
+- Sales process: [YOUR SALES PROCESS FOR STRATEGIC ACCOUNTS]
+- Technology stack: [ABM TECHNOLOGY AND TOOLS AVAILABLE]
+
+Please provide:
+1. Account Intelligence and Research Framework
+2. Stakeholder Mapping and Personalization Strategy
+3. Account-Specific Messaging Framework
+4. Custom Content Development Plan
+5. Multi-Channel Engagement Strategy
+6. Success Measurement and KPIs`
+            },
+            {
+                id: 18,
+                title: "Automated Personalization Sequences",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Design automated email sequences that deliver personalized experiences at scale",
+                tags: ["automation", "email", "personalization"],
+                prompt: `You are a marketing automation strategist and personalization expert who specializes in creating automated email sequences that deliver highly personalized experiences at scale.
+
+# CONTEXT
+I need to design automated marketing sequences that use customer data and behavioral triggers to deliver personalized experiences that feel individually crafted.
+
+# CUSTOMER DATA FOR AUTOMATION
+**Customer Profile Data:**
+- Demographics/firmographics: [CUSTOMER CHARACTERISTICS AVAILABLE]
+- Behavioral data: [WEBSITE BEHAVIOR, EMAIL ENGAGEMENT, CONTENT CONSUMPTION]
+- Purchase history: [PAST PURCHASES, ORDER VALUES, TIMING PATTERNS]
+- Preference data: [COMMUNICATION PREFERENCES, CONTENT PREFERENCES]
+
+**Trigger Event Data:**
+- Website behaviors: [SPECIFIC WEBSITE ACTIONS THAT TRIGGER SEQUENCES]
+- Email interactions: [EMAIL BEHAVIORS THAT TRIGGER FOLLOW-UP]
+- Purchase behaviors: [PURCHASE ACTIONS THAT TRIGGER SEQUENCES]
+- Lifecycle transitions: [CUSTOMER LIFECYCLE CHANGES THAT TRIGGER COMMUNICATION]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Products/services: [WHAT YOU OFFER]
+- Customer journey stages: [YOUR CUSTOMER JOURNEY FRAMEWORK]
+- Technology stack: [YOUR MARKETING AUTOMATION PLATFORM]
+
+Please provide:
+1. Welcome and Onboarding Sequence Design
+2. Behavioral Trigger Sequence Framework
+3. Re-engagement Sequence Strategy
+4. Dynamic Content Personalization Rules
+5. Sequence Orchestration Plan
+6. Performance Measurement Framework`
+            },
+            {
+                id: 19,
+                title: "Behavioral Segmentation Builder",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create actionable customer segments based on observed behaviors rather than demographics",
+                tags: ["segmentation", "analytics", "targeting"],
+                prompt: `You are a behavioral analytics expert and customer segmentation strategist who specializes in creating actionable customer segments based on observed behaviors.
+
+# CONTEXT
+I need to create behavioral customer segments that reflect how customers actually interact with our business, enabling more effective personalization and marketing strategies.
+
+# CUSTOMER BEHAVIORAL DATA
+**Website Behavior Data:**
+- Page visit patterns: [CUSTOMER NAVIGATION AND PAGE CONSUMPTION PATTERNS]
+- Session characteristics: [SESSION LENGTH, FREQUENCY, DEPTH]
+- Content engagement: [WHICH CONTENT TYPES CUSTOMERS ENGAGE WITH MOST]
+- Conversion paths: [TYPICAL CUSTOMER JOURNEY PATHS TO CONVERSION]
+
+**Purchase Behavior Data:**
+- Buying frequency: [HOW OFTEN DIFFERENT CUSTOMERS PURCHASE]
+- Purchase timing: [SEASONAL OR CYCLICAL PURCHASE PATTERNS]
+- Order characteristics: [TYPICAL ORDER SIZE, PRODUCT MIX]
+
+**Communication Engagement Data:**
+- Email behavior: [OPEN RATES, CLICK PATTERNS, RESPONSE TIMING]
+- Social media engagement: [HOW CUSTOMERS INTERACT ON SOCIAL PLATFORMS]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY AND BUSINESS MODEL]
+- Customer base size: [APPROXIMATE NUMBER OF CUSTOMERS TO SEGMENT]
+- Business objectives: [WHAT YOU WANT TO ACHIEVE WITH SEGMENTATION]
+
+Please provide:
+1. Behavioral Pattern Analysis
+2. 4-6 Distinct Behavioral Segments with Profiles
+3. Segment-Specific Marketing Strategies
+4. Personalization Implementation Guide
+5. Segment Performance Metrics
+6. Continuous Optimization Framework`
+            },
+            {
+                id: 20,
+                title: "Brand Activation Planner",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Plan successful introduction of new or refreshed brand identities to market",
+                tags: ["branding", "launch", "strategy"],
+                prompt: `You are a brand activation strategist and launch expert who specializes in successfully introducing new or refreshed brand identities to the market.
+
+# CONTEXT
+I need to create a comprehensive brand activation plan that introduces our new or refined brand identity in a way that feels authentic and drives business results.
+
+# BRAND ACTIVATION CONTEXT
+**Type of Brand Activation:**
+- Activation type: [NEW BRAND LAUNCH / BRAND REFRESH / REBRAND / REPOSITIONING]
+- Scope of change: [COMPLETE OVERHAUL / EVOLUTION / MESSAGING UPDATE / VISUAL REFRESH]
+- Reason for change: [WHY YOU'RE ACTIVATING NEW BRAND]
+
+**Current Brand State:**
+- Existing brand recognition: [CURRENT LEVEL OF BRAND AWARENESS]
+- Customer brand perception: [HOW CUSTOMERS CURRENTLY VIEW YOUR BRAND]
+- Market position: [CURRENT COMPETITIVE POSITION]
+
+**New Brand Identity:**
+- New brand positioning: [YOUR NEW BRAND POSITIONING]
+- New brand personality: [NEW BRAND PERSONALITY CHARACTERISTICS]
+- New visual identity: [CHANGES TO LOGO, COLORS, DESIGN]
+- New messaging: [NEW KEY MESSAGES]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY AND MARKET]
+- Timeline requirements: [ANY DEADLINE OR TIMING CONSTRAINTS]
+- Budget parameters: [BUDGET RANGE FOR BRAND ACTIVATION]
+
+Please provide:
+1. Internal Alignment Strategy
+2. Pre-Launch Foundation Plan
+3. Launch Sequence and Timeline
+4. Customer Communication Strategy
+5. Channel and Platform Rollout Plan
+6. Risk Management and Contingency Plans
+7. Success Measurement Framework`
+            },
+            {
+                id: 21,
+                title: "Brand Archetype Identifier",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Identify and implement brand archetypes for emotional connection and consistent expression",
+                tags: ["branding", "psychology", "positioning"],
+                prompt: `You are a brand psychology expert and archetypal brand strategist who helps companies identify and implement brand archetypes that create emotional connection.
+
+# CONTEXT
+I need to identify our brand archetype based on customer perceptions, brand aspirations, and business characteristics to create more consistent and emotionally resonant brand communication.
+
+# BRAND ASSESSMENT DATA
+**Current Brand Expression:**
+- Current brand messaging: [YOUR CURRENT BRAND MESSAGES AND COPY]
+- Visual brand style: [DESCRIBE YOUR CURRENT VISUAL BRAND]
+- Communication tone: [HOW YOU CURRENTLY COMMUNICATE]
+- Customer interactions: [HOW YOU TYPICALLY INTERACT WITH CUSTOMERS]
+
+**Customer Perceptions:**
+- Customer feedback about brand: [WHAT CUSTOMERS SAY ABOUT YOUR BRAND PERSONALITY]
+- Brand associations: [WHAT CUSTOMERS ASSOCIATE WITH YOUR BRAND]
+- Emotional responses: [HOW CUSTOMERS SAY YOUR BRAND MAKES THEM FEEL]
+
+**Brand Aspirations:**
+- Desired brand perception: [HOW YOU WANT TO BE PERCEIVED]
+- Brand values: [YOUR CORE BRAND VALUES]
+- Mission and purpose: [YOUR BRAND'S DEEPER PURPOSE]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY AND MARKET POSITION]
+- Target audience: [YOUR IDEAL CUSTOMERS]
+- Competitive landscape: [KEY COMPETITORS AND THEIR BRAND PERSONALITIES]
+
+Please analyze against the 12 Brand Archetypes (Innocent, Sage, Explorer, Outlaw, Magician, Hero, Lover, Jester, Everyman, Caregiver, Ruler, Creator) and provide:
+1. Current Brand Archetype Assessment
+2. Primary Archetype Recommendation with Rationale
+3. Secondary Archetype Influence
+4. Brand Personality Expression Guidelines
+5. Visual and Communication Style Guide
+6. Cross-Functional Implementation Strategy`
+            },
+            {
+                id: 22,
+                title: "Brand Differentiation Analyzer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Analyze competitive landscape and identify unique brand positioning opportunities",
+                tags: ["competitive", "positioning", "strategy"],
+                prompt: `You are a brand strategist and competitive analyst who specializes in identifying unique positioning opportunities that differentiate brands in crowded markets.
+
+# CONTEXT
+I need to analyze our competitive landscape and identify meaningful differentiation opportunities that will set our brand apart and resonate with our target audience.
+
+# COMPETITIVE LANDSCAPE
+**Your Brand:**
+- Company: [YOUR COMPANY NAME]
+- Current positioning: [HOW YOU CURRENTLY POSITION YOUR BRAND]
+- Key messages: [YOUR MAIN BRAND MESSAGES]
+- Value proposition: [YOUR CURRENT VALUE PROPOSITION]
+- Target audience: [WHO YOU'RE TRYING TO REACH]
+
+**Competitor Analysis:**
+- Competitor 1: [NAME, POSITIONING, KEY MESSAGES, STRENGTHS]
+- Competitor 2: [NAME, POSITIONING, KEY MESSAGES, STRENGTHS]
+- Competitor 3: [NAME, POSITIONING, KEY MESSAGES, STRENGTHS]
+- Competitor 4: [NAME, POSITIONING, KEY MESSAGES, STRENGTHS]
+
+**Market Context:**
+- Industry trends: [CURRENT TRENDS IN YOUR INDUSTRY]
+- Customer expectations: [WHAT CUSTOMERS EXPECT FROM BRANDS IN YOUR SPACE]
+- Unmet needs: [GAPS IN THE MARKET YOU'VE IDENTIFIED]
+
+# BUSINESS CONTEXT
+- Industry: [YOUR INDUSTRY]
+- Business model: [HOW YOU OPERATE AND MAKE MONEY]
+- Unique capabilities: [WHAT YOU DO BETTER THAN ANYONE ELSE]
+- Growth objectives: [YOUR GROWTH GOALS]
+
+Please provide:
+1. Competitive Positioning Map
+2. Differentiation Gap Analysis
+3. Unique Value Proposition Recommendations
+4. Messaging Differentiation Strategy
+5. Proof Point Development
+6. Implementation Roadmap`
+            },
+            {
+                id: 23,
+                title: "Brand Evolution Roadmap",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create a strategic plan for evolving your brand over time while maintaining consistency",
+                tags: ["branding", "strategy", "planning"],
+                prompt: `You are a brand evolution strategist who helps companies plan and execute long-term brand development while maintaining consistency and customer trust.
+
+# CONTEXT
+I need to create a strategic roadmap for evolving our brand over the next 12-24 months in response to market changes, business growth, and evolving customer expectations.
+
+# CURRENT BRAND STATE
+**Brand Foundation:**
+- Brand positioning: [YOUR CURRENT BRAND POSITIONING]
+- Brand values: [YOUR CORE BRAND VALUES]
+- Brand personality: [YOUR BRAND'S PERSONALITY TRAITS]
+- Visual identity: [CURRENT VISUAL BRAND ELEMENTS]
+- Brand voice: [HOW YOUR BRAND COMMUNICATES]
+
+**Brand Performance:**
+- Brand awareness: [CURRENT AWARENESS LEVELS]
+- Brand perception: [HOW CUSTOMERS PERCEIVE YOUR BRAND]
+- Brand equity: [VALUE OF YOUR BRAND]
+- Customer loyalty: [LOYALTY AND RETENTION METRICS]
+
+# EVOLUTION DRIVERS
+**Market Changes:**
+- Industry trends: [TRENDS AFFECTING YOUR INDUSTRY]
+- Competitive shifts: [HOW COMPETITION IS EVOLVING]
+- Customer evolution: [HOW YOUR CUSTOMERS ARE CHANGING]
+- Technology impact: [HOW TECHNOLOGY IS AFFECTING YOUR MARKET]
+
+**Business Growth:**
+- Growth objectives: [YOUR BUSINESS GROWTH PLANS]
+- New markets: [NEW MARKETS YOU'RE ENTERING]
+- New products/services: [NEW OFFERINGS PLANNED]
+- Organizational changes: [COMPANY CHANGES AFFECTING BRAND]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY]
+- Company stage: [STARTUP, GROWTH, ESTABLISHED, ETC.]
+- Resources: [RESOURCES AVAILABLE FOR BRAND EVOLUTION]
+
+Please provide:
+1. Brand Evolution Assessment
+2. Evolution Opportunity Analysis
+3. Phased Evolution Roadmap (12-24 months)
+4. Consistency Maintenance Guidelines
+5. Stakeholder Communication Plan
+6. Success Metrics and Milestones`
+            },
+            {
+                id: 24,
+                title: "Brand Personality Profiler",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create detailed brand personality profiles that guide consistent communication across all touchpoints",
+                tags: ["branding", "personality", "voice"],
+                prompt: `You are a brand strategist and personality psychology expert who creates detailed brand personality profiles that guide consistent communication across all touchpoints.
+
+# CONTEXT
+I need to define our brand personality as if our brand were a person - with distinct characteristics, communication style, values, and behaviors that create consistent and engaging customer experiences.
+
+# BRAND COMMUNICATION EXAMPLES
+Please analyze:
+- Current marketing copy: [PASTE WEBSITE COPY, EMAIL EXAMPLES, ADS]
+- Customer service interactions: [PASTE EXAMPLES OF SUPPORT CONVERSATIONS]
+- Social media posts: [PASTE RECENT SOCIAL MEDIA CONTENT]
+- Sales conversations: [PASTE EXAMPLES OF SALES MESSAGING]
+
+# COMPANY CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY AND BUSINESS MODEL]
+- Target audience: [DETAILED CUSTOMER DESCRIPTION]
+- Company culture: [DESCRIBE YOUR TEAM/CULTURE CHARACTERISTICS]
+- Brand aspirations: [HOW YOU WANT TO BE PERCEIVED]
+
+Please provide:
+1. Current Personality Indicators Analysis
+2. Core Personality Traits (5-7 key characteristics)
+3. Communication Style Preferences
+4. Values and Beliefs Expression
+5. Relationship Style Guidelines
+6. Situational Behavior Guidelines (excitement, frustration, new ideas, competition)`
+            },
+            {
+                id: 25,
+                title: "Brand Story Architect",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create compelling brand stories that connect emotionally while driving business results",
+                tags: ["storytelling", "narrative", "branding"],
+                prompt: `You are a brand storytelling expert and narrative strategist who creates compelling brand stories that connect emotionally with audiences while driving business results.
+
+# CONTEXT
+I need to develop our complete brand story that explains not just what we do, but why we exist, how we're different, and how customers become part of our ongoing story.
+
+# BRAND STORY FOUNDATION
+**Company Background:**
+- Company name: [YOUR COMPANY NAME]
+- Founding story: [HOW/WHY THE COMPANY WAS FOUNDED]
+- Key founding moments: [PIVOTAL EARLY DECISIONS/EVENTS]
+- Original problem focus: [WHAT PROBLEM WERE YOU TRYING TO SOLVE]
+
+**Business Evolution:**
+- Major milestones: [KEY ACHIEVEMENTS/TURNING POINTS]
+- Customer impact stories: [EXAMPLES OF HOW YOU'VE TRANSFORMED CUSTOMERS]
+
+**Current State:**
+- Products/services: [WHAT YOU OFFER TODAY]
+- Target customers: [WHO YOU SERVE NOW]
+- Unique value: [WHAT MAKES YOU DIFFERENT]
+- Future vision: [WHERE YOU'RE HEADED]
+
+Please provide:
+1. Core Narrative Elements (Challenge, Journey, Transformation, Vision)
+2. Full Brand Story (300-500 words)
+3. Elevator Pitch Version (30 seconds)
+4. Social Media Bio Version
+5. Customer-Centric Story Version
+6. Story Application Guidelines by Channel`
+            },
+            {
+                id: 26,
+                title: "Buyer Persona Validator",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Validate existing buyer personas against real customer data to identify gaps and updates",
+                tags: ["personas", "research", "targeting"],
+                prompt: `You are a customer research analyst specializing in persona validation, with expertise in comparing assumed buyer characteristics against actual customer data.
+
+# CONTEXT
+I have existing buyer personas that may be outdated or inaccurate. I need to validate these against real customer data and update them to reflect current reality.
+
+# CURRENT PERSONAS TO VALIDATE
+[PASTE YOUR CURRENT BUYER PERSONA DESCRIPTIONS - INCLUDE DEMOGRAPHICS, GOALS, CHALLENGES, BEHAVIORS]
+
+# ACTUAL CUSTOMER DATA FOR COMPARISON
+- CRM customer records: [PASTE ACTUAL CUSTOMER DEMOGRAPHIC/FIRMOGRAPHIC DATA]
+- Customer survey results: [PASTE SURVEY RESPONSES ABOUT GOALS, CHALLENGES]
+- Sales conversation insights: [PASTE THEMES FROM ACTUAL SALES CALLS]
+- Customer behavior data: [PASTE WEBSITE BEHAVIOR, EMAIL ENGAGEMENT]
+- Support interaction patterns: [PASTE CUSTOMER SUPPORT THEMES]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Time since personas were created: [HOW OLD ARE CURRENT PERSONAS]
+- Market changes: [ANY MAJOR INDUSTRY OR MARKET SHIFTS]
+- Product evolution: [HOW YOUR OFFERING HAS CHANGED]
+
+Please provide:
+1. Overall Persona Accuracy Assessment (% scores)
+2. Demographics/Firmographics Validation
+3. Goals and Objectives Validation
+4. Challenges and Pain Points Validation
+5. Behavior Patterns Validation
+6. Updated Persona Recommendations`
+            },
+            {
+                id: 27,
+                title: "Campaign Concept Generator",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Generate creative campaign concepts that align with brand identity and drive business results",
+                tags: ["campaigns", "creative", "strategy"],
+                prompt: `You are a creative campaign strategist who creates innovative marketing campaigns that authentically express brand identity while delivering measurable business results.
+
+# CONTEXT
+I need to generate several creative campaign concepts that align with our brand identity, address customer needs, and support our business goals while standing out from competitors.
+
+# BRAND AND BUSINESS FOUNDATION
+**Brand Identity:**
+- Company: [YOUR COMPANY NAME]
+- Brand positioning: [YOUR BRAND POSITIONING STATEMENT]
+- Brand personality: [YOUR BRAND PERSONALITY CHARACTERISTICS]
+- Brand voice: [YOUR BRAND VOICE AND TONE]
+
+**Target Audience:**
+- Primary customer segments: [YOUR IDEAL CUSTOMER PROFILES]
+- Customer challenges: [MAIN PROBLEMS YOUR CUSTOMERS FACE]
+- Customer goals: [WHAT YOUR CUSTOMERS WANT TO ACHIEVE]
+
+**Business Context:**
+- Products/services: [WHAT YOU OFFER]
+- Business goals: [CURRENT MARKETING/BUSINESS OBJECTIVES]
+- Competitive landscape: [KEY COMPETITORS AND THEIR RECENT CAMPAIGNS]
+- Budget considerations: [CAMPAIGN BUDGET RANGE]
+
+Please provide:
+1. Campaign Strategy Overview
+2. 5-7 Campaign Concepts with:
+   - Campaign theme and core message
+   - Brand connection
+   - Target audience and customer need addressed
+   - Creative execution approach
+   - Channel recommendations
+   - Success metrics
+3. Implementation Timeline Recommendations`
+            },
+            {
+                id: 28,
+                title: "Competitive Voice Analysis",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Analyze competitor communication patterns to identify differentiation opportunities",
+                tags: ["competitive", "voice", "differentiation"],
+                prompt: `You are a competitive brand analyst and voice strategist who analyzes competitor communication patterns to identify differentiation opportunities.
+
+# CONTEXT
+I need to understand how our competitors communicate so I can identify opportunities to differentiate our brand voice and messaging approach.
+
+# COMPETITOR INFORMATION TO ANALYZE
+- Competitor 1: [NAME] - [PASTE THEIR WEBSITE COPY, MARKETING MESSAGES, SOCIAL CONTENT]
+- Competitor 2: [NAME] - [PASTE THEIR WEBSITE COPY, MARKETING MESSAGES, SOCIAL CONTENT]
+- Competitor 3: [NAME] - [PASTE THEIR WEBSITE COPY, MARKETING MESSAGES, SOCIAL CONTENT]
+- Competitor 4: [NAME] - [PASTE THEIR WEBSITE COPY, MARKETING MESSAGES, SOCIAL CONTENT]
+
+# YOUR BRAND CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Current brand voice: [YOUR CURRENT VOICE CHARACTERISTICS]
+- Brand values: [YOUR CORE BRAND VALUES]
+- Target audience: [YOUR IDEAL CUSTOMERS]
+- Unique positioning: [WHAT MAKES YOU DIFFERENT]
+
+Please provide:
+1. Overall Industry Communication Patterns
+2. Individual Competitor Voice Profiles:
+   - Voice personality characteristics
+   - Tone and language analysis
+   - Message and content patterns
+   - Strengths and weaknesses
+3. Voice Differentiation Opportunities
+4. Recommended Unique Voice Strategy
+5. Implementation Guidelines`
+            },
+            {
+                id: 29,
+                title: "Competitor Gap Finder",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Identify positioning gaps in competitor messaging to find ownable market opportunities",
+                tags: ["competitive", "positioning", "gaps"],
+                prompt: `You are a competitive intelligence specialist with expertise in identifying positioning gaps and market opportunities.
+
+# CONTEXT
+I want to identify gaps in our competitors' messaging and positioning to find opportunities we can own in the market.
+
+# COMPETITOR INFORMATION
+- Primary competitors: [LIST 5-7 MAIN COMPETITORS]
+- Competitor websites/messaging: [PASTE COMPETITOR WEBSITE COPY, TAGLINES, VALUE PROPS]
+- Industry landscape: [DESCRIBE YOUR INDUSTRY - B2B/B2C, MARKET SIZE, TRENDS]
+
+# YOUR COMPANY CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Target customers: [YOUR IDEAL CUSTOMER PROFILE]
+- Core capabilities: [YOUR KEY STRENGTHS/CAPABILITIES]
+- Current positioning: [YOUR CURRENT BRAND POSITIONING]
+
+Please provide:
+1. Competitor Messaging Analysis:
+   - Common themes all competitors address
+   - Messaging patterns (tone, style, proof points)
+2. Gap Opportunities:
+   - Unaddressed problems (3-5)
+   - Underserved segments (2-3)
+   - Positioning opportunities (3-5)
+3. Strategic Recommendations:
+   - Priority gap to own
+   - Quick wins
+   - Long-term strategy
+   - Risks to monitor`
+            },
+            {
+                id: 30,
+                title: "Content Amplification Engine",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Maximize content reach through strategic repurposing and cross-platform distribution",
+                tags: ["content", "distribution", "repurposing"],
+                prompt: `You are a content amplification strategist who specializes in extending the reach and impact of existing content through strategic repurposing and cross-platform distribution.
+
+# CONTEXT
+I need to maximize the value and reach of our existing content by creating systematic amplification strategies across multiple channels and formats.
+
+# EXISTING CONTENT ASSESSMENT
+**Content Inventory:**
+- High-performing content: [CONTENT WITH HIGHEST ENGAGEMENT/CONVERSION]
+- Evergreen content: [CONTENT WITH LASTING VALUE]
+- Video content: [EXISTING VIDEO CONTENT AND CLIPS]
+- Written content: [BLOG POSTS, GUIDES, WHITEPAPERS, CASE STUDIES]
+- Visual content: [INFOGRAPHICS, SLIDE DECKS, CHARTS]
+
+**Content Performance Data:**
+- Traffic and engagement: [CURRENT CONTENT METRICS]
+- Conversion performance: [WHICH CONTENT DRIVES BEST CONVERSIONS]
+- Social media performance: [HOW CONTENT PERFORMS ON SOCIAL]
+
+# AUDIENCE AND PLATFORM ANALYSIS
+- Platform usage patterns: [WHERE YOUR AUDIENCE SPENDS TIME ONLINE]
+- Content consumption preferences: [HOW AUDIENCE PREFERS TO CONSUME CONTENT]
+- Underutilized platforms: [PLATFORMS WHERE YOU COULD AMPLIFY MORE]
+
+Please provide:
+1. Content Audit and Prioritization
+2. Multi-Format Repurposing Framework
+3. Platform-Specific Distribution Strategies
+4. Content Atomization Plan (breaking content into smaller pieces)
+5. Amplification Calendar Template
+6. Performance Measurement Framework`
+            },
+            {
+                id: 31,
+                title: "Content Theme Generator",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Develop cohesive content themes that align brand identity with audience needs",
+                tags: ["content", "themes", "strategy"],
+                prompt: `You are a content strategist and editorial director with expertise in developing cohesive content themes that align brand identity with audience needs.
+
+# CONTEXT
+I need to develop 5-7 core content themes that will guide all our content creation, ensuring consistency with our brand while addressing our audience's most important needs.
+
+# BRAND AND AUDIENCE CONTEXT
+**Brand Identity:**
+- Brand positioning: [YOUR BRAND POSITIONING STATEMENT]
+- Brand voice/personality: [YOUR BRAND VOICE CHARACTERISTICS]
+- Unique value proposition: [WHAT MAKES YOU DIFFERENT]
+- Brand mission/purpose: [YOUR DEEPER PURPOSE]
+
+**Target Audience:**
+- Primary customer segments: [YOUR IDEAL CUSTOMER PROFILES]
+- Customer goals and challenges: [MAIN THINGS YOUR CUSTOMERS CARE ABOUT]
+- Content consumption preferences: [HOW YOUR AUDIENCE CONSUMES CONTENT]
+- Customer journey stages: [AWARENESS/CONSIDERATION/DECISION/SUCCESS]
+
+**Business Context:**
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY AND MARKET]
+- Products/services: [WHAT YOU OFFER]
+- Business goals: [MARKETING/BUSINESS OBJECTIVES]
+
+Please provide for each of 5-7 themes:
+1. Theme Description and Core Message
+2. Brand Connection
+3. Customer Journey Alignment
+4. Unique Angle/Perspective
+5. Content Execution Guidelines
+6. Format Recommendations
+7. 5 Starter Content Ideas`
+            },
+            {
+                id: 32,
+                title: "Contextual Messaging Framework",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create messaging that adapts intelligently to different customer contexts and situations",
+                tags: ["messaging", "personalization", "context"],
+                prompt: `You are a contextual messaging strategist who creates messaging frameworks that automatically adapt to customer context, situation, and circumstances.
+
+# CONTEXT
+I need to develop messaging that adapts intelligently to different customer contexts, ensuring every communication feels relevant regardless of when or how customers encounter our brand.
+
+# CORE MESSAGING FOUNDATION
+- Primary brand message: [YOUR CORE BRAND MESSAGE/VALUE PROPOSITION]
+- Supporting messages: [YOUR KEY SUPPORTING BRAND MESSAGES]
+- Proof points: [YOUR PRIMARY EVIDENCE AND CREDIBILITY BUILDERS]
+- Call-to-action hierarchy: [YOUR PRIMARY AND SECONDARY CTAs]
+
+# CONTEXTUAL VARIABLES TO CONSIDER
+**Situational Context:**
+- Industry context: [INDUSTRY-SPECIFIC FACTORS]
+- Company context: [COMPANY SIZE, STAGE FACTORS]
+- Seasonal context: [SEASONAL FACTORS]
+- Economic context: [ECONOMIC CONDITIONS]
+
+**Customer State Context:**
+- Journey stage: [AWARENESS/CONSIDERATION/DECISION]
+- Engagement level: [NEW/ENGAGED/LOYAL]
+- Purchase readiness: [BROWSING/EVALUATING/READY]
+- Problem urgency: [LOW/MEDIUM/HIGH]
+
+**Communication Context:**
+- Channel: [EMAIL/SOCIAL/WEB/ADS]
+- Timing: [MORNING/AFTERNOON/EVENING]
+- Device: [MOBILE/DESKTOP]
+
+Please provide:
+1. Context Recognition Framework
+2. Message Adaptation Rules by Context
+3. Channel-Specific Messaging Variations
+4. Journey Stage Adaptations
+5. Industry/Segment Customizations
+6. Brand Consistency Guidelines`
+            },
+            {
+                id: 33,
+                title: "Conversion Path Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Design personalized conversion paths for different customer types and decision-making styles",
+                tags: ["conversion", "optimization", "funnels"],
+                prompt: `You are a conversion optimization strategist who creates customized conversion paths that adapt to different customer characteristics and decision-making processes.
+
+# CONTEXT
+I need to optimize our conversion funnels by creating multiple paths that accommodate different customer types, decision-making styles, and contextual factors.
+
+# CURRENT CONVERSION FUNNEL ANALYSIS
+- Primary conversion funnel: [YOUR CURRENT MAIN CONVERSION PROCESS]
+- Conversion steps: [SPECIFIC STEPS IN CURRENT PROCESS]
+- Drop-off points: [WHERE CUSTOMERS TYPICALLY ABANDON]
+- Current conversion rates: [CONVERSION RATES AT EACH STEP]
+
+# CUSTOMER DECISION-MAKING STYLES
+- Quick decision makers: [CUSTOMERS WHO DECIDE QUICKLY]
+- Deliberate evaluators: [CUSTOMERS WHO NEED TIME AND INFORMATION]
+- Consensus builders: [CUSTOMERS WHO NEED TO INVOLVE OTHERS]
+- Risk-averse customers: [CUSTOMERS WHO NEED RISK MITIGATION]
+- Value-focused customers: [CUSTOMERS WHO PRIORITIZE VALUE]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Products/services: [WHAT CUSTOMERS ARE CONVERTING TO BUY/TRY]
+- Sales process integration: [HOW CONVERSION INTEGRATES WITH SALES]
+- Technology capabilities: [CONVERSION OPTIMIZATION TECH AVAILABLE]
+
+Please provide:
+1. Conversion Path Strategy Overview
+2. Express Path (Quick Decision Makers)
+3. Comprehensive Path (Deliberate Evaluators)
+4. Collaborative Path (Consensus Builders)
+5. Trust-Building Path (Risk-Averse)
+6. Friction Reduction Recommendations
+7. A/B Testing Priorities`
+            },
+            {
+                id: 34,
+                title: "Cross-Channel Message Sync",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create seamless personalized experiences that maintain consistency across all marketing channels",
+                tags: ["omnichannel", "personalization", "consistency"],
+                prompt: `You are a cross-channel experience strategist who specializes in creating seamless, personalized customer experiences that maintain consistency across all marketing touchpoints.
+
+# CONTEXT
+I need to ensure that personalized messaging and customer experiences remain consistent and contextually aware across all channels, so customers have a seamless experience regardless of how they interact with our brand.
+
+# CURRENT CHANNEL INVENTORY
+**Digital Channels:**
+- Website and landing pages: [WEBSITE PERSONALIZATION CAPABILITIES]
+- Email marketing: [EMAIL PERSONALIZATION CURRENT STATE]
+- Social media platforms: [SOCIAL MEDIA PRESENCE AND PERSONALIZATION]
+- Paid advertising: [PAID ADVERTISING CHANNELS AND TARGETING]
+- Mobile app: [MOBILE APP PERSONALIZATION IF APPLICABLE]
+
+**Sales and Service Channels:**
+- Sales team interactions: [SALES PROCESS AND CUSTOMER INTERACTION]
+- Customer support: [SUPPORT CHANNELS AND PERSONALIZATION]
+- Live chat and chatbots: [CHAT PERSONALIZATION AND CONTEXT AWARENESS]
+
+# CUSTOMER DATA SOURCES
+- CRM data: [CUSTOMER RELATIONSHIP DATA AVAILABLE]
+- Website analytics: [BEHAVIORAL DATA FROM WEBSITE]
+- Email engagement data: [EMAIL INTERACTION HISTORY]
+- Cross-channel behavior: [HOW CUSTOMERS USE DIFFERENT CHANNELS]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Technology integration level: [HOW WELL YOUR SYSTEMS INTEGRATE]
+- Personalization maturity: [YOUR CURRENT PERSONALIZATION SOPHISTICATION]
+
+Please provide:
+1. Cross-Channel Message Architecture
+2. Channel-Specific Adaptation Guidelines
+3. Context Handoff Protocols (channel to channel)
+4. Real-Time Synchronization Strategy
+5. Brand Consistency Framework
+6. Technology Integration Requirements
+7. Performance Measurement Framework`
+            },
+            {
+                id: 35,
+                title: "Cross-Platform Content Strategy",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Adapt content for optimal performance across different platforms while maintaining brand consistency",
+                tags: ["content", "social media", "platforms"],
+                prompt: `You are a cross-platform content strategist who specializes in adapting content for optimal performance across different platforms while maintaining brand consistency.
+
+# CONTEXT
+I need to create systematic approaches for adapting our core content to perform optimally on different platforms, recognizing that each has unique audience expectations and engagement patterns.
+
+# CORE CONTENT ASSETS
+- Primary content themes: [YOUR MAIN CONTENT THEMES AND TOPICS]
+- Key messages: [YOUR CORE BRAND MESSAGES AND VALUE PROPOSITIONS]
+- Thought leadership content: [YOUR THOUGHT LEADERSHIP CONTENT]
+- Educational content: [YOUR EDUCATIONAL AND HOW-TO CONTENT]
+- Customer story content: [YOUR CUSTOMER SUCCESS STORIES]
+
+# BRAND CONSISTENCY REQUIREMENTS
+- Brand voice and tone: [YOUR BRAND VOICE CHARACTERISTICS]
+- Visual brand elements: [YOUR VISUAL BRAND STANDARDS]
+- Message hierarchy: [YOUR MESSAGE PRIORITY AND HIERARCHY]
+
+# TARGET PLATFORMS
+- Professional platforms: [LINKEDIN AND INDUSTRY-SPECIFIC PLATFORMS]
+- Social media platforms: [FACEBOOK, TWITTER, INSTAGRAM, TIKTOK]
+- Video platforms: [YOUTUBE, VIMEO]
+- Content platforms: [MEDIUM, SUBSTACK, INDUSTRY PUBLICATIONS]
+- Community platforms: [REDDIT, DISCORD, INDUSTRY FORUMS]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Content creation resources: [TEAM AND TOOLS AVAILABLE]
+- Platform management capacity: [CAPACITY FOR MANAGING MULTIPLE PLATFORMS]
+
+Please provide:
+1. Platform Culture and Format Analysis
+2. Content Adaptation Framework by Platform
+3. Cross-Platform Content Calendar Template
+4. Repurposing Workflow (one piece → many platforms)
+5. Brand Consistency Checkpoints
+6. Performance Metrics by Platform`
+            },
+            {
+                id: 36,
+                title: "Customer Advocacy Amplifier",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Turn satisfied customers into active brand promoters through systematic advocacy programs",
+                tags: ["advocacy", "referrals", "testimonials"],
+                prompt: `You are a customer advocacy strategist who specializes in creating programs that turn satisfied customers into active brand promoters, referral sources, and marketing amplifiers.
+
+# CONTEXT
+I need to develop comprehensive customer advocacy programs that systematically identify, engage, and support satisfied customers in becoming active promoters through referrals, testimonials, and peer influence.
+
+# CURRENT ADVOCACY STATE
+- Existing customer advocates: [CUSTOMERS WHO CURRENTLY ADVOCATE FOR YOUR BRAND]
+- Referral patterns: [CURRENT CUSTOMER REFERRAL PATTERNS]
+- Testimonial generation: [CURRENT RATE OF TESTIMONIALS AND REVIEWS]
+- Social media advocacy: [CUSTOMERS WHO PROMOTE ON SOCIAL]
+- Word-of-mouth influence: [CURRENT WOM MARKETING INFLUENCE]
+
+# ADVOCATE POTENTIAL INDICATORS
+- High-satisfaction customers: [CUSTOMERS WITH HIGHEST SATISFACTION SCORES]
+- Successful implementations: [CUSTOMERS WHO ACHIEVED NOTABLE SUCCESS]
+- Long-term customers: [CUSTOMERS WITH LONGEST RELATIONSHIPS]
+- Industry influencers: [CUSTOMERS WITH INDUSTRY INFLUENCE]
+- Social media active: [CUSTOMERS ACTIVE ON SOCIAL MEDIA]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Customer relationship depth: [DEPTH OF RELATIONSHIPS WITH CUSTOMERS]
+- Success story inventory: [CURRENT INVENTORY OF SUCCESS STORIES]
+- Legal considerations: [LEGAL REQUIREMENTS FOR ADVOCACY PROGRAMS]
+
+Please provide:
+1. Advocate Identification Framework
+2. Tiered Advocacy Program Design
+3. Engagement and Activation Tactics
+4. Referral Program Structure
+5. Testimonial and Case Study Collection Process
+6. Recognition and Reward System
+7. Success Measurement Framework`
+            },
+            {
+                id: 37,
+                title: "Customer Data Enrichment Strategist",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Identify high-value data enrichment opportunities to improve personalization and predict behavior",
+                tags: ["data", "personalization", "analytics"],
+                prompt: `You are a customer data strategist who specializes in identifying high-value data enrichment opportunities that improve personalization and predict customer behavior.
+
+# CONTEXT
+I need to enhance our customer database with additional data points that will enable better personalization, more accurate intent prediction, and more effective marketing automation.
+
+# CURRENT DATA ASSESSMENT
+**Existing Data Points:**
+- CRM data fields: [LIST CURRENT CUSTOMER DATA FIELDS]
+- Website behavioral data: [WHAT WEBSITE BEHAVIOR YOU TRACK]
+- Email engagement data: [EMAIL METRICS YOU CAPTURE]
+- Transaction history: [PURCHASE/TRANSACTION DATA AVAILABLE]
+- Support interaction data: [CUSTOMER SERVICE DATA]
+- Product usage data: [HOW CUSTOMERS USE YOUR PRODUCT]
+
+**Data Collection Methods:**
+- Form submissions: [WHAT FORMS COLLECT DATA]
+- Progressive profiling: [HOW YOU BUILD PROFILES OVER TIME]
+- Third-party integrations: [EXTERNAL DATA SOURCES]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY AND BUSINESS MODEL]
+- Target customers: [YOUR IDEAL CUSTOMER PROFILES]
+- Sales cycle: [LENGTH AND COMPLEXITY OF SALES PROCESS]
+- Personalization goals: [WHAT YOU WANT TO ACHIEVE]
+- Technology stack: [YOUR CURRENT MARKETING/CRM TECHNOLOGY]
+
+Please provide:
+1. Current Data State Analysis
+2. High-Impact Data Enrichment Opportunities (prioritized)
+3. Intent Signal Identification Framework
+4. Data Collection Strategy (ethical, non-intrusive)
+5. Progressive Profiling Plan
+6. Privacy Compliance Considerations
+7. Implementation Roadmap`
+            },
+            {
+                id: 38,
+                title: "Customer Journey Drop-Off Diagnosis",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Identify where users abandon the funnel and get tactical recommendations to reduce drop-off",
+                tags: ["funnel", "conversion", "analytics"],
+                prompt: `You are a customer journey analyst who examines data across funnel stages to identify drop-offs and recommend tactical solutions to reduce abandonment.
+
+# CONTEXT
+I want to understand where users are abandoning the funnel for [YOUR PRODUCT/SERVICE] targeted at [YOUR AUDIENCE/ICP]. I need you to identify the biggest drop-off point and provide tactical recommendations.
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Product/Service: [INSERT]
+- Funnel Stages: [AWARENESS, CONSIDERATION, CONVERSION, RETENTION]
+- Campaign Objectives: [E.G., LEAD GEN, DEMO SIGNUPS, PURCHASES]
+- Target Audience: [INSERT DESCRIPTION]
+- Channels: [LIST CHANNELS DRIVING FUNNEL ENTRY]
+
+# INPUT DATA
+Provide data where available:
+- CTRs by channel (Awareness)
+- Engagement metrics (time on page, bounce, scroll depth)
+- Conversion rates from landing pages or demo forms
+- Cart/checkout abandonment rates (if ecommerce)
+- Churn, renewal, or NPS metrics (Retention)
+- Qualitative inputs (sales feedback, surveys, heatmaps)
+
+Please provide:
+1. Funnel Mapping with Drop-Off Percentages
+2. Largest Drop-Off Point Identification
+3. Root Cause Hypotheses (2+ possible causes)
+4. Tactical Fixes (3+ specific recommendations)
+5. Validation Methods (A/B tests to verify fixes)
+6. Prioritization Matrix (Effort vs. Impact)`
+            },
+            {
+                id: 39,
+                title: "Customer Journey Mapper",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Map the complete customer journey with insights for each stage and optimization opportunities",
+                tags: ["journey", "mapping", "experience"],
+                prompt: `You are a customer journey strategist with expertise in mapping complex B2B and B2C customer experiences and identifying optimization opportunities.
+
+# CONTEXT
+I need to map our complete customer journey to understand how customers discover, evaluate, purchase, and succeed with our solution so I can optimize each touchpoint.
+
+# CUSTOMER RESEARCH DATA
+- Customer interviews/feedback: [PASTE CUSTOMER JOURNEY FEEDBACK]
+- Analytics data: [PASTE WEBSITE/APP BEHAVIOR DATA]
+- Sales process insights: [PASTE SALES TEAM FEEDBACK]
+- Customer support interactions: [PASTE SUPPORT CONVERSATION THEMES]
+- Survey responses: [PASTE JOURNEY-RELATED SURVEY DATA]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Primary customer segment: [MAIN CUSTOMER TYPE TO MAP]
+- Products/Services: [WHAT CUSTOMERS ARE BUYING]
+- Sales process: [SALES CYCLE LENGTH AND COMPLEXITY]
+- Industry context: [INDUSTRY BUYING PATTERNS]
+
+Please provide for each journey stage (Awareness → Consideration → Decision → Onboarding → Success → Advocacy):
+1. Customer Actions (what they're doing)
+2. Emotions/Mindset (how they're feeling)
+3. Questions/Needs (what they're trying to understand)
+4. Touchpoints (where they interact with us)
+5. Pain Points (where they get stuck)
+6. Optimization Opportunities`
+            },
+            {
+                id: 40,
+                title: "Customer Journey Personalization",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Design end-to-end personalized experiences that adapt based on individual customer data",
+                tags: ["personalization", "journey", "experience"],
+                prompt: `You are a customer journey strategist who specializes in creating end-to-end personalized experiences that adapt based on individual customer preferences and behaviors.
+
+# CONTEXT
+I need to design comprehensive journey personalization that adapts every touchpoint throughout the customer lifecycle based on individual customer data.
+
+# CUSTOMER DATA AVAILABLE
+**Individual Profiles:**
+- Personal characteristics: [DEMOGRAPHICS, ROLE, BACKGROUND]
+- Company context: [COMPANY SIZE, INDUSTRY, SITUATION]
+- Behavioral patterns: [BEHAVIOR PATTERNS AND PREFERENCES]
+- Communication preferences: [PREFERRED CHANNELS, TIMING, STYLE]
+- Content preferences: [PREFERRED CONTENT TYPES, DEPTH, FORMAT]
+
+**Journey Behavior Data:**
+- Journey progression patterns: [HOW CUSTOMERS PROGRESS]
+- Touchpoint preferences: [PREFERRED INTERACTION METHODS]
+- Decision-making patterns: [HOW CUSTOMERS MAKE DECISIONS]
+- Learning styles: [HOW CUSTOMERS PREFER TO LEARN]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Customer journey framework: [YOUR CURRENT JOURNEY STAGES]
+- Personalization maturity: [YOUR CURRENT CAPABILITIES]
+- Technology stack: [CUSTOMER EXPERIENCE TECHNOLOGY]
+- Success metrics: [HOW YOU MEASURE JOURNEY SUCCESS]
+
+Please provide:
+1. Journey Personalization Philosophy
+2. Personalization Triggers and Rules by Stage
+3. Content and Message Adaptation Framework
+4. Channel Preference Accommodation
+5. Dynamic Journey Path Design
+6. Success-Optimized Experience Guidelines
+7. Technology and Data Requirements`
+            },
+            {
+                id: 41,
+                title: "Customer Language Decoder",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Extract authentic brand voice from customer feedback to make messaging resonate naturally",
+                tags: ["voice", "messaging", "research"],
+                prompt: `You are a brand voice strategist and linguistics expert who specializes in extracting authentic brand voice from customer feedback data.
+
+# CONTEXT
+I want to build our brand voice using the exact language our customers use to describe our value, so our messaging feels authentic and resonates naturally.
+
+# CUSTOMER FEEDBACK DATA
+Please analyze the following:
+- Customer reviews: [PASTE 50-100+ CUSTOMER REVIEWS]
+- Testimonials: [PASTE CUSTOMER TESTIMONIALS]
+- Survey responses: [PASTE SURVEY FEEDBACK IF AVAILABLE]
+- Support ticket feedback: [PASTE POSITIVE SUPPORT INTERACTIONS]
+- Sales call transcripts: [PASTE CUSTOMER CONVERSATION EXCERPTS]
+
+# COMPANY CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Industry: [YOUR INDUSTRY]
+- Target audience: [YOUR CUSTOMER DEMOGRAPHICS/PSYCHOGRAPHICS]
+- Current brand voice: [DESCRIBE CURRENT VOICE IF ANY]
+
+Please provide:
+1. Most Frequent Positive Descriptors (10-15 words with frequency)
+2. Emotional Language Patterns:
+   - How customers FEEL about us
+   - How we make them FEEL about themselves
+3. Value Description Patterns:
+   - Benefits customers emphasize most
+   - Outcomes customers celebrate
+4. Problem Language (how they describe challenges we solve)
+5. Comparison Language (how they differentiate us)
+6. Brand Voice Guidelines based on customer language
+7. Messaging Templates using authentic customer words`
+            },
+            {
+                id: 42,
+                title: "Customer Lifecycle Mapper",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Map customer lifecycle stages with personalized strategies for each phase of the relationship",
+                tags: ["lifecycle", "retention", "strategy"],
+                prompt: `You are a customer lifecycle strategist and relationship optimization expert who specializes in mapping customer lifecycle stages and creating personalized strategies for each stage.
+
+# CONTEXT
+I need to map the complete customer lifecycle from initial awareness through advocacy, understanding the distinct characteristics, needs, and opportunities at each stage.
+
+# CUSTOMER LIFECYCLE DATA TO ANALYZE
+**Customer Journey Data:**
+- Acquisition sources: [HOW CUSTOMERS FIRST DISCOVER AND ENGAGE WITH YOU]
+- Onboarding patterns: [HOW NEW CUSTOMERS GET STARTED]
+- Engagement evolution: [HOW CUSTOMER ENGAGEMENT CHANGES OVER TIME]
+- Success milestones: [KEY ACHIEVEMENTS CUSTOMERS REACH]
+- Retention patterns: [WHAT KEEPS CUSTOMERS LOYAL OVER TIME]
+
+**Behavioral Transition Data:**
+- Stage progression triggers: [WHAT CAUSES CUSTOMERS TO MOVE BETWEEN STAGES]
+- Stagnation indicators: [SIGNS THAT CUSTOMERS ARE STUCK IN A STAGE]
+- Success accelerators: [WHAT HELPS CUSTOMERS PROGRESS FASTER]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Business model: [SUBSCRIPTION, TRANSACTION, SERVICE, ETC.]
+- Customer relationship duration: [TYPICAL LENGTH OF CUSTOMER RELATIONSHIPS]
+
+Please provide a comprehensive lifecycle map including stage definitions, transition triggers, stage-specific needs, personalization opportunities, and success metrics for each stage from Awareness through Advocacy.`
+            },
+            {
+                id: 43,
+                title: "Customer Lifetime Value Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Optimize marketing investments based on accurate customer lifetime value predictions",
+                tags: ["LTV", "analytics", "ROI"],
+                prompt: `You are a customer lifetime value analyst who specializes in optimizing marketing investments based on accurate LTV predictions.
+
+# CONTEXT
+I need to develop LTV-based marketing optimization strategies that consider long-term customer value in all marketing decisions.
+
+# CURRENT CUSTOMER VALUE DATA
+**Customer Lifetime Value Analysis:**
+- Current LTV calculation method: [HOW YOU CURRENTLY CALCULATE LTV]
+- LTV by customer segment: [LTV DIFFERENCES ACROSS SEGMENTS]
+- LTV by acquisition channel: [LTV BY HOW CUSTOMERS WERE ACQUIRED]
+
+**Customer Retention and Expansion Data:**
+- Customer retention rates: [RETENTION RATES BY SEGMENT, CHANNEL]
+- Account expansion patterns: [HOW CUSTOMERS EXPAND VALUE OVER TIME]
+- Churn patterns: [CHURN PATTERNS AND IMPACT ON LTV]
+
+**Customer Acquisition Analysis:**
+- CAC by channel: [CAC BY MARKETING CHANNEL]
+- LTV to CAC ratios: [LTV:CAC RATIOS BY SEGMENT AND CHANNEL]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Business model: [SUBSCRIPTION, TRANSACTION, SERVICE-BASED, ETC.]
+- Growth objectives: [BUSINESS GROWTH OBJECTIVES]
+
+Please provide LTV prediction models, acquisition investment optimization, retention/expansion tactics, and segment prioritization frameworks.`
+            },
+            {
+                id: 44,
+                title: "Customer Referral Engine",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create systematic referral programs that turn satisfied customers into active advocates",
+                tags: ["referrals", "advocacy", "growth"],
+                prompt: `You are a referral marketing strategist who specializes in creating systematic referral programs that turn satisfied customers into active referral sources.
+
+# CONTEXT
+I need to develop systematic customer referral strategies that motivate satisfied customers to actively refer prospects and advocate for our brand.
+
+# CURRENT REFERRAL STATE
+**Existing Referral Activity:**
+- Current referral patterns: [CURRENT CUSTOMER REFERRAL PATTERNS AND VOLUME]
+- Referral sources: [CUSTOMERS WHO CURRENTLY PROVIDE REFERRALS]
+- Referral conversion rates: [CONVERSION RATES OF CURRENT REFERRALS]
+- Referral program existence: [ANY EXISTING REFERRAL PROGRAMS]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Customer satisfaction levels: [CURRENT CUSTOMER SATISFACTION SCORES]
+- Customer success patterns: [CUSTOMERS WHO ACHIEVE NOTABLE SUCCESS]
+- Referral objectives: [GOALS FOR SYSTEMATIC REFERRAL GENERATION]
+- Program resources: [RESOURCES AVAILABLE FOR REFERRAL PROGRAM]
+
+Please provide a referral engine framework including customer identification criteria, motivation strategies, program structure, referral support tools, and quality optimization tactics.`
+            },
+            {
+                id: 45,
+                title: "Customer Success Pattern Analyzer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Identify characteristics and behaviors that predict customer success and long-term value",
+                tags: ["success", "analytics", "retention"],
+                prompt: `You are a customer success analyst who specializes in identifying characteristics and behaviors that predict customer success and long-term value.
+
+# CONTEXT
+I want to understand what makes some customers more successful than others so I can improve targeting, onboarding, and support.
+
+# CUSTOMER SUCCESS DATA TO ANALYZE
+Please analyze:
+- High-value customer profiles: [DATA ON YOUR MOST SUCCESSFUL CUSTOMERS]
+- Customer success metrics: [PERFORMANCE DATA - USAGE, OUTCOMES, RETENTION]
+- Onboarding completion data: [ONBOARDING SUCCESS PATTERNS]
+- Support interaction history: [SUPPORT PATTERNS FOR SUCCESSFUL CUSTOMERS]
+- Customer feedback: [SUCCESS STORIES AND POSITIVE FEEDBACK]
+- Account expansion history: [DATA ON CUSTOMERS WHO HAVE GROWN WITH YOU]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Products/Services: [WHAT YOU PROVIDE]
+- Success metrics: [HOW YOU DEFINE CUSTOMER SUCCESS]
+- Customer lifecycle: [TYPICAL CUSTOMER JOURNEY AND TIMELINE]
+
+Please provide success pattern analysis including pre-purchase predictors, implementation patterns, usage behaviors, growth indicators, ideal success customer profile, and a success replication strategy.`
+            },
+            {
+                id: 46,
+                title: "Dynamic Content Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create content systems that automatically adapt based on customer data and behavior",
+                tags: ["content", "personalization", "automation"],
+                prompt: `You are a dynamic content strategist who specializes in creating content systems that automatically adapt based on customer data and behavior patterns.
+
+# CONTEXT
+I need to create dynamic content strategies that automatically personalize website content, email campaigns, and marketing materials based on customer characteristics and behavior.
+
+# CUSTOMER DATA FOR CONTENT OPTIMIZATION
+**Customer Profile Data:**
+- Demographics/firmographics: [CUSTOMER CHARACTERISTICS]
+- Industry and role context: [INDUSTRY, ROLE, SENIORITY]
+- Company characteristics: [COMPANY SIZE, GROWTH STAGE]
+
+**Behavioral and Engagement Data:**
+- Content consumption patterns: [WHICH CONTENT CUSTOMERS ENGAGE WITH]
+- Website behavior: [BROWSING PATTERNS, SESSION DEPTH]
+- Email engagement: [EMAIL INTERACTION PATTERNS]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Content inventory: [TYPES AND VOLUME OF CONTENT YOU HAVE]
+- Technology stack: [CURRENT PERSONALIZATION TECHNOLOGY]
+- Personalization goals: [WHAT YOU WANT TO ACHIEVE]
+
+Please provide content personalization rules for website, email, and sales materials, including technology requirements, A/B testing frameworks, and implementation roadmap.`
+            },
+            {
+                id: 47,
+                title: "Email Personalization Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Advanced email personalization strategies that go far beyond inserting first names",
+                tags: ["email", "personalization", "engagement"],
+                prompt: `You are an email marketing optimization expert who specializes in advanced email personalization strategies that drive significantly higher engagement.
+
+# CONTEXT
+I need to optimize our email marketing through sophisticated personalization techniques that go far beyond inserting first names.
+
+# CURRENT EMAIL PROGRAM
+**Current Email Performance:**
+- Email volume: [NUMBER OF EMAILS SENT PER MONTH]
+- Current personalization: [WHAT PERSONALIZATION YOU CURRENTLY USE]
+- Performance metrics: [CURRENT OPEN RATES, CLICK RATES, CONVERSION RATES]
+- Technology stack: [EMAIL MARKETING TECHNOLOGY]
+
+**Email Types:**
+- Newsletter: [REGULAR EMAIL COMMUNICATION]
+- Promotional campaigns: [PROMOTIONAL EMAILS]
+- Nurture sequences: [AUTOMATED NURTURE SEQUENCES]
+- Transactional: [CONFIRMATIONS, RECEIPTS, ETC.]
+
+# CUSTOMER DATA AVAILABLE
+- Demographics/firmographics: [CUSTOMER CHARACTERISTICS]
+- Email engagement history: [PAST OPEN, CLICK, CONVERSION PATTERNS]
+- Website behavior: [PAGES VISITED, CONTENT CONSUMED]
+- Purchase history: [PAST PURCHASES, ORDER VALUES]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Target audience: [YOUR EMAIL SUBSCRIBER CHARACTERISTICS]
+- Email marketing goals: [WHAT YOU WANT TO ACHIEVE]
+
+Please provide advanced subject line personalization, dynamic content strategies, CTA customization rules, send time optimization, and campaign-specific personalization frameworks.`
+            },
+            {
+                id: 48,
+                title: "Event Marketing Amplifier",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Maximize ROI from events and conferences through strategic pre/during/post marketing",
+                tags: ["events", "conferences", "promotion"],
+                prompt: `You are an event marketing strategist who specializes in maximizing the marketing impact and ROI of industry events, conferences, and trade shows.
+
+# CONTEXT
+I need to develop comprehensive event marketing strategies that maximize the value of our event participation through strategic pre-event, during-event, and post-event activities.
+
+# EVENT DETAILS
+**Event Information:**
+- Event name and type: [EVENT NAME - CONFERENCE, TRADE SHOW, WEBINAR, ETC.]
+- Event date and location: [WHEN AND WHERE]
+- Your participation: [ATTENDING, EXHIBITING, SPEAKING, SPONSORING, HOSTING]
+- Target audience: [WHO WILL BE AT THE EVENT]
+- Event objectives: [GOALS - LEADS, AWARENESS, PARTNERSHIPS]
+
+**Your Event Assets:**
+- Booth/presence: [YOUR PHYSICAL OR VIRTUAL PRESENCE]
+- Speaking opportunities: [ANY PRESENTATIONS OR PANELS]
+- Sponsorship benefits: [WHAT YOUR SPONSORSHIP INCLUDES]
+- Content to share: [CONTENT YOU CAN DISTRIBUTE]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Products/Services: [WHAT YOU'RE PROMOTING]
+- Target personas: [WHO YOU WANT TO CONNECT WITH]
+- Budget: [EVENT MARKETING BUDGET]
+- Team attending: [WHO FROM YOUR TEAM WILL BE THERE]
+
+Please provide a comprehensive event marketing plan including pre-event promotion, during-event engagement tactics, post-event follow-up sequences, content amplification strategy, and ROI measurement.`
+            },
+            {
+                id: 49,
+                title: "Hyper-Personalization Engine",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create 1:1 personalized experiences using advanced data integration and AI",
+                tags: ["personalization", "AI", "customer experience"],
+                prompt: `You are a hyper-personalization strategist who specializes in creating deeply personalized 1:1 marketing experiences using advanced data integration.
+
+# CONTEXT
+I want to move beyond basic segmentation to true 1:1 personalization that treats each customer as an individual.
+
+# CUSTOMER DATA SOURCES
+**First-Party Data:**
+- CRM data: [CUSTOMER RELATIONSHIP DATA]
+- Transaction history: [PURCHASE AND TRANSACTION DATA]
+- Behavioral data: [WEBSITE, EMAIL, PRODUCT USAGE DATA]
+- Survey and feedback: [DIRECT CUSTOMER INPUT]
+- Support interactions: [CUSTOMER SERVICE INTERACTIONS]
+
+**Contextual Data:**
+- Real-time behavior: [CURRENT SESSION BEHAVIOR]
+- Location and device: [GEOGRAPHIC AND DEVICE CONTEXT]
+- Time and seasonality: [TEMPORAL CONTEXT FACTORS]
+
+# PERSONALIZATION TOUCHPOINTS
+- Website experience: [CURRENT WEBSITE PERSONALIZATION]
+- Email communications: [EMAIL PERSONALIZATION STATE]
+- Advertising: [AD PERSONALIZATION CAPABILITIES]
+- Sales interactions: [HOW SALES PERSONALIZES]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Customer base size: [NUMBER OF CUSTOMERS/PROSPECTS]
+- Technology infrastructure: [CURRENT MARTECH STACK]
+- Privacy requirements: [REGULATORY AND POLICY CONSTRAINTS]
+
+Please provide a hyper-personalization framework including data integration strategy, personalization rule engine design, AI/ML optimization opportunities, privacy-compliant implementation, and measurement framework.`
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let currentPrompt = null;
+
+        const promptsGrid = document.getElementById('promptsGrid');
+        const promptsCount = document.getElementById('promptsCount');
+        const searchInput = document.getElementById('searchInput');
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const modalOverlay = document.getElementById('modalOverlay');
+
+        function renderPrompts() {
+            const filtered = prompts.filter(p => {
+                const matchesFilter = currentFilter === 'all' || p.category === currentFilter;
+                const matchesSearch = searchQuery === '' ||
+                    p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    p.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesFilter && matchesSearch;
+            });
+
+            promptsCount.textContent = `${filtered.length} prompt${filtered.length !== 1 ? 's' : ''}`;
+
+            if (filtered.length === 0) {
+                promptsGrid.innerHTML = `
+                    <div class="empty-state">
+                        <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <p class="empty-state-title">No prompts found</p>
+                        <p class="empty-state-desc">Try a different search term or filter</p>
+                    </div>
+                `;
+                return;
+            }
+
+            promptsGrid.innerHTML = filtered.map((p, i) => `
+                <div class="prompt-card" onclick="openModal(${p.id})">
+                    <div class="prompt-card-header">
+                        <span class="prompt-category">${p.categoryLabel}</span>
+                        <span class="prompt-number">${String(i + 1).padStart(2, '0')}</span>
+                    </div>
+                    <h3 class="prompt-title">${p.title}</h3>
+                    <p class="prompt-desc">${p.description}</p>
+                    <div class="prompt-card-footer">
+                        <div class="prompt-tags">
+                            ${p.tags.map(t => `<span class="prompt-tag">${t}</span>`).join('')}
+                        </div>
+                        <svg class="prompt-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function highlightPlaceholders(text) {
+            return text.replace(/\[([^\]]+)\]/g, '<span class="placeholder">[$1]</span>');
+        }
+
+        function openModal(id) {
+            currentPrompt = prompts.find(p => p.id === id);
+            if (!currentPrompt) return;
+
+            document.getElementById('modalCategory').textContent = currentPrompt.categoryLabel;
+            document.getElementById('modalTitle').textContent = currentPrompt.title;
+            document.getElementById('modalDesc').textContent = currentPrompt.description;
+            document.getElementById('modalPrompt').innerHTML = highlightPlaceholders(currentPrompt.prompt);
+
+            resetCopyBtn();
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => modalOverlay.classList.add('visible'));
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('visible');
+            setTimeout(() => {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        // Policy Modal Functions
+        const policyModalOverlay = document.getElementById('policyModalOverlay');
+
+        function openPolicyModal() {
+            closeSideMenu();
+            policyModalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => {
+                policyModalOverlay.classList.add('visible');
+            });
+        }
+
+        function closePolicyModal() {
+            policyModalOverlay.classList.remove('visible');
+            setTimeout(() => {
+                policyModalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        // Close policy modal when clicking overlay
+        policyModalOverlay.addEventListener('click', (e) => {
+            if (e.target === policyModalOverlay) {
+                closePolicyModal();
+            }
+        });
+
+        function resetCopyBtn() {
+            const btn = document.getElementById('copyBtn');
+            btn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                Copy Prompt
+            `;
+            btn.classList.remove('copied');
+        }
+
+        async function copyPrompt() {
+            if (!currentPrompt) return;
+            try {
+                await navigator.clipboard.writeText(currentPrompt.prompt);
+                const btn = document.getElementById('copyBtn');
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Copied!
+                `;
+                btn.classList.add('copied');
+                setTimeout(resetCopyBtn, 2000);
+            } catch (e) {
+                alert('Copy failed');
+            }
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', e => {
+            searchQuery = e.target.value;
+            renderPrompts();
+        });
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentFilter = tab.dataset.filter;
+                renderPrompts();
+            });
+        });
+
+        modalOverlay.addEventListener('click', e => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeSideMenu();
+                closePolicyModal();
+            }
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        // Side Menu Functions
+        const sideMenuOverlay = document.getElementById('sideMenuOverlay');
+        const menuBtn = document.getElementById('menuBtn');
+
+        function toggleSideMenu() {
+            if (sideMenuOverlay.classList.contains('active')) {
+                closeSideMenu();
+            } else {
+                openSideMenu();
+            }
+        }
+
+        function openSideMenu() {
+            menuBtn.classList.add('active');
+            sideMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => sideMenuOverlay.classList.add('visible'));
+        }
+
+        function closeSideMenu() {
+            menuBtn.classList.remove('active');
+            sideMenuOverlay.classList.remove('visible');
+            setTimeout(() => {
+                sideMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }, 350);
+        }
+
+        sideMenuOverlay.addEventListener('click', e => {
+            if (e.target === sideMenuOverlay) closeSideMenu();
+        });
+
+        // Typing Animation for Search Placeholder
+        const typingText = document.getElementById('typingText');
+        const searchPlaceholder = document.getElementById('searchPlaceholder');
+        const words = ['marketing', 'cash flow', 'business plan', 'funding'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isPaused = false;
+
+        function typeAnimation() {
+            const currentWord = words[wordIndex];
+
+            if (isPaused) {
+                setTimeout(typeAnimation, 1500);
+                isPaused = false;
+                isDeleting = true;
+                return;
+            }
+
+            if (isDeleting) {
+                // Deleting characters
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(typeAnimation, 500);
+                    return;
+                }
+                setTimeout(typeAnimation, 50);
+            } else {
+                // Typing characters
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentWord.length) {
+                    isPaused = true;
+                    setTimeout(typeAnimation, 100);
+                    return;
+                }
+                setTimeout(typeAnimation, 100);
+            }
+        }
+
+        // Hide placeholder when user focuses or types
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value === '') {
+                searchPlaceholder.classList.add('hidden');
+            }
+        });
+
+        searchInput.addEventListener('blur', () => {
+            if (searchInput.value === '') {
+                searchPlaceholder.classList.remove('hidden');
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value !== '') {
+                searchPlaceholder.classList.add('hidden');
+            } else {
+                searchPlaceholder.classList.remove('hidden');
+            }
+        });
+
+        // Start typing animation
+        setTimeout(typeAnimation, 1000);
+
+        // Initialize
+        renderPrompts();
+    </script>
+</body>
+</html>
