@@ -300,6 +300,48 @@
             height: 12px;
         }
 
+        /* Header Back Button */
+        .header-inner {
+            justify-content: flex-start;
+        }
+        .back-header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .back-header-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+        }
+        .back-header-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--sky-light);
+        }
+        .back-header-btn-text {
+            color: inherit;
+        }
+        @media (max-width: 768px) {
+            .back-header-btn-text {
+                display: none;
+            }
+            .back-header-btn {
+                padding: 8px 10px;
+            }
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
@@ -577,6 +619,12 @@
                         LIVE
                     </span>
                 </div>
+            </a>
+            <a href="index.html" class="back-header-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span class="back-header-btn-text">Back to Prompts</span>
             </a>
         </div>
     </header>
