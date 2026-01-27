@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1131,6 +1130,126 @@
             text-decoration: underline;
         }
 
+        /* Custom Right-Click Menu - Business Card Style */
+        .custom-context-menu {
+            position: fixed;
+            z-index: 10000;
+            display: none;
+            min-width: 280px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            font-family: 'IBM Plex Sans', sans-serif;
+            animation: cardSlideIn 0.2s ease-out;
+        }
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .context-card-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .context-card-copyright {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 4px;
+        }
+        .context-card-org {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .context-card-body {
+            padding: 16px 24px 20px;
+        }
+        .context-card-question {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--sky-light);
+            margin-bottom: 12px;
+        }
+        .context-card-person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .context-card-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--sky) 0%, var(--sky-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        .context-card-info {
+            flex: 1;
+        }
+        .context-card-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+        .context-card-title {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6px;
+        }
+        .context-card-email {
+            font-size: 13px;
+            color: var(--sky-light);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .context-card-email:hover {
+            color: var(--white);
+        }
+        .context-card-email svg {
+            width: 14px;
+            height: 14px;
+        }
+        .context-card-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .context-card-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .context-card-close svg {
+            width: 12px;
+            height: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         /* Footer */
         footer {
             background: var(--gray-100);
@@ -1149,9 +1268,9 @@
             font-size: 13px;
             color: var(--gray-50);
         }
-        .footer-logo {
-            height: 20px;
-            opacity: 0.5;
+        .footer-copyright {
+            font-size: 13px;
+            color: var(--gray-50);
         }
 
         /* Responsive */
@@ -1292,13 +1411,7 @@
                         </svg>
                         <a href="mailto:phelps@norcalsbdc.org">phelps@norcalsbdc.org</a>
                     </div>
-                    <div class="contact-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                        </svg>
-                        <a href="tel:+15307687680">(530) 768-7680</a>
                     </div>
-                </div>
             </div>
             <div class="side-menu-footer">
                 <p class="side-menu-footer-text">Funded in part through a cooperative agreement with the U.S. Small Business Administration.</p>
@@ -1377,10 +1490,10 @@
     <nav class="filters-section">
         <div class="filters-inner">
             <button class="filter-tab active" data-filter="all">
-                All Prompts<span class="filter-count">41</span>
+                All Prompts<span class="filter-count">49</span>
             </button>
             <button class="filter-tab" data-filter="marketing">
-                Marketing<span class="filter-count">26</span>
+                Marketing<span class="filter-count">34</span>
             </button>
             <button class="filter-tab" data-filter="advising">
                 Client Advising<span class="filter-count">6</span>
@@ -1398,7 +1511,7 @@
     <main class="prompts-section">
         <div class="prompts-header">
             <span class="prompts-title">Prompt Library</span>
-            <span class="prompts-count" id="promptsCount">41 prompts</span>
+            <span class="prompts-count" id="promptsCount">49 prompts</span>
         </div>
         <div class="prompts-grid" id="promptsGrid"></div>
     </main>
@@ -1407,9 +1520,7 @@
     <footer>
         <div class="footer-inner">
             <p class="footer-text">Replace [bracketed text] with your specific client information before using prompts.</p>
-            <svg class="footer-logo" viewBox="0 0 222.28 50" fill="none">
-                <path fill="#fff" d="M12.78,36.94c1.49,2.32,2.77,4.26,7.33,5.76,2.17.75,4.86,1.2,7.4,1.2,1.35,0,7.92-.15,7.92-3.96,0-.37,0-2.32-2.92-3.29-1.87-.67-11.59-2.39-13.75-2.92-4.86-1.27-14.35-4.26-14.35-15.4,0-2.32.52-4.71,1.49-6.8C9.34,3.75,18.23.69,27.73.69c6.06,0,11.59,1.2,15.92,3.36,3.96,1.94,5.91,4.04,7.77,5.98l-10.47,8.74c-.82-1.04-1.72-2.24-4.04-3.44-3.07-1.5-7.1-1.94-9.79-1.94-2.84,0-5.98.75-5.98,3.44,0,2.54,2.69,3.21,7.25,4.04,11.74,2.02,23.4,4.11,23.4,17.19,0,5.53-2.32,9.42-4.71,11.89-6.65,6.8-17.27,6.8-20.18,6.8-3.96,0-8.15-.37-12.26-1.57-8.37-2.39-12.26-7.1-14.65-10.02l12.78-8.22h0Z"/>
-            </svg>
+            <span class="footer-copyright">© NorCal SBDC AI Pillar. 2026</span>
         </div>
     </footer>
 
@@ -1565,7 +1676,85 @@
         </div>
     </div>
 
+    <!-- Custom Right-Click Context Menu -->
+    <div class="custom-context-menu" id="customContextMenu">
+        <button class="context-card-close" onclick="hideContextMenu()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <div class="context-card-header">
+            <div class="context-card-copyright">© 2026</div>
+            <div class="context-card-org">NorCal SBDC AI Pillar Group</div>
+        </div>
+        <div class="context-card-body">
+            <div class="context-card-question">Questions?</div>
+            <div class="context-card-person">
+                <div class="context-card-avatar">AP</div>
+                <div class="context-card-info">
+                    <div class="context-card-name">Aaron Phelps</div>
+                    <div class="context-card-title">Marketing & Technology Director</div>
+                    <a href="mailto:phelps@norcalsbdc.org" class="context-card-email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                        phelps@norcalsbdc.org
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Custom Right-Click Menu
+        const contextMenu = document.getElementById('customContextMenu');
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+
+            // Position the menu
+            const x = e.clientX;
+            const y = e.clientY;
+
+            // Make sure menu doesn't go off screen
+            const menuWidth = 280;
+            const menuHeight = 200;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            let posX = x;
+            let posY = y;
+
+            if (x + menuWidth > windowWidth) {
+                posX = windowWidth - menuWidth - 10;
+            }
+            if (y + menuHeight > windowHeight) {
+                posY = windowHeight - menuHeight - 10;
+            }
+
+            contextMenu.style.left = posX + 'px';
+            contextMenu.style.top = posY + 'px';
+            contextMenu.style.display = 'block';
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!contextMenu.contains(e.target)) {
+                hideContextMenu();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideContextMenu();
+            }
+        });
+
+        function hideContextMenu() {
+            contextMenu.style.display = 'none';
+        }
+
         const prompts = [
             {
                 id: 1,
@@ -3034,6 +3223,272 @@ Please provide:
 5. Comparison Language (how they differentiate us)
 6. Brand Voice Guidelines based on customer language
 7. Messaging Templates using authentic customer words`
+            },
+            {
+                id: 42,
+                title: "Customer Lifecycle Mapper",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Map customer lifecycle stages with personalized strategies for each phase of the relationship",
+                tags: ["lifecycle", "retention", "strategy"],
+                prompt: `You are a customer lifecycle strategist and relationship optimization expert who specializes in mapping customer lifecycle stages and creating personalized strategies for each stage.
+
+# CONTEXT
+I need to map the complete customer lifecycle from initial awareness through advocacy, understanding the distinct characteristics, needs, and opportunities at each stage.
+
+# CUSTOMER LIFECYCLE DATA TO ANALYZE
+**Customer Journey Data:**
+- Acquisition sources: [HOW CUSTOMERS FIRST DISCOVER AND ENGAGE WITH YOU]
+- Onboarding patterns: [HOW NEW CUSTOMERS GET STARTED]
+- Engagement evolution: [HOW CUSTOMER ENGAGEMENT CHANGES OVER TIME]
+- Success milestones: [KEY ACHIEVEMENTS CUSTOMERS REACH]
+- Retention patterns: [WHAT KEEPS CUSTOMERS LOYAL OVER TIME]
+
+**Behavioral Transition Data:**
+- Stage progression triggers: [WHAT CAUSES CUSTOMERS TO MOVE BETWEEN STAGES]
+- Stagnation indicators: [SIGNS THAT CUSTOMERS ARE STUCK IN A STAGE]
+- Success accelerators: [WHAT HELPS CUSTOMERS PROGRESS FASTER]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Business model: [SUBSCRIPTION, TRANSACTION, SERVICE, ETC.]
+- Customer relationship duration: [TYPICAL LENGTH OF CUSTOMER RELATIONSHIPS]
+
+Please provide a comprehensive lifecycle map including stage definitions, transition triggers, stage-specific needs, personalization opportunities, and success metrics for each stage from Awareness through Advocacy.`
+            },
+            {
+                id: 43,
+                title: "Customer Lifetime Value Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Optimize marketing investments based on accurate customer lifetime value predictions",
+                tags: ["LTV", "analytics", "ROI"],
+                prompt: `You are a customer lifetime value analyst who specializes in optimizing marketing investments based on accurate LTV predictions.
+
+# CONTEXT
+I need to develop LTV-based marketing optimization strategies that consider long-term customer value in all marketing decisions.
+
+# CURRENT CUSTOMER VALUE DATA
+**Customer Lifetime Value Analysis:**
+- Current LTV calculation method: [HOW YOU CURRENTLY CALCULATE LTV]
+- LTV by customer segment: [LTV DIFFERENCES ACROSS SEGMENTS]
+- LTV by acquisition channel: [LTV BY HOW CUSTOMERS WERE ACQUIRED]
+
+**Customer Retention and Expansion Data:**
+- Customer retention rates: [RETENTION RATES BY SEGMENT, CHANNEL]
+- Account expansion patterns: [HOW CUSTOMERS EXPAND VALUE OVER TIME]
+- Churn patterns: [CHURN PATTERNS AND IMPACT ON LTV]
+
+**Customer Acquisition Analysis:**
+- CAC by channel: [CAC BY MARKETING CHANNEL]
+- LTV to CAC ratios: [LTV:CAC RATIOS BY SEGMENT AND CHANNEL]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Business model: [SUBSCRIPTION, TRANSACTION, SERVICE-BASED, ETC.]
+- Growth objectives: [BUSINESS GROWTH OBJECTIVES]
+
+Please provide LTV prediction models, acquisition investment optimization, retention/expansion tactics, and segment prioritization frameworks.`
+            },
+            {
+                id: 44,
+                title: "Customer Referral Engine",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create systematic referral programs that turn satisfied customers into active advocates",
+                tags: ["referrals", "advocacy", "growth"],
+                prompt: `You are a referral marketing strategist who specializes in creating systematic referral programs that turn satisfied customers into active referral sources.
+
+# CONTEXT
+I need to develop systematic customer referral strategies that motivate satisfied customers to actively refer prospects and advocate for our brand.
+
+# CURRENT REFERRAL STATE
+**Existing Referral Activity:**
+- Current referral patterns: [CURRENT CUSTOMER REFERRAL PATTERNS AND VOLUME]
+- Referral sources: [CUSTOMERS WHO CURRENTLY PROVIDE REFERRALS]
+- Referral conversion rates: [CONVERSION RATES OF CURRENT REFERRALS]
+- Referral program existence: [ANY EXISTING REFERRAL PROGRAMS]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Customer satisfaction levels: [CURRENT CUSTOMER SATISFACTION SCORES]
+- Customer success patterns: [CUSTOMERS WHO ACHIEVE NOTABLE SUCCESS]
+- Referral objectives: [GOALS FOR SYSTEMATIC REFERRAL GENERATION]
+- Program resources: [RESOURCES AVAILABLE FOR REFERRAL PROGRAM]
+
+Please provide a referral engine framework including customer identification criteria, motivation strategies, program structure, referral support tools, and quality optimization tactics.`
+            },
+            {
+                id: 45,
+                title: "Customer Success Pattern Analyzer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Identify characteristics and behaviors that predict customer success and long-term value",
+                tags: ["success", "analytics", "retention"],
+                prompt: `You are a customer success analyst who specializes in identifying characteristics and behaviors that predict customer success and long-term value.
+
+# CONTEXT
+I want to understand what makes some customers more successful than others so I can improve targeting, onboarding, and support.
+
+# CUSTOMER SUCCESS DATA TO ANALYZE
+Please analyze:
+- High-value customer profiles: [DATA ON YOUR MOST SUCCESSFUL CUSTOMERS]
+- Customer success metrics: [PERFORMANCE DATA - USAGE, OUTCOMES, RETENTION]
+- Onboarding completion data: [ONBOARDING SUCCESS PATTERNS]
+- Support interaction history: [SUPPORT PATTERNS FOR SUCCESSFUL CUSTOMERS]
+- Customer feedback: [SUCCESS STORIES AND POSITIVE FEEDBACK]
+- Account expansion history: [DATA ON CUSTOMERS WHO HAVE GROWN WITH YOU]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Products/Services: [WHAT YOU PROVIDE]
+- Success metrics: [HOW YOU DEFINE CUSTOMER SUCCESS]
+- Customer lifecycle: [TYPICAL CUSTOMER JOURNEY AND TIMELINE]
+
+Please provide success pattern analysis including pre-purchase predictors, implementation patterns, usage behaviors, growth indicators, ideal success customer profile, and a success replication strategy.`
+            },
+            {
+                id: 46,
+                title: "Dynamic Content Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create content systems that automatically adapt based on customer data and behavior",
+                tags: ["content", "personalization", "automation"],
+                prompt: `You are a dynamic content strategist who specializes in creating content systems that automatically adapt based on customer data and behavior patterns.
+
+# CONTEXT
+I need to create dynamic content strategies that automatically personalize website content, email campaigns, and marketing materials based on customer characteristics and behavior.
+
+# CUSTOMER DATA FOR CONTENT OPTIMIZATION
+**Customer Profile Data:**
+- Demographics/firmographics: [CUSTOMER CHARACTERISTICS]
+- Industry and role context: [INDUSTRY, ROLE, SENIORITY]
+- Company characteristics: [COMPANY SIZE, GROWTH STAGE]
+
+**Behavioral and Engagement Data:**
+- Content consumption patterns: [WHICH CONTENT CUSTOMERS ENGAGE WITH]
+- Website behavior: [BROWSING PATTERNS, SESSION DEPTH]
+- Email engagement: [EMAIL INTERACTION PATTERNS]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Content inventory: [TYPES AND VOLUME OF CONTENT YOU HAVE]
+- Technology stack: [CURRENT PERSONALIZATION TECHNOLOGY]
+- Personalization goals: [WHAT YOU WANT TO ACHIEVE]
+
+Please provide content personalization rules for website, email, and sales materials, including technology requirements, A/B testing frameworks, and implementation roadmap.`
+            },
+            {
+                id: 47,
+                title: "Email Personalization Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Advanced email personalization strategies that go far beyond inserting first names",
+                tags: ["email", "personalization", "engagement"],
+                prompt: `You are an email marketing optimization expert who specializes in advanced email personalization strategies that drive significantly higher engagement.
+
+# CONTEXT
+I need to optimize our email marketing through sophisticated personalization techniques that go far beyond inserting first names.
+
+# CURRENT EMAIL PROGRAM
+**Current Email Performance:**
+- Email volume: [NUMBER OF EMAILS SENT PER MONTH]
+- Current personalization: [WHAT PERSONALIZATION YOU CURRENTLY USE]
+- Performance metrics: [CURRENT OPEN RATES, CLICK RATES, CONVERSION RATES]
+- Technology stack: [EMAIL MARKETING TECHNOLOGY]
+
+**Email Types:**
+- Newsletter: [REGULAR EMAIL COMMUNICATION]
+- Promotional campaigns: [PROMOTIONAL EMAILS]
+- Nurture sequences: [AUTOMATED NURTURE SEQUENCES]
+- Transactional: [CONFIRMATIONS, RECEIPTS, ETC.]
+
+# CUSTOMER DATA AVAILABLE
+- Demographics/firmographics: [CUSTOMER CHARACTERISTICS]
+- Email engagement history: [PAST OPEN, CLICK, CONVERSION PATTERNS]
+- Website behavior: [PAGES VISITED, CONTENT CONSUMED]
+- Purchase history: [PAST PURCHASES, ORDER VALUES]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Target audience: [YOUR EMAIL SUBSCRIBER CHARACTERISTICS]
+- Email marketing goals: [WHAT YOU WANT TO ACHIEVE]
+
+Please provide advanced subject line personalization, dynamic content strategies, CTA customization rules, send time optimization, and campaign-specific personalization frameworks.`
+            },
+            {
+                id: 48,
+                title: "Event Marketing Amplifier",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Maximize ROI from events and conferences through strategic pre/during/post marketing",
+                tags: ["events", "conferences", "promotion"],
+                prompt: `You are an event marketing strategist who specializes in maximizing the marketing impact and ROI of industry events, conferences, and trade shows.
+
+# CONTEXT
+I need to develop comprehensive event marketing strategies that maximize the value of our event participation through strategic pre-event, during-event, and post-event activities.
+
+# EVENT DETAILS
+**Event Information:**
+- Event name and type: [EVENT NAME - CONFERENCE, TRADE SHOW, WEBINAR, ETC.]
+- Event date and location: [WHEN AND WHERE]
+- Your participation: [ATTENDING, EXHIBITING, SPEAKING, SPONSORING, HOSTING]
+- Target audience: [WHO WILL BE AT THE EVENT]
+- Event objectives: [GOALS - LEADS, AWARENESS, PARTNERSHIPS]
+
+**Your Event Assets:**
+- Booth/presence: [YOUR PHYSICAL OR VIRTUAL PRESENCE]
+- Speaking opportunities: [ANY PRESENTATIONS OR PANELS]
+- Sponsorship benefits: [WHAT YOUR SPONSORSHIP INCLUDES]
+- Content to share: [CONTENT YOU CAN DISTRIBUTE]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Products/Services: [WHAT YOU'RE PROMOTING]
+- Target personas: [WHO YOU WANT TO CONNECT WITH]
+- Budget: [EVENT MARKETING BUDGET]
+- Team attending: [WHO FROM YOUR TEAM WILL BE THERE]
+
+Please provide a comprehensive event marketing plan including pre-event promotion, during-event engagement tactics, post-event follow-up sequences, content amplification strategy, and ROI measurement.`
+            },
+            {
+                id: 49,
+                title: "Hyper-Personalization Engine",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Create 1:1 personalized experiences using advanced data integration and AI",
+                tags: ["personalization", "AI", "customer experience"],
+                prompt: `You are a hyper-personalization strategist who specializes in creating deeply personalized 1:1 marketing experiences using advanced data integration.
+
+# CONTEXT
+I want to move beyond basic segmentation to true 1:1 personalization that treats each customer as an individual.
+
+# CUSTOMER DATA SOURCES
+**First-Party Data:**
+- CRM data: [CUSTOMER RELATIONSHIP DATA]
+- Transaction history: [PURCHASE AND TRANSACTION DATA]
+- Behavioral data: [WEBSITE, EMAIL, PRODUCT USAGE DATA]
+- Survey and feedback: [DIRECT CUSTOMER INPUT]
+- Support interactions: [CUSTOMER SERVICE INTERACTIONS]
+
+**Contextual Data:**
+- Real-time behavior: [CURRENT SESSION BEHAVIOR]
+- Location and device: [GEOGRAPHIC AND DEVICE CONTEXT]
+- Time and seasonality: [TEMPORAL CONTEXT FACTORS]
+
+# PERSONALIZATION TOUCHPOINTS
+- Website experience: [CURRENT WEBSITE PERSONALIZATION]
+- Email communications: [EMAIL PERSONALIZATION STATE]
+- Advertising: [AD PERSONALIZATION CAPABILITIES]
+- Sales interactions: [HOW SALES PERSONALIZES]
+
+# BUSINESS CONTEXT
+- Company: [YOUR COMPANY NAME]
+- Customer base size: [NUMBER OF CUSTOMERS/PROSPECTS]
+- Technology infrastructure: [CURRENT MARTECH STACK]
+- Privacy requirements: [REGULATORY AND POLICY CONSTRAINTS]
+
+Please provide a hyper-personalization framework including data integration strategy, personalization rule engine design, AI/ML optimization opportunities, privacy-compliant implementation, and measurement framework.`
             }
         ];
 
