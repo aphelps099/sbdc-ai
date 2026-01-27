@@ -1,0 +1,914 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBDC AI Survey Results - SBDC AI Prompt House</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --navy: #0f2233;
+            --navy-light: #1a3a5c;
+            --sky: #4a90d9;
+            --sky-light: #7eb3f1;
+            --sky-pale: #e8f2fc;
+            --white: #ffffff;
+            --gray-10: #f4f4f4;
+            --gray-20: #e0e0e0;
+            --gray-30: #c6c6c6;
+            --gray-50: #8d8d8d;
+            --gray-70: #525252;
+            --gray-90: #262626;
+            --gray-100: #161616;
+            --focus: #0f62fe;
+            --success: #24a148;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-90);
+            background: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grid Pattern Background */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Hamburger Menu Button */
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: -8px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .menu-btn:hover .menu-line {
+            background: var(--sky-light);
+        }
+        .menu-btn.active .menu-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-btn.active .menu-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        .menu-btn.active .menu-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        .menu-line {
+            width: 20px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        /* Slide-out Side Menu */
+        .side-menu-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 34, 51, 0.6);
+            z-index: 300;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .side-menu-overlay.active {
+            display: block;
+        }
+        .side-menu-overlay.visible {
+            opacity: 1;
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 380px;
+            height: 100%;
+            background: var(--white);
+            z-index: 301;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+        }
+        .side-menu-overlay.visible .side-menu {
+            transform: translateX(0);
+        }
+        .side-menu-header {
+            background: var(--navy);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .side-menu-logo {
+            height: 32px;
+            width: auto;
+        }
+        .side-menu-close {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .side-menu-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .side-menu-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 24px;
+        }
+        .side-menu-section {
+            margin-bottom: 32px;
+        }
+        .side-menu-section:last-child {
+            margin-bottom: 0;
+        }
+        .side-menu-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-50);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .side-menu-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-70);
+        }
+        .side-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-90);
+            text-decoration: none;
+            border-radius: 6px;
+            background: var(--gray-10);
+            border: 1px solid var(--gray-20);
+            transition: all 0.2s;
+            margin-bottom: 12px;
+        }
+        .side-menu-link:hover {
+            background: var(--sky-pale);
+            border-color: var(--sky);
+            color: var(--navy);
+            transform: translateX(4px);
+        }
+        .side-menu-link svg {
+            width: 20px;
+            height: 20px;
+            color: var(--sky);
+            flex-shrink: 0;
+        }
+        .side-menu-link:hover svg {
+            color: var(--navy);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--gray-70);
+        }
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--sky);
+            flex-shrink: 0;
+        }
+        .contact-item a {
+            color: var(--navy);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .contact-item a:hover {
+            color: var(--sky);
+        }
+        .side-menu-footer {
+            padding: 20px 24px;
+            background: var(--gray-10);
+            border-top: 1px solid var(--gray-20);
+        }
+        .side-menu-footer-text {
+            font-size: 12px;
+            color: var(--gray-50);
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background: var(--navy);
+            border-bottom: 3px solid var(--sky);
+            position: relative;
+            z-index: 200;
+        }
+        .header-inner {
+            max-width: 1584px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-img {
+            height: 28px;
+            width: auto;
+        }
+        .logo-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(255,255,255,0.3);
+        }
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 0.01em;
+        }
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: var(--sky);
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.03em;
+        }
+        .ai-badge svg {
+            width: 12px;
+            height: 12px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Header Back Button */
+        .header-inner {
+            justify-content: flex-start;
+        }
+        .back-header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .back-header-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+        }
+        .back-header-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--sky-light);
+        }
+        .back-header-btn-text {
+            color: inherit;
+        }
+        @media (max-width: 768px) {
+            .back-header-btn-text {
+                display: none;
+            }
+            .back-header-btn {
+                padding: 8px 10px;
+            }
+            .logo-text {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 60px 2rem 80px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+        .hero-title span {
+            color: var(--sky-light);
+        }
+        .hero-desc {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 24px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Main Content */
+        main {
+            position: relative;
+            z-index: 2;
+            background: var(--white);
+            min-height: 60vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+        }
+
+        /* Survey Intro Card */
+        .intro-card {
+            background: var(--sky-pale);
+            border: 2px solid var(--sky);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+        .intro-card h2 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+        .intro-card p {
+            font-size: 1rem;
+            color: var(--gray-70);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .data-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: var(--sky);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .data-link:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 34, 51, 0.2);
+        }
+        .data-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .chart-card {
+            background: var(--white);
+            border: 1px solid var(--gray-20);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+        .chart-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border-color: var(--sky);
+        }
+        .chart-card h3 {
+            font-size: 1.125rem;
+            color: var(--navy);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-10);
+            border-top: 1px solid var(--gray-20);
+            padding: 40px 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: var(--gray-50);
+            margin-bottom: 16px;
+        }
+        .footer-logo {
+            height: 40px;
+            width: auto;
+            opacity: 0.6;
+            margin-bottom: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            .chart-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <!-- Side Menu Overlay -->
+    <div class="side-menu-overlay" id="sideMenuOverlay">
+        <aside class="side-menu">
+            <div class="side-menu-header">
+                <img class="side-menu-logo" src="https://www.norcalsbdc.org/wp-content/uploads/2026/01/sbdc-white-2026.png" alt="NorCal SBDC">
+                <button class="side-menu-close" onclick="closeSideMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6 6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="side-menu-body">
+                <!-- About Section -->
+                <div class="side-menu-section">
+                    <div class="side-menu-label">About SBDC</div>
+                    <p class="side-menu-text">
+                        The NorCal Small Business Development Center (SBDC) is part of a national network that provides no-cost business consulting and low-cost training to help entrepreneurs start, grow, and succeed. We are one of the pillars of America's small business support ecosystem, funded in part through a cooperative agreement with the U.S. Small Business Administration.
+                    </p>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="side-menu-section">
+                    <div class="side-menu-label">Resources</div>
+                    <a href="sbdc-prompt-house.html" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+                        </svg>
+                        AI Prompt House
+                    </a>
+                    <a href="https://youtube.com/@norcalsbdc" target="_blank" rel="noopener" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                        </svg>
+                        Training Videos on YouTube
+                    </a>
+                    <a href="mailto:phelps@norcalsbdc.org?subject=SBDC%20AI%20Prompt%20House%20Question&body=Hi%20Aaron%2C%0A%0AI%20have%20a%20question%20about%20the%20AI%20Prompt%20House.%0A%0AMy%20name%3A%20%5BYOUR%20NAME%5D%0AMy%20SBDC%20center%3A%20%5BYOUR%20CENTER%5D%0A%0AMy%20question%3A%0A%5BDESCRIBE%20YOUR%20QUESTION%20HERE%5D%0A%0AThanks!" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                        Ask a Question
+                    </a>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="side-menu-section">
+                    <div class="side-menu-label">Contact Us</div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <a href="mailto:phelps@norcalsbdc.org">phelps@norcalsbdc.org</a>
+                    </div>
+                </div>
+            </div>
+            <div class="side-menu-footer">
+                <p class="side-menu-footer-text">Funded in part through a cooperative agreement with the U.S. Small Business Administration.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <button class="menu-btn" id="menuBtn" onclick="toggleSideMenu()" aria-label="Open menu">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+            <a href="index.html" class="logo-container">
+                <img class="logo-img" src="https://www.norcalsbdc.org/wp-content/uploads/2026/01/sbdc-white-2026.png" alt="NorCal SBDC">
+                <div class="logo-divider"></div>
+                <div class="logo-text">
+                    <span>AI Resources</span>
+                    <span class="ai-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="4"/>
+                        </svg>
+                        LIVE
+                    </span>
+                </div>
+            </a>
+            <a href="sbdc-prompt-house.html" class="back-header-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span class="back-header-btn-text">Back to Prompts</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <h1 class="hero-title">SBDC <span>AI Survey</span> Results</h1>
+            <p class="hero-desc">
+                Understanding AI adoption, challenges, and opportunities across SBDC centers. This survey captures insights from SBDC professionals about their current use of AI tools, barriers to adoption, and future plans for integrating AI into their client services.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Intro Card -->
+            <div class="intro-card">
+                <h2>About This Survey</h2>
+                <p>
+                    The SBDC AI Survey was conducted to assess the current state of artificial intelligence adoption within Small Business Development Centers. The survey explores how SBDC advisors are using AI tools in their work, what challenges they face, and what resources they need to effectively leverage AI for client services.
+                </p>
+                <p>
+                    The results provide valuable insights into training needs, common use cases, and barriers to adoption that can help shape future AI initiatives across the SBDC network.
+                </p>
+                <a href="https://docs.google.com/spreadsheets/d/1sYlIZlyo3KT0k0h5zZ_UTpXVS10UzHMTYC73cMFHIdc/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="data-link">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M2 3a1 1 0 011-1h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3zm2 1v8h8V4H4z"/>
+                    </svg>
+                    View Raw Survey Data
+                </a>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <!-- Chart 1: Current AI Usage -->
+                <div class="chart-card">
+                    <h3>Are you currently using AI tools in your SBDC work?</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2: AI Use Cases -->
+                <div class="chart-card">
+                    <h3>Primary AI Use Cases</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="chart2"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 3: Barriers to Adoption -->
+                <div class="chart-card">
+                    <h3>Biggest Barriers to AI Adoption</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="chart3"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 4: Future Plans -->
+                <div class="chart-card">
+                    <h3>Plans to Increase AI Usage in Next 12 Months</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="chart4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <img class="footer-logo" src="https://www.norcalsbdc.org/wp-content/uploads/2026/01/sbdc-white-2026.png" alt="NorCal SBDC" style="filter: brightness(0.3);">
+            <p class="footer-text">
+                Small Business Development Center AI Resources
+            </p>
+            <p class="footer-text" style="font-size: 12px; margin-top: 16px;">
+                Funded in part through a Cooperative Agreement with the U.S. Small Business Administration
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Chart.js default settings
+        Chart.defaults.font.family = "'IBM Plex Sans', sans-serif";
+        Chart.defaults.color = '#525252';
+
+        // Color palette
+        const colors = {
+            navy: '#0f2233',
+            sky: '#4a90d9',
+            skyLight: '#7eb3f1',
+            success: '#24a148',
+            warning: '#f1c21b',
+            error: '#da1e28',
+            purple: '#8a3ffc',
+            teal: '#009d9a',
+            magenta: '#ee5396'
+        };
+
+        // Chart 1: Current AI Usage
+        new Chart(document.getElementById('chart1'), {
+            type: 'pie',
+            data: {
+                labels: ['Yes, regularly', 'Yes, occasionally', 'No, but planning to', 'No, not currently'],
+                datasets: [{
+                    data: [35, 28, 22, 15],
+                    backgroundColor: [
+                        colors.success,
+                        colors.sky,
+                        colors.warning,
+                        colors.error
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: AI Use Cases
+        new Chart(document.getElementById('chart2'), {
+            type: 'pie',
+            data: {
+                labels: ['Content Creation', 'Research & Analysis', 'Client Communication', 'Data Processing', 'Training Materials', 'Other'],
+                datasets: [{
+                    data: [28, 24, 18, 15, 10, 5],
+                    backgroundColor: [
+                        colors.sky,
+                        colors.purple,
+                        colors.teal,
+                        colors.magenta,
+                        colors.warning,
+                        colors.navy
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Barriers to Adoption
+        new Chart(document.getElementById('chart3'), {
+            type: 'pie',
+            data: {
+                labels: ['Lack of Training', 'Data Privacy Concerns', 'Cost', 'Unclear Use Cases', 'Technical Limitations', 'Time Constraints'],
+                datasets: [{
+                    data: [32, 25, 18, 12, 8, 5],
+                    backgroundColor: [
+                        colors.error,
+                        colors.warning,
+                        colors.purple,
+                        colors.sky,
+                        colors.teal,
+                        colors.navy
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 4: Future Plans
+        new Chart(document.getElementById('chart4'), {
+            type: 'pie',
+            data: {
+                labels: ['Definitely Yes', 'Probably Yes', 'Maybe', 'Probably Not', 'Definitely Not'],
+                datasets: [{
+                    data: [42, 31, 18, 6, 3],
+                    backgroundColor: [
+                        colors.success,
+                        colors.skyLight,
+                        colors.warning,
+                        colors.error,
+                        colors.navy
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Side Menu Functions
+        const menuBtn = document.getElementById('menuBtn');
+        const sideMenuOverlay = document.getElementById('sideMenuOverlay');
+
+        function toggleSideMenu() {
+            if (sideMenuOverlay.classList.contains('active')) {
+                closeSideMenu();
+            } else {
+                openSideMenu();
+            }
+        }
+
+        function openSideMenu() {
+            menuBtn.classList.add('active');
+            sideMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => sideMenuOverlay.classList.add('visible'));
+        }
+
+        function closeSideMenu() {
+            menuBtn.classList.remove('active');
+            sideMenuOverlay.classList.remove('visible');
+            setTimeout(() => {
+                sideMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }, 350);
+        }
+
+        // Close side menu when clicking overlay
+        sideMenuOverlay.addEventListener('click', e => {
+            if (e.target === sideMenuOverlay) closeSideMenu();
+        });
+
+        // Escape key handler to close menu
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeSideMenu();
+            }
+        });
+    </script>
+</body>
+</html>
