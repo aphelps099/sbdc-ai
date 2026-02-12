@@ -1496,13 +1496,22 @@
     <nav class="filters-section">
         <div class="filters-inner">
             <button class="filter-tab active" data-filter="all">
-                All Prompts<span class="filter-count">49</span>
+                All Prompts<span class="filter-count">56</span>
             </button>
             <button class="filter-tab" data-filter="marketing">
                 Marketing<span class="filter-count">34</span>
             </button>
             <button class="filter-tab" data-filter="advising">
-                Client Advising<span class="filter-count">6</span>
+                Client Advising<span class="filter-count">9</span>
+            </button>
+            <button class="filter-tab" data-filter="startup">
+                Startup & Pre-Venture<span class="filter-count">2</span>
+            </button>
+            <button class="filter-tab" data-filter="digital">
+                Digital Presence<span class="filter-count">1</span>
+            </button>
+            <button class="filter-tab" data-filter="operations">
+                Operations & HR<span class="filter-count">1</span>
             </button>
             <button class="filter-tab" data-filter="admin">
                 Admin & Reporting<span class="filter-count">5</span>
@@ -3495,6 +3504,313 @@ I want to move beyond basic segmentation to true 1:1 personalization that treats
 - Privacy requirements: [REGULATORY AND POLICY CONSTRAINTS]
 
 Please provide a hyper-personalization framework including data integration strategy, personalization rule engine design, AI/ML optimization opportunities, privacy-compliant implementation, and measurement framework.`
+            },
+            {
+                id: 50,
+                title: "New Client Needs Assessment",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Structured intake questions that surface what a client actually needs vs. what they say they need",
+                tags: ["intake", "discovery", "client management"],
+                prompt: `You are an experienced SBDC business advisor conducting an initial needs assessment with a new client. Your goal is to go beyond what the client says they need and uncover what they actually need.
+
+# CLIENT INFORMATION
+- Name: [CLIENT NAME]
+- Business name: [BUSINESS NAME or "Pre-venture / idea stage"]
+- Industry: [INDUSTRY / BUSINESS TYPE]
+- How they described their need: [WHAT THE CLIENT SAID THEY WANT HELP WITH — use their own words]
+- Business stage: [Idea / Startup / Established / Scaling / Struggling / Transitioning]
+- Time in business: [YEARS/MONTHS, or N/A if pre-venture]
+
+# WHAT I ALREADY KNOW
+[PASTE ANY NOTES, INTAKE FORM ANSWERS, OR PRIOR CONTEXT YOU HAVE — or write "First contact, no prior info"]
+
+Based on this, please provide:
+
+1. **Likely underlying needs** — What are 3-4 deeper issues this client probably has based on their stated need and business stage? (e.g., someone asking for "help with marketing" often actually needs positioning clarity or revenue model work first)
+
+2. **Recommended discovery questions** — Give me 8-10 specific questions to ask in our first session that will help me understand the full picture. Prioritize questions that reveal financial health, decision-making clarity, and immediate risks.
+
+3. **Red flags to watch for** — What warning signs should I listen for that indicate the client may need to be redirected before we work on what they asked about?
+
+4. **Suggested session agenda** — A 60-minute first session outline that balances listening, discovery, and giving the client something useful to walk away with.
+
+5. **Resource recommendations** — Based on what I know so far, which SBDC resources, workshops, or referral partners might be relevant? (Include SBA resources, SCORE, local programs if applicable.)
+
+6. **Advising path options** — Suggest 2-3 possible multi-session engagement paths depending on what we discover in the first meeting.
+
+Keep your tone practical. I'm a working advisor — give me things I can use in the room.`
+            },
+            {
+                id: 51,
+                title: "SBA Loan Package Prep",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Help clients build a complete, lender-ready SBA loan application package",
+                tags: ["financing", "SBA", "lending"],
+                prompt: `You are an experienced SBDC advisor who specializes in helping small business clients prepare SBA loan packages. You understand what lenders look for and how to present a client's case as strongly and honestly as possible.
+
+# CLIENT INFORMATION
+- Business name: [BUSINESS NAME]
+- Industry: [INDUSTRY / BUSINESS TYPE]
+- Years in business: [NUMBER — or "startup" if pre-revenue]
+- Loan purpose: [WHAT THE FUNDS WILL BE USED FOR — equipment, working capital, real estate, acquisition, etc.]
+- Approximate amount requested: [DOLLAR AMOUNT]
+- Current annual revenue: [AMOUNT or "pre-revenue"]
+- Estimated credit score range: [EXCELLENT / GOOD / FAIR / NEEDS WORK / UNKNOWN]
+- Collateral available: [DESCRIBE ANY ASSETS — property, equipment, inventory, or "limited/none"]
+- Existing debt: [DESCRIBE CURRENT LOANS OR OBLIGATIONS, if any]
+
+# ADDITIONAL CONTEXT
+[ANYTHING ELSE RELEVANT — prior loan denials, business partners, franchise, special circumstances]
+
+Please provide:
+
+1. **Loan package checklist** — A complete list of documents this client needs to assemble, organized by category (personal, business, financial, legal). Flag which items are critical vs. supporting.
+
+2. **Narrative guidance** — Help me coach the client on writing the business description and loan purpose narrative. What should they emphasize? What should they avoid? Give me a suggested outline they can follow.
+
+3. **Financial preparation** — What financial statements need to be in order? What ratios will the lender likely examine? Flag any areas where this client's profile might raise questions and suggest how to address them proactively.
+
+4. **Strengths to highlight** — Based on what I've shared, what are the strongest parts of this application? How should we frame them?
+
+5. **Gaps and risks** — Be honest: where is this application weak? What should we shore up before submitting? Are there deal-breakers we need to address?
+
+6. **Timeline and next steps** — Give me a realistic 2-4 week preparation timeline with specific milestones so the client knows what to do and when.
+
+7. **Lender matching guidance** — What type of SBA loan product fits this situation best (7(a), 504, microloan, etc.)? Any suggestions on the type of lending institution to approach (community bank, CDFI, credit union)?
+
+Be direct. If this client isn't ready, say so and tell me what needs to happen first.`
+            },
+            {
+                id: 52,
+                title: "Startup Cost Estimator",
+                category: "startup",
+                categoryLabel: "Startup & Pre-Venture",
+                description: "Build a realistic pre-launch budget with industry-aware cost categories",
+                tags: ["startup", "financial", "planning"],
+                prompt: `You are a practical SBDC business advisor helping a prospective entrepreneur build a realistic startup cost estimate. Your job is to make sure they account for what they don't know they'll need — not just the obvious expenses.
+
+# BUSINESS CONCEPT
+- Business type: [DESCRIBE THE BUSINESS — e.g., "mobile dog grooming," "coffee shop," "freelance bookkeeping," "e-commerce clothing brand"]
+- Location: [CITY/STATE — or "home-based" / "online only"]
+- Physical space needed: [YES — retail/office/warehouse / NO — home-based or mobile]
+- Number of employees at launch: [NUMBER, or "just me"]
+- Target launch timeframe: [WHEN THEY WANT TO OPEN]
+- Funding source: [PERSONAL SAVINGS / LOAN / INVESTORS / COMBINATION / NOT SURE]
+
+# WHAT THEY'VE ALREADY IDENTIFIED
+[LIST ANY COSTS THE CLIENT HAS ALREADY THOUGHT OF — or "hasn't started estimating yet"]
+
+Please provide:
+
+1. **Complete startup cost worksheet** — Organized into these categories:
+   - One-time costs (before opening)
+   - Monthly recurring costs (first 6 months)
+   - Often-forgotten costs (the things first-timers miss)
+
+   For each line item, provide a realistic cost range based on this business type and location. Use low/mid/high estimates where helpful.
+
+2. **Cash reserve recommendation** — How many months of operating expenses should they have in reserve before launch? Why?
+
+3. **Where to save vs. where to spend** — Identify 3-4 areas where they can bootstrap or go lean, and 3-4 areas where cutting corners will cost them more later.
+
+4. **DIY vs. hire decisions** — For common startup tasks (logo, website, legal setup, bookkeeping), advise which ones are safe to DIY and which ones they should pay for.
+
+5. **Funding gap analysis** — Based on the total estimated costs, what's the likely gap between what they have and what they need? Suggest realistic options to close the gap.
+
+6. **Pre-launch spending timeline** — A month-by-month spending sequence so they know when each cost hits and can plan cash flow.
+
+Use plain language. This person may have never built a budget before.`
+            },
+            {
+                id: 53,
+                title: "Entity Selection Guide",
+                category: "startup",
+                categoryLabel: "Startup & Pre-Venture",
+                description: "Walk through LLC vs. S-Corp vs. sole proprietorship based on the client's real situation",
+                tags: ["startup", "legal", "entity structure"],
+                prompt: `You are an experienced SBDC advisor helping a client understand which business entity structure makes sense for their situation. You are not providing legal or tax advice — you're helping them ask the right questions and understand the trade-offs so they can have a more productive conversation with an attorney or CPA.
+
+# CLIENT SITUATION
+- Business concept: [DESCRIBE THE BUSINESS]
+- Number of owners: [1 / 2+ — describe ownership split if multiple]
+- Expected first-year revenue: [ROUGH ESTIMATE or "not sure"]
+- Personal liability concerns: [HIGH — physical products, clients on premises, etc. / MODERATE / LOW — consulting, online services, etc.]
+- Plans to seek funding: [YES — loans or investors / NO / MAYBE LATER]
+- State of formation: [STATE]
+- Currently operating as: [NOTHING YET / SOLE PROPRIETOR / INFORMAL PARTNERSHIP / ALREADY FORMED AN ENTITY]
+
+# ADDITIONAL CONTEXT
+[ANY OTHER RELEVANT DETAILS — spouse involved, real estate, employees planned, side hustle vs. full-time, etc.]
+
+Please provide:
+
+1. **Entity options explained** — In plain language, explain the realistic options for this client. For most small businesses, this means:
+   - Sole Proprietorship
+   - Single-Member LLC
+   - Multi-Member LLC
+   - S-Corporation (or LLC taxed as S-Corp)
+   - C-Corporation (only if relevant to their situation)
+
+   For each, explain what it is, what it protects, and what it costs — in 2-3 sentences, not paragraphs.
+
+2. **Side-by-side comparison** — Create a simple comparison table covering: liability protection, tax treatment, setup cost, ongoing compliance, and ease of formation for the options that are realistic for this client.
+
+3. **My recommendation and why** — Based on what you know, which 1-2 options make the most sense for this person's situation? Explain the reasoning simply.
+
+4. **Common mistakes to avoid** — What do people in this situation typically get wrong? (e.g., forming an LLC but not getting an operating agreement, choosing S-Corp too early, not separating finances)
+
+5. **Action steps** — A clear, numbered list of what to do next — including what they can do themselves and where they need professional help (attorney, CPA).
+
+6. **Questions to ask their CPA/attorney** — Give them 5-6 specific questions to bring to a professional so the meeting is productive.
+
+Important: Remind the client that this is educational guidance, not legal or tax advice, and that they should consult a licensed professional before making a final decision.`
+            },
+            {
+                id: 54,
+                title: "Pricing Strategy Workshop",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Help clients move beyond guessing to a pricing strategy grounded in costs, value, and market reality",
+                tags: ["pricing", "strategy", "financial"],
+                prompt: `You are an SBDC advisor who is very good at helping small business owners think clearly about pricing. Most of your clients are either guessing, copying competitors, or undercharging. Your goal is to help them arrive at a pricing approach they can explain and defend.
+
+# CLIENT INFORMATION
+- Business: [BUSINESS NAME] — [DESCRIBE WHAT THEY SELL — products, services, or both]
+- Industry: [INDUSTRY / SECTOR]
+- Target customer: [WHO BUYS FROM THEM — consumer, small business, enterprise, etc.]
+- Current pricing approach: [HOW THEY SET PRICES NOW — guessing, cost-plus, matching competitors, "what feels right," etc.]
+- Current prices: [LIST KEY PRODUCTS/SERVICES AND THEIR PRICES — or "hasn't set prices yet"]
+- Known costs: [LIST WHAT THEY KNOW ABOUT THEIR COSTS — materials, labor, overhead — or "not sure"]
+- Competitive landscape: [WHO ARE THEIR MAIN COMPETITORS AND ROUGHLY WHAT DO THEY CHARGE?]
+- Pain point: [WHAT PROMPTED THIS CONVERSATION — losing deals on price? not profitable? launching something new? no idea where to start?]
+
+Please provide:
+
+1. **Pricing approach assessment** — Based on this business type, which pricing methodology makes the most sense and why? Evaluate:
+   - Cost-plus pricing (margin on top of costs)
+   - Value-based pricing (price based on perceived value to customer)
+   - Competitive pricing (based on market rates)
+   - Tiered/packaged pricing (good-better-best)
+
+   Recommend the best primary approach for this specific business and explain the reasoning.
+
+2. **Cost foundation** — Help me walk the client through identifying their true costs. What questions should I ask? What costs do business owners in this industry typically forget?
+
+3. **Pricing math** — Using the information provided, sketch out a rough pricing model. Show the client what their margins actually look like and where they might be leaving money on the table.
+
+4. **Competitive positioning** — Based on their market, are they priced correctly relative to the value they deliver? Should they be positioned as budget, mid-market, or premium — and what would need to change to support that positioning?
+
+5. **Price increase playbook** — If they need to raise prices, give me a practical script and timeline for how to do it without losing customers. Include what to say, how much notice to give, and how to handle pushback.
+
+6. **Pricing experiments** — Suggest 2-3 low-risk pricing tests they could run in the next 30 days to learn what their market will actually bear.
+
+Be practical and specific. Avoid theory — give them numbers they can work with.`
+            },
+            {
+                id: 55,
+                title: "Google Business Profile Optimizer",
+                category: "digital",
+                categoryLabel: "Digital Presence",
+                description: "Audit and improve a client's Google Business Profile for local search visibility",
+                tags: ["local SEO", "Google", "digital presence"],
+                prompt: `You are a practical digital marketing advisor working with SBDC clients. Most of your clients are local small businesses who need to show up when people search for their services nearby. Google Business Profile is usually the highest-impact, lowest-cost thing they can do — but most profiles are incomplete or neglected.
+
+# CLIENT INFORMATION
+- Business name: [BUSINESS NAME]
+- Business type: [WHAT THEY DO — e.g., "plumber," "bakery," "tax preparer," "yoga studio"]
+- Location: [CITY, STATE]
+- Service area: [LOCAL ONLY / MULTI-CITY / STATEWIDE — describe if relevant]
+- Physical location: [YES — storefront or office / NO — service area business, home-based, or online]
+- Current GBP status: [HAS A PROFILE / NOT SURE / DOESN'T HAVE ONE YET]
+- Current reviews: [APPROXIMATE NUMBER AND AVERAGE RATING — or "not sure"]
+- Website: [HAS ONE / DOESN'T HAVE ONE / HAS ONE BUT IT'S OUTDATED]
+
+# WHAT THEY'VE ALREADY DONE
+[DESCRIBE ANYTHING THEY'VE DONE WITH THEIR PROFILE — or "nothing yet" / "set it up years ago and never touched it"]
+
+Please provide:
+
+1. **Profile completeness audit** — Walk through every section of a Google Business Profile and tell me what this client should have filled out. For each section, give a specific recommendation (not generic advice). Include:
+   - Business category (primary + secondary recommendations)
+   - Business description (write a draft for them, ~750 characters)
+   - Services/products listing
+   - Attributes to enable
+   - Hours and special hours
+   - Photos (what types, how many, what to show)
+   - Q&A section strategy
+
+2. **Review strategy** — Give the client a simple, repeatable system for getting more Google reviews. Include:
+   - When to ask (timing matters)
+   - How to ask (specific scripts — in person, via text, via email)
+   - How to respond to positive reviews (with an example)
+   - How to respond to negative reviews (with an example)
+   - What NOT to do (Google policy violations)
+
+3. **Google Posts plan** — Explain what Google Posts are and give them a 4-week posting schedule with specific post ideas relevant to their business type.
+
+4. **Local SEO quick wins** — Beyond GBP, what are 3-5 things this client can do in the next 2 weeks to improve local search visibility? (Think directories, citations, website basics.)
+
+5. **Competitor comparison** — Tell me how to do a quick 10-minute competitive audit: search for their service in their area, see what competitors' profiles look like, and identify gaps.
+
+6. **Monthly maintenance checklist** — A 15-minute monthly routine to keep the profile active and performing.
+
+Keep recommendations free or very low cost. These are small business owners, not marketing agencies.`
+            },
+            {
+                id: 56,
+                title: "First Employee Checklist",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Everything a small business owner needs to know and do before making their first hire",
+                tags: ["hiring", "HR", "compliance", "employees"],
+                prompt: `You are an SBDC advisor helping a small business owner prepare to hire their first employee. This is one of the most intimidating steps for a small business — there's real legal compliance involved, and most owners don't know what they don't know.
+
+# CLIENT SITUATION
+- Business name: [BUSINESS NAME]
+- State: [STATE — this matters for employment law]
+- Business entity type: [LLC / SOLE PROP / S-CORP / ETC.]
+- Type of hire: [FULL-TIME / PART-TIME / SEASONAL]
+- Role they're hiring for: [JOB TITLE AND BRIEF DESCRIPTION]
+- Why they're hiring: [OVERWHELMED / GROWING / NEED SPECIFIC SKILLS / REPLACING THEMSELVES IN A FUNCTION]
+- Timeline: [WHEN THEY WANT SOMEONE STARTED]
+- Budget for this hire: [WHAT THEY CAN AFFORD — or "not sure"]
+- Current setup: [JUST THE OWNER / HAS CONTRACTORS / HAS UNPAID HELP (family, interns)]
+
+# ADDITIONAL CONTEXT
+[ANY OTHER RELEVANT DETAILS — paying family members, past experience managing people, industry-specific concerns]
+
+Please provide:
+
+1. **Before-you-hire compliance checklist** — A numbered, step-by-step list of everything they need to set up BEFORE they can legally hire someone. Include:
+   - Federal requirements (EIN, Form W-4, I-9, etc.)
+   - State requirements (state tax registration, unemployment insurance, workers' comp — flag that these vary by state)
+   - Required postings and notices
+   - Payroll setup
+
+   For each item, briefly explain what it is and where to get it. Link to free resources where possible.
+
+2. **Employee vs. contractor decision** — Based on what they've described, help me determine: should this actually be an employee or could it be a contractor? Explain the IRS guidelines simply and the risks of misclassification.
+
+3. **Compensation guidance** — For this role in this location, what's a realistic pay range? How should they think about:
+   - Hourly vs. salary
+   - Total cost of an employee beyond wages (taxes, insurance, etc. — the "true cost" multiplier)
+   - Benefits expectations for this type of role
+
+4. **Job description template** — Draft a simple, effective job description for this specific role that they can post. Include the key sections: role summary, responsibilities, qualifications, compensation range, and how to apply.
+
+5. **Hiring process** — A practical, small-business-appropriate hiring process:
+   - Where to post (free and low-cost options)
+   - How to screen (what to look for in applications)
+   - Interview questions (5-7 specific to this role, plus 2-3 they should never ask for legal reasons)
+   - How to make an offer
+
+6. **Day-one and first-week setup** — What needs to happen on the employee's first day and first week? Include paperwork, training basics, and how to set expectations.
+
+7. **Ongoing obligations** — What regular employer responsibilities do they now have? (Payroll taxes, record-keeping, posting updates, etc.)
+
+Be thorough but not overwhelming. Prioritize what they need to do FIRST vs. what can wait a few weeks.`
             }
         ];
 
