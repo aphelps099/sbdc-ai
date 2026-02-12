@@ -1496,7 +1496,7 @@
     <nav class="filters-section">
         <div class="filters-inner">
             <button class="filter-tab active" data-filter="all">
-                All Prompts<span class="filter-count">74</span>
+                All Prompts<span class="filter-count">84</span>
             </button>
             <button class="filter-tab" data-filter="marketing">
                 Marketing<span class="filter-count">34</span>
@@ -1520,7 +1520,7 @@
                 Training<span class="filter-count">4</span>
             </button>
             <button class="filter-tab" data-filter="customer-service">
-                Customer Service<span class="filter-count">0</span>
+                Customer Service<span class="filter-count">10</span>
             </button>
             <button class="filter-tab" data-filter="government">
                 Government Contracting<span class="filter-count">8</span>
@@ -4729,6 +4729,619 @@ Create a comprehensive compliance checklist:
 7. **Contract closeout prep** — What to prepare throughout performance so closeout goes smoothly
 
 Make this feel manageable, not terrifying. Break compliance into daily habits and monthly reviews rather than an overwhelming wall of rules.`
+            },
+            {
+                id: 75,
+                title: "Customer Experience Audit",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Map every customer touchpoint and identify where the experience breaks down, with a gap analysis and quick fixes",
+                tags: ["audit", "touchpoints", "experience"],
+                prompt: `You are an SBDC advisor helping a small business owner audit their entire customer experience. Most small businesses have never mapped this — they know their product but haven't walked through the experience from the customer's perspective.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- How customers find them: [GOOGLE / SOCIAL MEDIA / REFERRALS / WALK-INS / ADS / OTHER]
+- How customers make purchases: [IN-STORE / ONLINE / PHONE / COMBINATION]
+- Current pain points (if known): [COMPLAINTS THEY HEAR, DROP-OFF POINTS, THINGS THAT FEEL CLUNKY]
+- Number of employees who interact with customers: [NUMBER]
+
+Conduct a full customer experience audit:
+
+1. **Touchpoint map** — Walk through every interaction a customer has with the business from first awareness to post-purchase, including:
+   - **Discovery** — Website, social media, Google listing, signage, word of mouth
+   - **First contact** — Phone call, walk-in, email inquiry, online chat, DM
+   - **Evaluation** — How they learn about pricing, options, quality, reviews
+   - **Purchase** — Checkout process, payment options, paperwork, wait times
+   - **Delivery/fulfillment** — How the product or service is actually delivered
+   - **Post-purchase** — Follow-up, receipts, thank-you, feedback requests
+   - **Ongoing** — Repeat purchase triggers, loyalty, referral opportunities
+
+2. **Gap analysis** — For each touchpoint, identify:
+   - What's working well (keep doing this)
+   - What's creating friction or confusion
+   - What's missing entirely (no follow-up? no greeting script? no online booking?)
+   - How it compares to what customers likely expect based on the industry
+
+3. **Quick fixes (implement this week)** — 5-7 specific, low-cost changes they can make immediately that will noticeably improve the customer experience
+
+4. **Medium-term improvements (30-60 days)** — Changes that require some setup — new processes, tools, or training
+
+5. **Experience scorecard** — A simple framework they can use quarterly to re-evaluate their customer experience across key dimensions (speed, friendliness, consistency, follow-through, ease)
+
+Be specific to their business type. A restaurant audit looks very different from a consulting firm audit. Don't give generic advice — make it feel like you walked through their front door.`
+            },
+            {
+                id: 76,
+                title: "Customer Onboarding Process",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Build a structured onboarding process for service-based businesses covering the gap between 'yes' and work starting",
+                tags: ["onboarding", "welcome", "service"],
+                prompt: `You are an SBDC advisor helping a service-based small business build a customer onboarding process. Right now, what happens between a customer saying "yes, I want to hire you" and the actual work starting is probably inconsistent, informal, or nonexistent. That gap is where trust erodes and scope creep begins.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Service type: [WHAT THEY DO — e.g., LANDSCAPING, CONSULTING, HOME REPAIR, ACCOUNTING, PHOTOGRAPHY, ETC.]
+- Typical project length: [ONE-TIME / RECURRING / PROJECT-BASED WITH TIMELINE]
+- Average project value: [APPROXIMATE DOLLAR AMOUNT]
+- Current onboarding process: [DESCRIBE WHAT HAPPENS NOW — EVEN IF IT'S "NOTHING FORMAL"]
+- Biggest onboarding issues: [MISCOMMUNICATION / SCOPE CREEP / CLIENT GHOSTING / DELAYED STARTS / OTHER]
+- Tools currently used: [EMAIL / TEXT / CRM / PROJECT MANAGEMENT SOFTWARE / PAPER / NONE]
+
+Build a complete customer onboarding system:
+
+1. **Welcome sequence** — What happens in the first 24-48 hours after a client says yes:
+   - Welcome message (email/text template)
+   - What to include: enthusiasm, next steps, timeline, what you need from them
+   - How to set the professional tone without being corporate or cold
+
+2. **Expectation-setting framework** — A structured conversation or document that covers:
+   - Scope of work (what's included and what's NOT included)
+   - Timeline and milestones
+   - Communication preferences (how, when, and how often you'll update them)
+   - Their responsibilities (what you need from them and by when)
+   - Change/addition process (how to handle "while you're at it, can you also...")
+   - Payment terms and schedule
+
+3. **Communication timeline** — Map out every planned touchpoint from signed agreement to project kickoff:
+   - Day 1: Welcome message
+   - Day 2-3: Information gathering (questionnaire, documents, access)
+   - Day 5-7: Kickoff call or meeting
+   - Ongoing: Progress updates at defined intervals
+   - Include templates for each touchpoint
+
+4. **Information gathering kit** — What you need from the client before starting, packaged as a simple form or checklist they can complete (not a scavenger hunt of back-and-forth emails)
+
+5. **Red flag protocols** — How to handle:
+   - Client who goes silent after signing
+   - Client who wants to start before paperwork is done
+   - Client who immediately starts expanding scope
+   - Client who pushes back on your process
+
+6. **Onboarding checklist** — A printable/digital checklist the owner or team can follow for every new client to ensure nothing gets missed
+
+Make this feel professional but warm. The goal is a process that makes the client think "wow, they have their act together" while protecting the business from the chaos that usually comes with winging it.`
+            },
+            {
+                id: 77,
+                title: "Phone & In-Person Scripts",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Create standardized scripts for answering phones, greeting walk-ins, and handling common customer inquiries",
+                tags: ["scripts", "phone", "greeting"],
+                prompt: `You are an SBDC advisor helping a small business create customer interaction scripts. Right now, every employee handles things differently — some are great, some are awkward, and the owner can't be everywhere. Scripts fix this without making people sound robotic.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL OFFICE / OTHER]
+- Typical customer interactions: [PHONE CALLS / WALK-INS / BOTH]
+- Number of customer-facing employees: [NUMBER]
+- Common customer inquiries: [PRICING / AVAILABILITY / APPOINTMENTS / PRODUCT QUESTIONS / COMPLAINTS / OTHER]
+- Current biggest issue: [INCONSISTENT GREETINGS / MISSED CALLS / EMPLOYEES DON'T KNOW WHAT TO SAY / LOST LEADS / OTHER]
+- Business personality/tone: [CASUAL & FRIENDLY / PROFESSIONAL / WARM & WELCOMING / HIGH-ENERGY / OTHER]
+
+Create role-specific customer interaction scripts:
+
+1. **Phone answering script** —
+   - Standard greeting (under 10 seconds — name, welcome, offer to help)
+   - How to handle: pricing questions, appointment requests, "is the owner available?", requests for information they don't have
+   - Hold protocol (what to say before, during, and after a hold)
+   - Voicemail script (what to record as the greeting)
+   - How to transfer calls without losing the customer
+   - Closing the call (confirm next steps, thank them)
+
+2. **Walk-in greeting script** —
+   - First 5 seconds: what to say, body language, eye contact
+   - "Just browsing" response (acknowledge without hovering)
+   - "I need help with..." response (active listening, ask smart follow-ups)
+   - Wait time management (what to say when they'll need to wait)
+   - Handoff script (when another employee needs to take over)
+
+3. **Common inquiry responses** — Scripts for the 8-10 most frequent questions this type of business gets:
+   - Pricing inquiries (how to discuss cost without giving everything away or scaring people off)
+   - Availability/scheduling
+   - "Do you do [specific thing]?"
+   - Comparison questions ("how are you different from...?")
+   - Complaint or concern (initial response before escalating)
+
+4. **Upsell and cross-sell scripts** — Natural, non-pushy ways to mention related products or services during conversation
+
+5. **Closing scripts** — How to wrap up an interaction:
+   - Getting contact info for follow-up
+   - Confirming next steps
+   - Asking for reviews (when and how)
+   - Thank-you language
+
+6. **Training notes** — How to teach these scripts:
+   - Scripts are frameworks, not word-for-word readings
+   - Role-play scenarios for practice
+   - How to adapt tone while keeping the structure
+   - When it's okay to go off-script
+
+Write scripts that match their business personality. A surf shop and a law office need very different energy. Make them feel natural — the goal is confidence, not a call center.`
+            },
+            {
+                id: 78,
+                title: "Complaint Response System",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Build a repeatable framework for handling complaints across all channels with de-escalation scripts and authority levels",
+                tags: ["complaints", "de-escalation", "resolution"],
+                prompt: `You are an SBDC advisor helping a small business build a complaint response system. Right now, complaints probably get handled differently every time depending on who's working and how bad the situation is. That inconsistency costs customers and burns out the owner.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Most common complaints: [DESCRIBE THE TOP 3-5 COMPLAINTS THEY HEAR]
+- Channels where complaints come in: [IN-PERSON / PHONE / EMAIL / SOCIAL MEDIA / ONLINE REVIEWS / ALL]
+- Current process: [OWNER HANDLES EVERYTHING / NO PROCESS / AD HOC / OTHER]
+- Number of employees who deal with complaints: [NUMBER]
+- Authority to resolve issues: [ONLY THE OWNER / MANAGERS / ANY EMPLOYEE / UNCLEAR]
+
+Build a complete complaint response system:
+
+1. **Complaint intake protocol** — For each channel (in-person, phone, email, social media):
+   - How to acknowledge the complaint within the first 30 seconds
+   - What information to capture (who, what, when, desired resolution)
+   - Documentation template — a simple form to log every complaint consistently
+   - Escalation triggers — when to handle it yourself vs. get the owner/manager
+
+2. **De-escalation scripts** — Step-by-step language for the hardest moments:
+   - The angry customer who's raising their voice
+   - The customer who threatens to "tell everyone" or "leave a bad review"
+   - The customer who wants something unreasonable
+   - The customer who's wrong but doesn't know it
+   - The repeat complainer
+   - Key phrases that calm people down and phrases that make it worse
+
+3. **Resolution authority matrix** — A clear table showing:
+   | Situation | Front-line employee can... | Manager can... | Owner must... |
+   - Define dollar limits for discounts, refunds, comps, and freebies at each level
+   - When to say yes immediately vs. when to say "let me check"
+   - Empower employees to fix small problems without owner approval
+
+4. **Resolution playbook** — For the top 5-7 most common complaints, provide:
+   - Recommended resolution (what to offer)
+   - Script for delivering the resolution
+   - Follow-up action (check back in 24-48 hours)
+   - When to go above standard resolution
+
+5. **Documentation and tracking** — A simple system to:
+   - Log every complaint
+   - Track resolution and outcome
+   - Identify patterns (same complaint keeps coming up = system problem, not people problem)
+   - Monthly review: what are we learning from complaints?
+
+6. **Recovery metrics** — How to know if the system is working:
+   - Complaint-to-resolution time
+   - Customer retention after complaint
+   - Repeat complaint rate
+   - Employee confidence in handling issues
+
+The goal is a system where the owner doesn't have to personally handle every upset customer, and employees feel confident resolving problems on the spot.`
+            },
+            {
+                id: 79,
+                title: "Online Review Response Playbook",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Templates and strategies for responding to online reviews — negative and positive — across Google, Yelp, and Facebook",
+                tags: ["reviews", "reputation", "online"],
+                prompt: `You are an SBDC advisor helping a small business owner respond to online reviews strategically. Most owners either ignore reviews, get defensive on negative ones, or write the same "Thanks for your review!" on every positive one. All three are missed opportunities.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / OTHER]
+- Primary review platforms: [GOOGLE / YELP / FACEBOOK / INDUSTRY-SPECIFIC / OTHER]
+- Current star rating (approximate): [RATING]
+- Biggest review challenge: [NEGATIVE REVIEWS / NO REVIEWS / DON'T KNOW WHAT TO SAY / FAKE REVIEWS / OTHER]
+- Who currently responds to reviews: [OWNER / MANAGER / NO ONE]
+
+Create a complete online review response playbook:
+
+1. **Response timing and rules** —
+   - How quickly to respond (ideal: 24-48 hours, never more than a week)
+   - Always respond publicly first, then take it offline if needed
+   - Never argue, never get sarcastic, never blame the customer publicly
+   - One designated person should own review responses for consistency
+
+2. **Negative review templates** — Customizable responses for the 5 most common scenarios:
+   - **The legitimate complaint** — They had a real bad experience and they're right
+   - **The exaggerator** — Something went wrong but the review blows it out of proportion
+   - **The unreasonable expectation** — They expected something you never promised
+   - **The competitor or fake review** — Suspected fake or malicious review
+   - **The vague one-star** — No details, just a low rating
+
+   For each: what to say publicly, how to take it offline, and when to request removal
+
+3. **Positive review templates** — Not just "Thanks!" but responses that:
+   - Reference something specific from their review (shows you actually read it)
+   - Reinforce what you want to be known for
+   - Include a subtle invitation to return or try something new
+   - Vary in structure so they don't all sound copy-pasted
+
+4. **Review generation strategy** — How to get more reviews without being pushy:
+   - When to ask (the moment of peak satisfaction)
+   - How to ask (in person, email, text — with scripts for each)
+   - Making it easy (direct links to review pages)
+   - Who to ask (happy customers who've said something positive)
+   - What NOT to do (incentivize reviews, buy reviews, review-gate)
+
+5. **Damage control protocol** — When a really bad review hits:
+   - Step 1: Don't panic, don't respond immediately
+   - Step 2: Investigate what actually happened
+   - Step 3: Craft a response that future customers will read
+   - Step 4: Follow up offline to resolve
+   - Step 5: If resolved, politely ask if they'd consider updating their review
+
+6. **Monitoring setup** — Simple tools and habits to stay on top of reviews:
+   - Google Alerts and notification settings
+   - Weekly review check routine
+   - Tracking review trends over time
+
+Remember: your response isn't really for the person who left the review — it's for the hundreds of potential customers who will read it later. Every response is a public demonstration of how you treat people.`
+            },
+            {
+                id: 80,
+                title: "Service Recovery & Save Plays",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "A tiered recovery framework for when things go wrong — what's worth a discount, a redo, a refund, or just an apology",
+                tags: ["recovery", "retention", "save"],
+                prompt: `You are an SBDC advisor helping a small business build a service recovery playbook. Things go wrong in every business — late deliveries, botched services, billing errors, miscommunication. What separates great businesses from average ones is what happens next.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Average transaction value: [APPROXIMATE DOLLAR AMOUNT]
+- Most common service failures: [DESCRIBE THE TOP 3-5 THINGS THAT GO WRONG]
+- Current recovery approach: [WING IT / OWNER DECIDES EACH TIME / REFUND EVERYTHING / NOTHING FORMAL]
+- Customer lifetime value (approximate): [HOW MUCH IS A LOYAL CUSTOMER WORTH OVER TIME]
+
+Build a tiered service recovery framework:
+
+1. **Recovery tiers** — Match the response to the severity:
+
+   **Tier 1: Minor inconvenience** (slight delay, small error, minor miscommunication)
+   - Response: Genuine apology + acknowledgment
+   - Action: Fix the issue immediately
+   - Cost to business: $0 — just attention and speed
+   - Example scripts for this tier
+
+   **Tier 2: Moderate failure** (missed deadline, wrong order, noticeable quality issue)
+   - Response: Apology + fix + goodwill gesture
+   - Action: Correct the problem + offer something extra (discount on next visit, free add-on, expedited service)
+   - Cost guidelines: Up to [X%] of transaction value
+   - Example scripts for this tier
+
+   **Tier 3: Significant failure** (major quality problem, repeated errors, customer's time/money wasted)
+   - Response: Apology + immediate fix + meaningful compensation
+   - Action: Redo the work at no charge OR partial refund + future credit
+   - Cost guidelines: Up to [X%] of transaction value
+   - Example scripts for this tier
+
+   **Tier 4: Critical failure** (safety issue, major financial impact, trust completely broken)
+   - Response: Full ownership + immediate resolution + above-and-beyond recovery
+   - Action: Full refund + additional compensation + personal follow-up from owner
+   - When to involve insurance or legal counsel
+   - Example scripts for this tier
+
+2. **The recovery conversation** — A step-by-step framework:
+   - **Listen** — Let them tell the full story without interrupting
+   - **Acknowledge** — Name what went wrong and validate their frustration
+   - **Apologize** — Genuine, specific, no excuses or deflection
+   - **Fix** — State exactly what you'll do and by when
+   - **Extra** — Offer something they didn't ask for (this is where loyalty is built)
+   - **Follow up** — Check back within 48 hours to confirm resolution
+
+3. **Decision matrix** — A quick-reference guide:
+   | What went wrong | Tier | Who can authorize | Standard recovery offer |
+   Fill this in for their top 10 most common failures
+
+4. **Save plays for at-risk customers** — Specific tactics for:
+   - The customer who says "I'm never coming back"
+   - The customer who goes quiet (stops booking, stops buying)
+   - The customer who's been loyal but had one bad experience
+   - The customer who's comparing you to a competitor after a failure
+
+5. **Team empowerment** — How to give employees the authority and confidence to recover on the spot:
+   - Pre-approved recovery offers by tier
+   - "You don't need to ask me" list (things any employee can do immediately)
+   - When to escalate vs. handle it themselves
+
+6. **Learning from failures** — A simple post-recovery review:
+   - What went wrong?
+   - Was it a one-off or a pattern?
+   - What would prevent this next time?
+   - Did the recovery work? (Did the customer come back?)
+
+The best service recovery turns an angry customer into your most loyal advocate. The data shows customers who have a problem that gets resolved well are MORE loyal than customers who never had a problem at all.`
+            },
+            {
+                id: 81,
+                title: "Customer Service Standards Guide",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Define 'what good looks like' with response times, tone guidelines, resolution authority, and a one-page standards doc",
+                tags: ["standards", "quality", "consistency"],
+                prompt: `You are an SBDC advisor helping a small business define their customer service standards. Most small businesses have unwritten expectations — the owner knows what "good" looks like but has never put it on paper. When they hire, train, or evaluate performance, there's nothing to point to. Fix that.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Number of customer-facing employees: [NUMBER]
+- Customer interaction channels: [IN-PERSON / PHONE / EMAIL / CHAT / SOCIAL MEDIA]
+- Biggest consistency issue: [DIFFERENT EMPLOYEES GIVE DIFFERENT EXPERIENCES / NO DEFINED EXPECTATIONS / GREAT WHEN OWNER IS THERE, NOT WHEN THEY'RE GONE / OTHER]
+- What they want to be known for: [SPEED / FRIENDLINESS / EXPERTISE / RELIABILITY / PERSONAL TOUCH / OTHER]
+
+Create a customer service standards guide:
+
+1. **Service vision statement** — One sentence that captures what customer service means for this specific business. Not corporate fluff — something real that employees can internalize. Examples: "Every customer leaves feeling like we actually cared about their problem" or "We're the place people recommend because we made it easy."
+
+2. **Response time standards** — Specific, measurable expectations:
+   - Phone: Answer within [X] rings, return voicemails within [X] hours
+   - Email: Acknowledge within [X] hours, resolve within [X] business days
+   - In-person: Greet within [X] seconds, never let someone wait without acknowledgment
+   - Social media/messages: Respond within [X] hours during business hours
+   - Make these realistic for a small business — not Amazon-level promises they can't keep
+
+3. **Communication tone guidelines** — How to sound like THIS business:
+   - 3-5 "always" behaviors (always use the customer's name, always confirm understanding, always offer a next step)
+   - 3-5 "never" behaviors (never say "that's not my department," never blame another employee, never make the customer repeat themselves)
+   - Language swaps: Replace cold/corporate phrases with warm/human ones
+   - Adjust for channel: in-person warmth vs. email professionalism vs. text brevity
+
+4. **Resolution standards** — What "resolved" actually means:
+   - First-contact resolution goal (what percentage of issues should be fixed on the spot?)
+   - Maximum escalation time (if it can't be fixed now, when will the customer hear back?)
+   - Authority levels: what can each role resolve independently?
+   - When to involve the owner and how
+
+5. **Quality indicators** — How to know if standards are being met:
+   - 3-5 observable behaviors a manager/owner can spot-check
+   - Simple mystery shopper approach (have a friend call or visit)
+   - Customer feedback signals to watch for
+   - Monthly check-in questions for the team
+
+6. **One-page standards doc** — Format all of the above into a clean, printable one-page reference:
+   - Service vision at the top
+   - Response time commitments
+   - 5 "always" and 5 "never" rules
+   - Resolution authority quick-reference
+   - Post this in the break room, back office, or wherever the team gathers
+
+Keep it simple enough to fit on one page and specific enough that a new hire could read it and know exactly what's expected on day one.`
+            },
+            {
+                id: 82,
+                title: "Customer Service Training Plan",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "A week-one training outline for new customer-facing hires with scripts, scenarios, and role-play exercises",
+                tags: ["training", "hiring", "onboarding"],
+                prompt: `You are an SBDC advisor helping a small business owner build a customer service training plan. They're hiring people to interact with customers — maybe for the first time — and need a structured way to get new employees ready without the owner shadowing them for a month.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / OTHER]
+- Role being trained: [FRONT DESK / SALES FLOOR / PHONE SUPPORT / FIELD SERVICE / OTHER]
+- Current training approach: [SHADOW THE OWNER / FIGURE IT OUT / BRIEF WALKTHROUGH / NOTHING FORMAL]
+- Top 10 situations this role handles: [LIST THE MOST COMMON CUSTOMER INTERACTIONS]
+- Biggest training gap: [NEW HIRES DON'T KNOW WHAT TO SAY / INCONSISTENT SERVICE / TOO LONG TO GET UP TO SPEED / OTHER]
+- Available training time: [HOW MANY HOURS/DAYS BEFORE THEY'RE ON THEIR OWN]
+
+Create a week-one customer service training plan:
+
+**Day 1: Foundation**
+- Business overview — What we do, who our customers are, what we're known for
+- Service standards review — Walk through the standards doc, explain the "why" behind each one
+- Shadowing — Watch the owner or best employee handle 5-10 interactions
+- Debrief — What did you notice? What questions do you have?
+
+**Day 2: Scripts & Language**
+- Phone script training — Practice the greeting, hold protocol, common inquiries, and closing
+- In-person script training — Greeting, "just browsing" response, product/service questions
+- Language workshop — Phrases we use, phrases we avoid, tone calibration
+- Practice rounds — Employee practices scripts with trainer giving feedback
+
+**Day 3: Scenario Training**
+- The 10 most common situations — Walk through each one:
+  - What the customer says/does
+  - What the right response is
+  - What the wrong response looks like
+  - When to escalate
+- Role-play exercises — Trainer plays the customer, employee responds
+- Feedback and adjustment after each scenario
+
+**Day 4: Problem Handling**
+- Complaint response training — De-escalation basics, the listen-acknowledge-apologize-fix framework
+- Difficult customer scenarios — Practice with the 5 hardest situations:
+  - Angry customer
+  - Customer who wants a refund
+  - Customer who's wrong
+  - Customer asking for something you can't do
+  - Customer comparing you to a competitor
+- Resolution authority — What they can fix on their own, what needs approval
+
+**Day 5: Supervised Solo**
+- Employee handles real customer interactions with trainer nearby
+- Trainer observes but doesn't intervene unless necessary
+- End-of-day debrief — What went well, what felt hard, what they need more practice on
+- Confidence check — Are they ready to fly solo? If not, what needs another day?
+
+**Ongoing (Weeks 2-4):**
+- Daily 5-minute check-ins for the first two weeks
+- Weekly role-play refresher on the hardest scenarios
+- 30-day review against service standards
+
+Also include:
+- **Role-play scenario cards** — Printable cards with customer scenarios they can practice anytime
+- **Self-assessment checklist** — How the new hire can gauge their own readiness
+- **Manager observation form** — Simple checklist for evaluating customer interactions
+
+Make this doable for a small business owner who doesn't have an HR department or a training budget. If they have 5 days, give them a 5-day plan. If they only have 2 days, note what to prioritize.`
+            },
+            {
+                id: 83,
+                title: "Customer Feedback Engine",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Build a simple, sustainable system to collect, analyze, and act on customer feedback with survey templates and follow-up scripts",
+                tags: ["feedback", "surveys", "insights"],
+                prompt: `You are an SBDC advisor helping a small business build a customer feedback system. Most small businesses only hear from customers when something goes wrong. The quiet majority — happy or mildly dissatisfied — say nothing and either come back or don't. A simple feedback system changes that.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Average transactions per week: [APPROXIMATE NUMBER]
+- Current feedback collection: [NONE / OCCASIONAL SURVEYS / ONLINE REVIEWS ONLY / INFORMAL CONVERSATIONS / OTHER]
+- Biggest feedback gap: [DON'T KNOW WHAT CUSTOMERS THINK / GET FEEDBACK BUT DON'T USE IT / ONLY HEAR COMPLAINTS / OTHER]
+- Tools available: [EMAIL / TEXT / SOCIAL MEDIA / POS SYSTEM / CRM / GOOGLE FORMS / OTHER]
+
+Build a complete customer feedback engine:
+
+1. **What to ask** — The right questions for their business:
+   - Core satisfaction question (NPS, CSAT, or a simpler alternative that fits small business)
+   - 2-3 specific questions about the experience (not generic — tailored to what matters in their business)
+   - One open-ended question that actually gets useful answers
+   - Questions to AVOID (leading, double-barreled, too many, too vague)
+
+2. **When to ask** — Timing matters more than the questions:
+   - The peak moment (right after the positive experience, not 3 days later)
+   - Frequency (don't survey every visit — guidelines on cadence)
+   - Trigger-based feedback (after first purchase, after a complaint resolution, after a milestone)
+
+3. **How to collect** — Channel-specific methods:
+   - **In-person**: One-question card, verbal ask at checkout, QR code
+   - **Email**: Post-service survey (template provided, 3 questions max)
+   - **Text/SMS**: Quick satisfaction check (template provided)
+   - **Online**: Review prompts, website feedback widget
+   - Keep it under 60 seconds to complete — anything longer tanks response rates
+
+4. **Survey templates** — Ready-to-use templates for:
+   - Post-purchase/post-service feedback (3-question email survey)
+   - Quick satisfaction check (1-question text)
+   - Quarterly relationship check-in (for ongoing clients)
+   - "We miss you" feedback request (for lapsed customers)
+
+5. **How to analyze it** — A small business doesn't need dashboards:
+   - Simple spreadsheet tracker (what to log, how to categorize)
+   - Weekly 10-minute review routine
+   - Identifying patterns vs. one-off complaints
+   - When a trend means "fix the system" vs. "coach the person"
+
+6. **How to act on it** — The part most businesses skip:
+   - Close the loop: follow up with customers who gave feedback (scripts provided)
+   - Share insights with the team (monthly 5-minute huddle format)
+   - Prioritize changes: what to fix first based on frequency and impact
+   - Track whether changes actually improved satisfaction
+
+7. **Follow-up scripts** —
+   - Thanking someone who gave positive feedback (and asking for a review)
+   - Responding to constructive feedback (and what you're doing about it)
+   - Re-engaging a customer who flagged a problem
+
+Keep the system lightweight. If it takes more than 15 minutes per week to manage, a small business owner won't stick with it.`
+            },
+            {
+                id: 84,
+                title: "Repeat Business & Referral Builder",
+                category: "customer-service",
+                categoryLabel: "Customer Service",
+                description: "Relationship-based strategies to drive repeat business and referrals without gimmicky loyalty programs",
+                tags: ["retention", "referrals", "loyalty"],
+                prompt: `You are an SBDC advisor helping a small business owner increase repeat business and referrals. Not with punch cards or points programs — with real relationship-based tactics that make customers want to come back and tell their friends.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Average transaction value: [APPROXIMATE]
+- Purchase frequency: [HOW OFTEN DOES A TYPICAL CUSTOMER BUY — WEEKLY / MONTHLY / QUARTERLY / ONE-TIME]
+- Current repeat rate (estimated): [WHAT PERCENTAGE COME BACK]
+- Current referral sources: [WORD OF MOUTH / NONE / REFERRAL PROGRAM / REVIEWS / OTHER]
+- What keeps customers coming back now: [CONVENIENCE / QUALITY / RELATIONSHIP / PRICE / HABIT / DON'T KNOW]
+
+Build a repeat business and referral strategy:
+
+1. **Repeat business tactics** — Specific, implementable strategies:
+
+   **Follow-up timing** — When and how to reach out after a purchase:
+   - Service businesses: Follow-up schedule (24 hours, 1 week, 1 month, quarterly)
+   - Retail: Restock reminders, seasonal reach-outs, new arrival alerts
+   - Templates for each touchpoint (email, text, even handwritten note scripts)
+
+   **Personal touches that scale** — Things that feel personal but don't require the owner's time on every one:
+   - Birthday/anniversary acknowledgments
+   - Remembering preferences and past purchases
+   - Milestone recognition ("You've been with us for a year!")
+   - Simple CRM habits even without a CRM (a notebook works)
+
+   **Re-engagement campaigns** — For customers who've gone quiet:
+   - How to identify lapsed customers
+   - "We miss you" outreach (templates that don't sound desperate)
+   - Win-back offers that feel like genuine invitations, not discounts
+   - When to let go (not every customer is worth chasing)
+
+2. **Referral strategies** — Getting recommendations without being awkward:
+
+   **When to ask** — The exact moment in the customer relationship when a referral ask feels natural (hint: right after they express satisfaction, not right after they pay)
+
+   **How to ask** — Scripts that don't feel salesy:
+   - The direct ask: "Who do you know who could use [what we do]?"
+   - The specific ask: "If you know anyone who's dealing with [specific problem], I'd love to help them"
+   - The passive ask: Making it easy to share (referral cards, text-a-friend links, shareable content)
+
+   **Making it worth their while** — Without formal referral programs:
+   - Thank-you gestures that feel personal, not transactional
+   - Recognition and appreciation (public shout-outs, handwritten notes)
+   - Reciprocal referrals (referring business back to them if applicable)
+   - When a formal incentive DOES make sense and how to structure it simply
+
+   **Referral follow-up** — What to do when a referral comes in:
+   - Mention who referred them (builds trust instantly)
+   - Thank the referrer (within 24 hours, every time)
+   - Track referral sources (simple spreadsheet or CRM note)
+
+3. **Loyalty without a "loyalty program"** — Relationship-based retention:
+   - VIP treatment for best customers (early access, preferred scheduling, direct line to the owner)
+   - Community building (events, groups, insider updates)
+   - Surprise and delight moments (unexpected upgrades, handwritten thanks, small gifts)
+   - Consistency as loyalty driver — the most powerful retention tool is being reliably good
+
+4. **Metrics to track** — Simple numbers that matter:
+   - Repeat purchase rate (are more customers coming back?)
+   - Referral source tracking (where are new customers coming from?)
+   - Customer lifetime value trend (are customers spending more over time?)
+   - Net Promoter Score or simple satisfaction trend
+
+5. **90-day implementation plan** —
+   - Month 1: Set up follow-up sequences and start tracking referral sources
+   - Month 2: Launch re-engagement outreach for lapsed customers
+   - Month 3: Implement referral ask into standard customer interactions
+
+No gimmicks, no complicated software, no loyalty apps. Just smart, consistent relationship-building that a small business owner can actually maintain.`
             }
         ];
 
