@@ -1496,13 +1496,13 @@
     <nav class="filters-section">
         <div class="filters-inner">
             <button class="filter-tab active" data-filter="all">
-                All Prompts<span class="filter-count">84</span>
+                All Prompts<span class="filter-count">87</span>
             </button>
             <button class="filter-tab" data-filter="marketing">
                 Marketing<span class="filter-count">35</span>
             </button>
             <button class="filter-tab" data-filter="advising">
-                Client Advising<span class="filter-count">9</span>
+                Client Advising<span class="filter-count">12</span>
             </button>
             <button class="filter-tab" data-filter="startup">
                 Startup & Pre-Venture<span class="filter-count">2</span>
@@ -5336,6 +5336,224 @@ Build a repeat business and referral strategy:
    - Month 3: Implement referral ask into standard customer interactions
 
 No gimmicks, no complicated software, no loyalty apps. Just smart, consistent relationship-building that a small business owner can actually maintain.`
+            },
+            {
+                id: 85,
+                title: "TFG Eligibility Screener",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Quickly assess whether a client meets Tech Futures Group eligibility criteria before making a referral",
+                tags: ["TFG", "eligibility", "tech", "referral"],
+                prompt: `You are an SBDC advisor determining whether a client is a good fit for Tech Futures Group (TFG) — a specialized SBDC program that provides no-cost, no-equity advisory services to qualified technology companies in the NorCal SBDC network.
+
+**TFG Eligibility Requirements:**
+- Located in one of the 36 counties of the NorCal SBDC network
+- Must be a "technology company" where revenues are derived primarily from technological innovation
+- Must meet at least one of: possesses intellectual property or patents providing defensible competitive advantage; has high potential for growth in funding, jobs, or revenue; has developed an innovative product, service, or process based on proprietary R&D; OR has a product using a novel combination of existing technologies
+- Focus sectors: Software & SaaS, BioTech, Climate Tech (also: embedded software, Internet/cloud solutions, technology-driven process innovation)
+- Must demonstrate potential for economic impact
+
+**Client Information:**
+- Business name: [BUSINESS NAME]
+- Location (city/county): [LOCATION]
+- What the business does: [DESCRIBE THE PRODUCT OR SERVICE]
+- Stage: [IDEA / PROTOTYPE / REVENUE / SCALING]
+- Technology involved: [DESCRIBE THE TECHNOLOGY — SOFTWARE, HARDWARE, BIOTECH, CLEANTECH, OTHER]
+- Intellectual property: [PATENTS / TRADE SECRETS / PROPRIETARY ALGORITHMS / NONE / UNSURE]
+- Current revenue: [NONE / UNDER $100K / $100K-$500K / $500K-$1M / OVER $1M]
+- Funding raised: [NONE / BOOTSTRAPPED / GRANTS / ANGEL / VC / OTHER]
+- Growth potential: [JOB CREATION PLANS / MARKET SIZE / REVENUE TRAJECTORY]
+- What they need help with: [GO-TO-MARKET / FUNDING / SBIR-STTR / CUSTOMER DISCOVERY / IP STRATEGY / OTHER]
+
+Provide a TFG eligibility assessment:
+
+1. **Location check** — Are they in the NorCal SBDC 36-county coverage area? (If unclear, flag for verification)
+
+2. **Technology qualification** — Does this company meet TFG's definition of a "technology company"?
+   - Is the core value proposition driven by technological innovation?
+   - Do they have or are they developing IP, proprietary technology, or novel tech combinations?
+   - Which TFG sector do they best fit: Software/SaaS, BioTech, Climate Tech, or other qualifying tech?
+   - If borderline: explain specifically what makes them qualify or not
+
+3. **Growth and impact potential** — Would TFG likely see this as a high-impact client?
+   - Market opportunity size
+   - Job creation potential
+   - Capital raise trajectory
+   - SBIR/STTR grant potential (if applicable)
+
+4. **Readiness assessment** — Is the client at a stage where TFG advising would be most valuable?
+   - Do they have enough traction or clarity for TFG's advisory model?
+   - Are they too early (just an idea) or too mature (already have a full advisory board)?
+   - What specific TFG services would benefit them most?
+
+5. **Fit verdict** — One of three outcomes:
+   - **Strong fit** — Meets all criteria, recommend referral immediately
+   - **Possible fit** — Meets some criteria, needs clarification on [specific items]
+   - **Not a fit** — Doesn't meet TFG criteria, but here are alternative resources
+
+6. **Next steps** — If a fit:
+   - What to tell the client about TFG
+   - How to frame the value proposition
+   - Link to apply: techfuturesgroup.org/apply
+   - What to prepare before applying
+
+   If not a fit:
+   - Alternative SBDC resources or programs that would serve them
+   - What would need to change for them to qualify in the future
+
+Be direct. Don't stretch to make someone fit if they don't. TFG has limited capacity and accepts clients who will deliver the most impact.`
+            },
+            {
+                id: 86,
+                title: "TFG Readiness Assessment",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Deep-dive assessment to determine if a tech founder is ready to get maximum value from TFG advisory services",
+                tags: ["TFG", "readiness", "tech startups", "assessment"],
+                prompt: `You are an SBDC advisor conducting a deeper readiness assessment for a client you believe may qualify for Tech Futures Group (TFG). They likely meet the basic eligibility criteria — now you need to determine if they're at the right stage and mindset to get real value from TFG's advisory model.
+
+**Context:** TFG pairs selected founders with experienced advisors who work one-on-one, focused on the founder's highest-priority challenges. Clients are accepted on a 3-month basis with renewal possible. TFG advisors specialize in go-to-market strategy, customer discovery & validation, positioning, commercialization, financial strategy, financial modeling, IP, and SBIR/STTR grant navigation.
+
+**Client Information:**
+- Business name: [BUSINESS NAME]
+- Founder background: [TECHNICAL / BUSINESS / ACADEMIC / FIRST-TIME FOUNDER / SERIAL ENTREPRENEUR]
+- Product/technology: [DESCRIBE WHAT THEY'VE BUILT OR ARE BUILDING]
+- Current stage: [CONCEPT / MVP / BETA / LAUNCHED / REVENUE / SCALING]
+- Target market: [WHO THEY'RE SELLING TO AND HOW BIG THE OPPORTUNITY IS]
+- Customer validation: [HAVE THEY TALKED TO CUSTOMERS? HOW MANY? WHAT DID THEY LEARN?]
+- Business model: [HOW THEY MAKE MONEY OR PLAN TO]
+- Team: [SOLO FOUNDER / CO-FOUNDERS / EMPLOYEES / CONTRACTORS]
+- Current challenges: [WHAT'S KEEPING THEM UP AT NIGHT — LIST TOP 3]
+- Previous advising/mentorship: [ACCELERATOR / INCUBATOR / MENTORS / NONE]
+- Coachability: [OPEN TO FEEDBACK / DEFENSIVE / UNSURE]
+
+Assess their TFG readiness across these dimensions:
+
+1. **Problem-solution clarity** — Do they have a clear understanding of the problem they're solving and for whom?
+   - Can they articulate the customer pain point in one sentence?
+   - Have they validated that real people will pay for this?
+   - Red flags: solution looking for a problem, "everyone is my customer," no customer conversations
+
+2. **Technology differentiation** — Is there real innovation here?
+   - What's proprietary or defensible about their technology?
+   - Could a competitor replicate this easily?
+   - Is the tech novel or just a new wrapper on existing tools?
+   - Where does their IP stand (filed, provisional, trade secret, nothing)?
+
+3. **Founder readiness** — Are they ready for high-level advisory?
+   - Can they clearly articulate what they need help with?
+   - Are they coachable — willing to hear hard truths and pivot?
+   - Do they have the bandwidth to act on advisory input?
+   - Red flags: wants someone to do the work for them, can't take feedback, too scattered
+
+4. **Business fundamentals** — Is there enough foundation to advise on?
+   - Revenue model clarity (even if pre-revenue)
+   - Unit economics understanding (or willingness to learn)
+   - Market sizing (TAM/SAM/SOM awareness)
+   - Financial projections (even rough ones)
+
+5. **Strategic timing** — Is NOW the right time for TFG?
+   - What specific decisions or milestones would TFG advisory accelerate?
+   - Is the founder at a critical inflection point (fundraising, launch, pivot, grant application)?
+   - Would they get more value from general SBDC advising first to build fundamentals?
+
+6. **SBIR/STTR potential** — If applicable:
+   - Is their technology aligned with federal research priorities?
+   - Are they at the right stage for Phase I or Phase II?
+   - Do they have the technical team to execute on a grant?
+   - TFG clients win SBIR grants at 57% vs. the state average of 15% — is this client in a position to leverage that advantage?
+
+7. **Readiness verdict:**
+   - **Ready now** — Clear value alignment, recommend applying immediately. Here's how to prepare.
+   - **Almost ready** — Needs to address [specific gaps] first. Give them a 30-60 day action plan, then apply.
+   - **Not yet** — Needs more foundational work. Recommend specific SBDC resources to build readiness.
+
+8. **Preparation checklist** — If ready, what should they prepare before applying:
+   - One-page business summary
+   - Clear articulation of their top 3 challenges
+   - Basic financial snapshot
+   - Technology overview and IP status
+   - What success looks like in 3 months of TFG advisory
+
+Be honest. Sending an underprepared founder to TFG wastes everyone's time and a limited slot. It's better to get them ready first.`
+            },
+            {
+                id: 87,
+                title: "TFG Referral Preparation",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Prepare a qualified client for the TFG application with talking points, materials checklist, and positioning guidance",
+                tags: ["TFG", "referral", "application", "preparation"],
+                prompt: `You are an SBDC advisor helping a client who qualifies for Tech Futures Group (TFG) prepare the strongest possible application. TFG has limited capacity and selects clients based on technology qualification, growth potential, and economic impact. Your job is to help this founder present themselves clearly and compellingly.
+
+**Context:** TFG provides no-cost, no-equity advisory to NorCal tech startups. Advisors work one-on-one with founders on go-to-market strategy, customer discovery, positioning, commercialization, financial strategy, IP, and SBIR/STTR grants. Clients are accepted on a 3-month basis. TFG has helped founders raise over $1.4B and their SBIR grant success rate is 57% vs. 15% state average.
+
+**Client Information:**
+- Business name: [BUSINESS NAME]
+- Founder name(s): [NAMES AND ROLES]
+- Technology/product: [WHAT THEY'VE BUILT — BE SPECIFIC]
+- Sector: [SOFTWARE/SAAS / BIOTECH / CLIMATE TECH / OTHER QUALIFYING TECH]
+- Stage: [MVP / BETA / LAUNCHED / REVENUE]
+- Traction: [CUSTOMERS / USERS / REVENUE / PILOTS / LOIs / GRANTS — WHATEVER THEY HAVE]
+- IP status: [PATENT FILED / PROVISIONAL / TRADE SECRET / PROPRIETARY CODE / NONE]
+- Funding to date: [BOOTSTRAPPED / GRANTS / ANGEL / VC / AMOUNT IF KNOWN]
+- What they need help with: [TOP 3 PRIORITIES]
+- Why now: [WHAT'S THE INFLECTION POINT — FUNDRAISE / LAUNCH / PIVOT / GRANT APP / SCALING]
+
+Help prepare them for the TFG application:
+
+1. **Elevator pitch refinement** — Help them articulate in 2-3 sentences:
+   - What they do (technology + customer problem)
+   - Why it matters (market opportunity + impact)
+   - Why now (timing + traction + momentum)
+   - Draft 2-3 versions they can choose from
+
+2. **Technology narrative** — How to describe their tech in a way that demonstrates TFG-qualifying innovation:
+   - Lead with the problem, not the technology
+   - Explain the proprietary or novel element clearly
+   - Avoid jargon overload — clarity beats complexity
+   - Position the IP/defensibility without overstating
+
+3. **Traction summary** — Package what they've accomplished so far:
+   - Organize metrics by category (customers, revenue, partnerships, grants, recognition)
+   - Frame early traction in context ("3 pilot customers in a market with no existing solution" > "3 customers")
+   - If pre-revenue: highlight validation signals (LOIs, waitlists, pilot results, user engagement)
+
+4. **Growth and impact case** — TFG selects for economic impact potential:
+   - Market size framing (TAM/SAM/SOM in plain language)
+   - Job creation potential (realistic near-term hires)
+   - Revenue trajectory (even conservative projections)
+   - Community/economic impact for NorCal region
+   - SBIR/STTR alignment if applicable
+
+5. **Advisory needs framing** — How to articulate what they need:
+   - Be specific: "I need help with go-to-market strategy for enterprise sales" not "I need business advice"
+   - Frame needs as strategic decisions, not tasks
+   - Show they've thought about it: "I'm deciding between X and Y approach and need experienced guidance"
+   - Connect needs to milestones: "With advisory support on pricing strategy, I can close my first 10 enterprise deals in Q2"
+
+6. **Application talking points** — Key messages to hit:
+   - Why TFG specifically (not just "free advice" — show alignment with TFG's strengths)
+   - What 3 months of advisory would unlock (be specific and measurable)
+   - Founder commitment and coachability signals
+   - How this fits into a larger growth plan
+
+7. **Materials checklist** — What to have ready:
+   - [ ] One-page business summary or pitch deck
+   - [ ] Technology overview with IP status
+   - [ ] Traction/metrics snapshot
+   - [ ] Financial summary (revenue, burn rate, runway, projections)
+   - [ ] Clear statement of top 3 advisory needs
+   - [ ] 90-day goals (what success looks like with TFG support)
+
+8. **Common mistakes to avoid:**
+   - Describing the technology without explaining the business
+   - Being vague about what help they need
+   - Overselling traction or understating challenges
+   - Treating TFG like a general business advisor instead of a tech-focused strategic resource
+   - Not being specific about the 3-month goals
+
+The goal is an application that makes TFG think: "This founder is building something real, they know exactly what they need, and 3 months of our advisory will meaningfully accelerate their trajectory."`
             }
         ];
 
