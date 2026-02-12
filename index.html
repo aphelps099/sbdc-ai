@@ -1496,7 +1496,7 @@
     <nav class="filters-section">
         <div class="filters-inner">
             <button class="filter-tab active" data-filter="all">
-                All Prompts<span class="filter-count">56</span>
+                All Prompts<span class="filter-count">66</span>
             </button>
             <button class="filter-tab" data-filter="marketing">
                 Marketing<span class="filter-count">34</span>
@@ -1511,7 +1511,7 @@
                 Digital Presence<span class="filter-count">1</span>
             </button>
             <button class="filter-tab" data-filter="operations">
-                Operations & HR<span class="filter-count">1</span>
+                Operations & HR<span class="filter-count">11</span>
             </button>
             <button class="filter-tab" data-filter="admin">
                 Admin & Reporting<span class="filter-count">5</span>
@@ -3811,6 +3811,608 @@ Please provide:
 7. **Ongoing obligations** — What regular employer responsibilities do they now have? (Payroll taxes, record-keeping, posting updates, etc.)
 
 Be thorough but not overwhelming. Prioritize what they need to do FIRST vs. what can wait a few weeks.`
+            },
+            {
+                id: 57,
+                title: "Employee Handbook Builder",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Create a bare-minimum employee handbook for a small business with fewer than 15 employees",
+                tags: ["HR", "handbook", "policies", "compliance"],
+                prompt: `You are an SBDC advisor helping a small business owner create their first employee handbook. The goal is a practical, legally sound document that covers what they actually need — not a 200-page corporate manual. The handbook should protect the business and set clear expectations for employees.
+
+# BUSINESS INFORMATION
+- Business name: [BUSINESS NAME]
+- State: [STATE — employment law varies significantly by state]
+- Number of current employees: [NUMBER]
+- Industry: [INDUSTRY / BUSINESS TYPE]
+- Work environment: [ON-SITE / REMOTE / HYBRID / FIELD-BASED]
+- Current schedule: [STANDARD HOURS — e.g., "M-F 9-5" / "Varies by role" / "Shifts"]
+- Existing policies: [DO THEY HAVE ANY WRITTEN POLICIES ALREADY? If so, which ones?]
+- Specific concerns: [ANY ISSUES THAT PROMPTED THIS? — e.g., employee disputes, inconsistent enforcement, growing team]
+
+# BENEFITS OFFERED (if any)
+[LIST WHAT THEY CURRENTLY OFFER — PTO, health insurance, sick leave, holidays, retirement, etc. — or "nothing formal yet"]
+
+Please provide:
+
+1. **Handbook outline** — A recommended table of contents for a small business handbook. Organize into sections and flag which items are:
+   - **Required** (legally mandated in their state)
+   - **Strongly recommended** (protects the business)
+   - **Optional but valuable** (good practice, can add later)
+
+2. **Core policy drafts** — Write ready-to-use policy language for these essential sections:
+   - At-will employment statement
+   - Equal opportunity / anti-discrimination
+   - Anti-harassment policy and reporting procedure
+   - Attendance and punctuality
+   - PTO / sick leave / holidays (based on what they offer)
+   - Code of conduct and professional standards
+   - Social media and technology use
+   - Disciplinary process
+   - Separation / termination procedures
+
+   Write these in plain, professional language — not legalese. Each policy should be 1-2 paragraphs max.
+
+3. **State-specific requirements** — Flag any policies that are specifically required in their state (meal/rest breaks, sick leave mandates, final paycheck timing, etc.) and provide the relevant policy language.
+
+4. **Acknowledgment page** — Draft the employee acknowledgment and signature page they'll need every employee to sign.
+
+5. **Distribution and rollout plan** — How should they introduce the handbook to existing employees? What should the meeting look like? How do they handle employees who have questions or pushback?
+
+6. **Maintenance guidance** — When should they update the handbook? What triggers a revision? Do they need to have employees re-sign?
+
+Important: Note that this handbook is a starting point and should be reviewed by an employment attorney in their state before distribution. Include this disclaimer in the draft.`
+            },
+            {
+                id: 58,
+                title: "Job Description Writer",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Turn a rough idea of a role into a clear, postable job description for any position",
+                tags: ["hiring", "job posting", "recruiting"],
+                prompt: `You are an SBDC advisor helping a small business owner write an effective job description. Most small business owners either write too little (a vague paragraph) or copy corporate-style postings that don't fit their business. Your job is to help them create something clear, honest, and attractive to the right candidates.
+
+# ROLE INFORMATION
+- Job title: [WHAT THEY'RE CALLING THE ROLE]
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Location: [CITY, STATE / REMOTE / HYBRID]
+- Employment type: [FULL-TIME / PART-TIME / SEASONAL / CONTRACT]
+- Reports to: [WHO THIS PERSON REPORTS TO — often "the owner"]
+- Compensation range: [WHAT THEY CAN PAY — hourly rate or salary range, or "not sure yet"]
+
+# WHAT THIS PERSON WILL DO
+[IN THE OWNER'S OWN WORDS — describe what they need this person to handle day-to-day. Can be rough, messy, bullet points, whatever they've got.]
+
+# MUST-HAVES vs. NICE-TO-HAVES
+- Must-have skills/experience: [WHAT THEY ABSOLUTELY NEED]
+- Nice-to-have: [WHAT WOULD BE A BONUS BUT ISN'T REQUIRED]
+- Any required certifications or licenses: [LIST OR "none"]
+
+# ABOUT THE WORK ENVIRONMENT
+[ANYTHING RELEVANT — small team, fast-paced, physical labor, customer-facing, independent work, etc.]
+
+Please provide:
+
+1. **Polished job description** — A complete, ready-to-post job description with these sections:
+   - **Job title** (suggest a better title if theirs is unclear or non-standard)
+   - **About the company** (2-3 sentences — help them sell the opportunity)
+   - **Role summary** (1 paragraph — what this person does and why it matters)
+   - **Key responsibilities** (6-10 bullet points, specific and action-oriented)
+   - **Qualifications** — clearly separated into required and preferred
+   - **Compensation & benefits** (what to include even if benefits are minimal)
+   - **How to apply** (simple instructions)
+
+2. **Title recommendations** — If their title is too vague ("helper"), too inflated ("VP of Operations" for a 3-person shop), or non-standard, suggest 2-3 alternative titles that will attract the right candidates and perform better in job search results.
+
+3. **Red flag review** — Flag anything in their description that could create legal issues (discriminatory language, requirements that aren't actually necessary, age/gender implications). Suggest compliant alternatives.
+
+4. **Where to post** — Recommend 5-7 places to post this specific role, prioritizing free or low-cost options. Consider the industry, location, and role type. Include both general platforms and any industry-specific job boards.
+
+5. **Screening criteria** — Based on this role, suggest 3-4 quick screening questions they can include in the application to filter candidates before interviews.
+
+Write the job description in a tone that feels authentic for a small business — professional but not corporate. Candidates should get a real sense of what it's like to work there.`
+            },
+            {
+                id: 59,
+                title: "Contractor vs. Employee Decision Tool",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Determine whether a role should be classified as employee or independent contractor using IRS guidelines",
+                tags: ["compliance", "contractors", "classification", "IRS"],
+                prompt: `You are an SBDC advisor who helps small business owners correctly classify workers as employees or independent contractors. Misclassification is one of the most common and costly compliance mistakes small businesses make — it can result in back taxes, penalties, and legal liability. Your job is to walk through the analysis clearly and honestly.
+
+# THE WORKING RELATIONSHIP
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- State: [STATE]
+- Worker's role: [WHAT THIS PERSON DOES OR WILL DO]
+- How they're currently classified: [EMPLOYEE / CONTRACTOR / HAVEN'T DECIDED YET / "been paying them as a contractor but not sure if that's right"]
+
+# HOW THE WORK IS PERFORMED
+Answer as honestly as possible:
+- Who controls WHEN the work is done? [BUSINESS SETS SCHEDULE / WORKER CHOOSES THEIR OWN HOURS]
+- Who controls WHERE the work is done? [MUST WORK AT BUSINESS LOCATION / WORKER CHOOSES]
+- Who controls HOW the work is done? [BUSINESS DIRECTS METHODS AND PROCESSES / WORKER USES OWN METHODS]
+- Does the business provide tools/equipment? [YES / NO / SOME OF EACH]
+- Is this an ongoing relationship or project-based? [ONGOING, INDEFINITE / SPECIFIC PROJECT WITH END DATE]
+- Does the worker serve other clients? [YES / NO / NOT SURE]
+- Can the worker hire helpers or subcontract? [YES / NO]
+- How is the worker paid? [HOURLY / SALARY / PER PROJECT / COMMISSION]
+- Does the worker have their own business entity or insurance? [YES / NO / NOT SURE]
+- Is this type of work a core part of the business? [YES — it's central to what we do / NO — it's a support function]
+
+# ADDITIONAL CONTEXT
+[ANYTHING ELSE — have they been doing this for a while? Is this a common arrangement in their industry? Any concerns?]
+
+Please provide:
+
+1. **Classification analysis** — Walk through the IRS three-factor test (Behavioral Control, Financial Control, Relationship Type) using their specific answers. For each factor, explain:
+   - What the factor measures
+   - How their situation maps to it
+   - Whether it points toward employee or contractor
+
+2. **Assessment** — Based on the analysis, what is the likely correct classification? Be direct. If it's clearly one or the other, say so. If it's a gray area, explain why and what the risk factors are.
+
+3. **Misclassification risk** — If they've been classifying incorrectly:
+   - What are the specific financial risks? (Back taxes, penalties, interest)
+   - What agencies could take action? (IRS, state labor department, workers' comp board)
+   - What's the exposure in dollars, roughly?
+
+4. **How to fix it** — If reclassification is needed:
+   - Steps to transition from contractor to employee (or vice versa)
+   - IRS Voluntary Classification Settlement Program — what it is and whether it applies
+   - How to handle the conversation with the worker
+   - Timeline for getting compliant
+
+5. **If contractor is correct** — What documentation do they need?
+   - Independent contractor agreement essentials
+   - W-9 and 1099 requirements
+   - What NOT to do that could undermine the contractor classification
+
+6. **Industry context** — Are there any industry-specific guidelines, common practices, or recent enforcement trends they should know about?
+
+Be straightforward. If they're at risk, don't soften it. Better to hear it from their advisor than from the IRS.`
+            },
+            {
+                id: 60,
+                title: "Performance Review Framework",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Simple, practical performance review structure for small business owners who have never managed a review process",
+                tags: ["management", "performance", "reviews", "HR"],
+                prompt: `You are an SBDC advisor helping a small business owner set up their first performance review process. This person has probably never formally evaluated an employee before. They need something simple, consistent, and useful — not an HR department's 15-page form.
+
+# BUSINESS CONTEXT
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Number of employees: [NUMBER]
+- Roles on the team: [LIST THE ROLES — e.g., "2 technicians, 1 front desk, 1 part-time bookkeeper"]
+- How they give feedback currently: [INFORMAL / BARELY AT ALL / OCCASIONAL CONVERSATIONS / "I wait until there's a problem"]
+- Any current performance issues: [YES — describe briefly / NO / "nothing major but want to set expectations"]
+- Review frequency goal: [ANNUAL / SEMI-ANNUAL / QUARTERLY / NOT SURE]
+
+# WHAT THEY WANT TO ACCOMPLISH
+[WHY ARE THEY DOING THIS NOW? — e.g., "team is growing," "want to tie raises to performance," "need documentation," "one employee is struggling and I need a paper trail"]
+
+Please provide:
+
+1. **Review template** — Create a one-page performance review form that includes:
+   - Employee information (name, role, review period)
+   - 5-7 core performance areas rated on a simple scale (suggest the right scale — not too granular)
+   - Space for specific examples under each area
+   - Goals from last period (or initial goals if first review)
+   - Goals for next period
+   - Employee self-assessment section (3-4 questions)
+   - Overall rating and summary
+   - Signatures
+
+   Make the areas relevant to their specific business and team roles, not generic corporate competencies.
+
+2. **Conversation guide** — A step-by-step script for how to actually conduct the review meeting:
+   - How to open (set the tone)
+   - How to deliver positive feedback (with an example)
+   - How to deliver constructive feedback (with an example)
+   - How to handle defensive reactions
+   - How to set goals collaboratively
+   - How to close and follow up
+   - Approximate time to allow
+
+3. **Self-assessment questions** — 5-6 questions to send employees before the review so they come prepared. Write these in plain language, not corporate HR speak.
+
+4. **Rating calibration** — Help the owner understand how to rate consistently. What does "meets expectations" actually look like vs. "exceeds" or "needs improvement"? Give examples relevant to their business.
+
+5. **Goal-setting framework** — Show them how to set 2-3 specific, measurable goals per employee for the next review period. Give examples for the roles they listed.
+
+6. **Documentation and legal protection** — What to document, where to keep it, how long to retain it, and how performance reviews connect to disciplinary action or termination decisions. What to NEVER put in a review.
+
+7. **Rollout plan** — How to introduce reviews to a team that's never had them. Include what to say to employees, when to schedule, and how to handle the first round when there's no prior baseline.
+
+Keep it simple. If it takes more than 30 minutes per employee, they won't do it.`
+            },
+            {
+                id: 61,
+                title: "Difficult Employee Conversation Prep",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Coach advisors to help clients navigate tough workplace conversations with scripts and legal guardrails",
+                tags: ["management", "HR", "conflict", "termination"],
+                prompt: `You are an SBDC advisor helping a small business owner prepare for a difficult conversation with an employee. These are the moments where most small business owners freeze — they either avoid the conversation entirely or handle it emotionally. Your job is to help them prepare, stay professional, and protect both the relationship and the business.
+
+# SITUATION
+- Business: [BUSINESS NAME]
+- State: [STATE]
+- Number of employees: [NUMBER]
+- The employee: [NAME OR "Employee A"] — [THEIR ROLE, HOW LONG THEY'VE BEEN THERE]
+- The issue: [DESCRIBE THE PROBLEM — e.g., chronic lateness, poor work quality, attitude issues, policy violation, performance decline, personal hygiene, conflict with coworkers, need to reduce hours, termination, etc.]
+- How long this has been going on: [TIMELINE]
+- Previous conversations about this: [NONE / INFORMAL MENTION / VERBAL WARNING / WRITTEN WARNING — describe what was said]
+- Documentation: [DO THEY HAVE ANYTHING IN WRITING? — emails, write-ups, incident reports, performance reviews]
+- Desired outcome: [WHAT DOES THE OWNER WANT TO HAPPEN? — behavior change, formal warning, termination, mutual resolution, etc.]
+
+# COMPLICATING FACTORS
+[ANYTHING THAT MAKES THIS HARDER — small team, employee is a family member, long-tenured employee, potential discrimination claim, other employees are watching, employee is going through personal difficulties, etc.]
+
+Please provide:
+
+1. **Situation assessment** — Based on what they've described, what kind of conversation is this? (Coaching, formal warning, final warning, termination, or something else.) Be honest if what they want to do doesn't match what the situation calls for.
+
+2. **Legal guardrails** — Before they walk into this conversation, what do they need to know legally?
+   - Are there any protected class considerations?
+   - At-will employment rights and limits in their state
+   - Documentation they should have (or create) before the meeting
+   - Should they have a witness present?
+   - Anything they absolutely should NOT say
+
+3. **Conversation script** — A practical, section-by-section script they can follow:
+   - **Opening** — How to set the tone (2-3 sentences they can say verbatim)
+   - **Stating the issue** — How to describe the problem factually without being accusatory (specific language)
+   - **Listening** — What to ask, how to create space for the employee's perspective
+   - **Setting expectations** — Clear statement of what needs to change, by when
+   - **Consequences** — How to explain what happens if things don't improve
+   - **Closing** — How to end on a constructive note (or a definitive one, if terminating)
+
+4. **Emotional preparation** — Help the owner anticipate likely employee reactions:
+   - If the employee gets angry
+   - If the employee cries
+   - If the employee denies everything
+   - If the employee threatens to quit
+   - If the employee brings up other employees or claims unfair treatment
+
+   For each, provide a 1-2 sentence response the owner can use.
+
+5. **Documentation template** — A written summary template to complete after the conversation that captures what was discussed, what was agreed to, and next steps. This becomes part of the employee's file.
+
+6. **Follow-up plan** — What happens after the conversation? Check-in schedule, monitoring period, and how to handle the situation if the employee improves vs. if they don't.
+
+Be direct and practical. The owner is probably nervous. Give them the confidence to handle this professionally.`
+            },
+            {
+                id: 62,
+                title: "Employee Retention on a Budget",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Identify low-cost retention strategies when a small business can't compete on salary alone",
+                tags: ["retention", "culture", "benefits", "management"],
+                prompt: `You are an SBDC advisor who helps small business owners keep good employees without breaking the bank. Most of your clients lose people to larger companies that can pay more. Your job is to help them find the retention levers that don't depend on having the biggest paycheck.
+
+# BUSINESS CONTEXT
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Number of employees: [NUMBER]
+- Industry: [INDUSTRY]
+- Location: [CITY/STATE — cost of living context matters]
+- Current pay range: [WHAT THEY PAY THEIR TEAM — rough ranges are fine]
+- Benefits currently offered: [LIST — health insurance, PTO, retirement, etc. / "nothing formal" / "we're flexible but nothing official"]
+- Turnover problem: [YES — describe / NO — trying to prevent it / "lost a key person recently"]
+
+# RETENTION PAIN POINTS
+- Who are they worried about losing? [SPECIFIC ROLES or "the whole team"]
+- Why do people leave? [BETTER PAY / BURNOUT / NO GROWTH / DON'T KNOW / OTHER]
+- What's the competitive landscape for talent? [HARD TO FIND PEOPLE / EASY TO FIND BUT HARD TO KEEP / INDUSTRY-SPECIFIC CHALLENGES]
+- Current culture: [HOW WOULD THE OWNER DESCRIBE THE WORK ENVIRONMENT?]
+- Budget for retention improvements: [MINIMAL / SOME ROOM / FLEXIBLE — or specific amount per employee]
+
+Please provide:
+
+1. **Retention audit** — Based on what they've described, what are the most likely reasons employees leave (or will leave)? Rank the top 5 risk factors for this specific business, not generic reasons.
+
+2. **Free and low-cost retention strategies** — Give me 10-12 specific, actionable strategies this business can implement that cost little or nothing. For each one:
+   - What it is
+   - Why it works (the psychology)
+   - How to implement it this month
+   - Which employees it will resonate with most
+
+   Focus on: flexibility, autonomy, recognition, growth, belonging, and meaning.
+
+3. **Benefits on a budget** — What benefits or perks can they realistically offer at their size and budget? Think creatively:
+   - Low-cost insurance options for small businesses
+   - Simple retirement plan options (SIMPLE IRA, etc.)
+   - Non-traditional benefits (schedule flexibility, remote work days, professional development stipend, etc.)
+   - Estimate monthly cost per employee where possible
+
+4. **Stay interview template** — Instead of exit interviews (too late), give them a "stay interview" framework. Provide 6-8 questions to ask current employees to find out what keeps them and what might push them away. Include how to conduct these without making people nervous.
+
+5. **Recognition system** — Design a simple, sustainable recognition system that doesn't feel forced. Not "employee of the month" — something that fits a small team culture. Include peer-to-peer and owner-to-team options.
+
+6. **Growth path design** — Even in a small business with no corporate ladder, employees need to feel like they're going somewhere. Show the owner how to create growth opportunities through:
+   - Skill development
+   - Expanded responsibility
+   - Title progression
+   - Mentoring and teaching roles
+   - Cross-training
+
+7. **Compensation strategy** — Without necessarily raising base pay:
+   - How to structure small, frequent raises vs. large annual ones
+   - Bonus structures that work for small businesses
+   - Profit-sharing or gain-sharing models
+   - When it IS time to just pay more (don't dance around it)
+
+8. **Retention warning signs** — Help the owner spot flight risks before they give notice. What behavioral changes to watch for, and what to do when they see them.
+
+Be realistic. Don't suggest ping pong tables and unlimited PTO. These are small businesses with thin margins.`
+            },
+            {
+                id: 63,
+                title: "Workplace Compliance Basics",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "State-aware compliance checklist covering what's legally required at different employee thresholds",
+                tags: ["compliance", "labor law", "regulations", "employment"],
+                prompt: `You are an SBDC advisor helping a small business owner understand their employment compliance obligations. Most small business owners don't know what they're required to do until something goes wrong. Your job is to give them a clear, prioritized picture of their legal obligations based on their size and state.
+
+# BUSINESS INFORMATION
+- Business: [BUSINESS NAME]
+- State: [STATE]
+- Number of employees: [CURRENT NUMBER]
+- Planning to grow to: [EXPECTED NUMBER IN NEXT 12 MONTHS — or "staying the same"]
+- Industry: [INDUSTRY — some have additional requirements]
+- Employee types: [FULL-TIME / PART-TIME / MIX — describe]
+- Any employees under 18: [YES / NO]
+- Any tipped employees: [YES / NO]
+- Current compliance measures: [WHAT THEY ALREADY HAVE IN PLACE — or "not sure" / "nothing formal"]
+
+# SPECIFIC CONCERNS
+[ANY PARTICULAR QUESTIONS OR SITUATIONS — e.g., "someone asked about FMLA," "we had an OSHA complaint," "opening a second location," "hiring in a different state"]
+
+Please provide:
+
+1. **Current obligations checklist** — Based on their current employee count and state, what are they legally required to have RIGHT NOW? Organize by category:
+   - **Wage and hour** (minimum wage, overtime rules, meal/rest break requirements, pay frequency, final paycheck timing)
+   - **Required postings** (federal and state posters — list each one specifically)
+   - **Record-keeping** (what records must they maintain and for how long)
+   - **Tax obligations** (payroll tax filing, unemployment insurance, etc.)
+   - **Safety** (OSHA requirements at their size, industry-specific safety requirements)
+   - **Required policies** (any written policies required by state law)
+   - **Anti-discrimination** (which laws apply at their size — Title VII kicks in at 15, ADA at 15, ADEA at 20, etc.)
+
+   For each item: what it is, whether they're likely in compliance or at risk, and how to fix any gaps.
+
+2. **Threshold alerts** — A clear table showing what NEW requirements kick in as they grow:
+   - At 1 employee (they're here)
+   - At 4-5 employees
+   - At 10-11 employees
+   - At 15 employees
+   - At 20 employees
+   - At 50 employees
+
+   So they can plan ahead and not get surprised.
+
+3. **State-specific requirements** — What does their state require beyond federal minimums? Flag anything where their state is stricter than federal law (paid sick leave, minimum wage, predictive scheduling, ban-the-box, etc.).
+
+4. **Industry-specific requirements** — Based on their industry, are there additional compliance requirements? (e.g., food handler certifications, HIPAA, DOT regulations, professional licensing, etc.)
+
+5. **Quick compliance audit** — A 15-item yes/no checklist they can run through right now to identify their biggest exposure areas. Prioritize by risk level (what's most likely to trigger penalties).
+
+6. **How to stay current** — Where should they go to stay updated on employment law changes? Recommend 2-3 reliable, free resources specific to their state. How often should they audit their compliance?
+
+7. **When to get professional help** — What situations should trigger a call to an employment attorney? Help them understand the line between "you can handle this yourself" and "you need a professional."
+
+Be specific and actionable. "Consult an attorney" is not helpful unless you tell them exactly what to ask about.`
+            },
+            {
+                id: 64,
+                title: "Workers' Comp & Business Insurance Guide",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Help clients understand what insurance coverage they actually need and what questions to ask an agent",
+                tags: ["insurance", "risk management", "workers comp", "liability"],
+                prompt: `You are an SBDC advisor helping a small business owner understand their insurance needs. Most owners either have no coverage, have the wrong coverage, or are overpaying because they didn't know what to ask. Your job is to educate them so they can have a productive conversation with an insurance agent — not to sell them anything.
+
+# BUSINESS INFORMATION
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- State: [STATE]
+- Number of employees: [NUMBER — include owners, part-timers, contractors]
+- Industry: [INDUSTRY]
+- Physical location: [OWN / LEASE / HOME-BASED / MOBILE]
+- Business assets: [EQUIPMENT, VEHICLES, INVENTORY — brief description]
+- Revenue range: [APPROXIMATE ANNUAL REVENUE]
+- Client-facing work: [YES — describe / NO — internal operations only]
+- Current insurance: [LIST WHAT THEY HAVE — or "nothing" / "just personal auto" / "not sure"]
+
+# SPECIFIC RISK FACTORS
+[ANYTHING THAT AFFECTS THEIR RISK — employees drive company vehicles, clients visit the premises, physical labor, food service, professional advice given, products manufactured, etc.]
+
+Please provide:
+
+1. **Insurance needs assessment** — Based on this business, which types of insurance do they need? For each one, explain:
+   - **What it covers** (in plain English, one paragraph max)
+   - **Whether it's required or recommended** for their situation
+   - **Rough cost range** for a business of their size and type
+   - **What happens if they don't have it** (specific risk scenario)
+
+   Cover these types as applicable:
+   - General liability
+   - Professional liability / E&O
+   - Workers' compensation
+   - Commercial property
+   - Business owner's policy (BOP)
+   - Commercial auto
+   - Product liability
+   - Cyber liability
+   - Business interruption
+   - Umbrella / excess liability
+
+   Skip any that genuinely don't apply to their business.
+
+2. **Workers' comp deep dive** — Since this is where most small business owners have questions:
+   - Is workers' comp required in their state at their size?
+   - How premiums are calculated (classification codes, experience modifier)
+   - What happens if an employee gets hurt and they DON'T have coverage
+   - State fund vs. private carrier options
+   - How to keep premiums manageable
+
+3. **Coverage gaps** — Based on what they currently have vs. what they need, identify the biggest gaps and prioritize them by risk severity. What should they get FIRST?
+
+4. **Questions to ask an insurance agent** — 10-12 specific questions they should ask when shopping for coverage. Include questions about:
+   - Coverage limits and deductibles
+   - Exclusions (what's NOT covered)
+   - Claims process
+   - Premium reduction strategies
+   - Bundling options
+
+5. **Shopping strategy** — How to get the best coverage at a fair price:
+   - How many quotes to get
+   - Independent agent vs. direct carrier
+   - What to compare beyond price
+   - Red flags in a policy or agent
+   - When to reassess (annually, after growth, after claims)
+
+6. **Risk reduction** — 5-7 things they can do operationally to reduce their insurance costs (safety programs, contracts, waivers, procedures). Things that actually show up in lower premiums.
+
+7. **Common mistakes** — What do small business owners in their industry most often get wrong about insurance? What coverage do they skip that they shouldn't? What do they overpay for?
+
+Keep it educational. They should feel informed, not sold to.`
+            },
+            {
+                id: 65,
+                title: "SOP Builder",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Turn a process the owner does from memory into a documented, delegatable standard operating procedure",
+                tags: ["operations", "systems", "delegation", "processes"],
+                prompt: `You are an SBDC advisor helping a small business owner document one of their key business processes as a Standard Operating Procedure (SOP). Most small business owners carry critical processes in their head. When they need to delegate, train someone, or step away, nothing is written down. Your job is to pull the process out of their head and turn it into a clear, usable document.
+
+# THE PROCESS TO DOCUMENT
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Process name: [WHAT ARE WE DOCUMENTING? — e.g., "new client onboarding," "end-of-day closing," "order fulfillment," "responding to a service request," "monthly invoicing"]
+- Who does this currently: [THE OWNER / A SPECIFIC EMPLOYEE / SHARED ACROSS TEAM]
+- How often: [DAILY / WEEKLY / MONTHLY / PER CLIENT / AS NEEDED]
+- Why document this now: [HIRING SOMEONE TO DO IT / OWNER WANTS TO STEP BACK / INCONSISTENT RESULTS / TRAINING PURPOSES / SCALING UP]
+
+# THE PROCESS (in their own words)
+[HAVE THE OWNER DESCRIBE THE PROCESS STEP BY STEP IN THEIR OWN WORDS — messy is fine, brain dump is fine. Ask them: "Walk me through exactly what you do from start to finish. Don't skip the obvious stuff."]
+
+# TOOLS AND SYSTEMS USED
+[WHAT SOFTWARE, EQUIPMENT, FORMS, OR TOOLS ARE INVOLVED? — e.g., "QuickBooks, our CRM, a paper form, the POS system, a specific piece of equipment"]
+
+# WHERE THINGS GO WRONG
+[WHAT ARE THE COMMON MISTAKES, EXCEPTIONS, OR JUDGMENT CALLS IN THIS PROCESS? Where does quality vary?]
+
+Please provide:
+
+1. **Clean SOP document** — Transform their brain dump into a structured, step-by-step procedure document that includes:
+   - **Purpose** — Why this process exists and what a good outcome looks like
+   - **Scope** — When this process applies (and when it doesn't)
+   - **Roles** — Who is responsible for each part
+   - **Prerequisites** — What needs to be in place before starting (tools, information, access)
+   - **Step-by-step procedure** — Numbered steps, clear and specific enough that someone could follow them with no prior experience. Include:
+     - The action to take
+     - How to do it (click this, go here, use this tool)
+     - Expected result at each step
+     - Decision points ("if X, then do Y; if Z, then do W")
+   - **Quality checkpoints** — Key moments where you verify the work is correct
+   - **Exceptions and troubleshooting** — Common variations and what to do when something goes wrong
+
+2. **Missing steps** — Based on what they described, what steps did they probably skip because they're "obvious" to them but wouldn't be to someone new? Ask about these gaps.
+
+3. **Process improvement suggestions** — While documenting, did you spot any inefficiencies, unnecessary steps, or opportunities to simplify? Flag 2-3 improvements they could make.
+
+4. **Training plan** — How should they use this SOP to train someone?
+   - Watch and learn phase (how many times)
+   - Supervised practice phase
+   - Independent with check-ins phase
+   - Fully independent
+   - How to verify quality during the handoff
+
+5. **Template format** — Provide the SOP in a format they can actually use — clean enough to print or share digitally. Include version number, last updated date, and a revision log section.
+
+6. **Next SOPs to document** — Based on this business type, what are the other 3-5 most critical processes they should document next? Prioritize by impact (what would hurt most if the owner got sick for a week?).
+
+Write it in clear, direct language. No jargon. If a new employee can't follow this on day one, it's not done.`
+            },
+            {
+                id: 66,
+                title: "Delegation & Role Design",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Help owners who do everything identify what to delegate first and how to build roles as they grow",
+                tags: ["delegation", "management", "scaling", "org design"],
+                prompt: `You are an SBDC advisor helping a small business owner who does too much themselves. They're the bottleneck in their own business — they handle sales, operations, customer service, bookkeeping, and more. They know they need to let go but don't know what, how, or to whom. Your job is to help them think clearly about delegation, role design, and building a team structure that lets the business run without them in the middle of everything.
+
+# CURRENT SITUATION
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Owner's role: [DESCRIBE EVERYTHING THE OWNER CURRENTLY DOES — be specific]
+- Current team: [NUMBER OF EMPLOYEES AND THEIR ROLES — or "just me" / "me and one part-timer"]
+- Hours the owner works per week: [NUMBER]
+- Revenue: [APPROXIMATE ANNUAL REVENUE]
+- Growth goal: [WHERE DO THEY WANT TO BE IN 12 MONTHS — revenue, team size, or lifestyle]
+
+# WHAT THEY WANT TO CHANGE
+- What's burning them out: [WHAT TASKS DO THEY HATE OR DREAD?]
+- What only they can do: [WHAT TASKS GENUINELY REQUIRE THE OWNER — or "I think everything requires me"]
+- What they've tried to delegate before: [ANY PAST ATTEMPTS AND HOW THEY WENT]
+- Biggest fear about delegating: [QUALITY WILL DROP / CAN'T AFFORD IT / NO ONE WILL CARE AS MUCH / DON'T HAVE TIME TO TRAIN / TRUST ISSUES]
+- Budget for new help: [WHAT THEY CAN INVEST IN PEOPLE — per month or per year]
+
+Please provide:
+
+1. **Time and task audit** — Categorize everything the owner does into four buckets:
+   - **Only the owner can do this** (strategic decisions, key relationships, vision)
+   - **Owner does it but someone else could** (with training and systems)
+   - **Owner shouldn't be doing this** (tasks below their effective hourly rate)
+   - **Owner doesn't do but should** (things they're neglecting because they're too busy)
+
+   Be honest about what's really "only me" vs. what feels that way.
+
+2. **Delegation priority matrix** — Of everything that CAN be delegated, rank by:
+   - Time freed up (hours per week)
+   - Ease of delegation (how hard to hand off)
+   - Impact on the business (what happens if this gets done better or more consistently)
+
+   Recommend the first 3-5 things to delegate and the order in which to do it.
+
+3. **Role design** — Based on what needs to be delegated, design the next 1-2 roles they should hire for:
+   - Role title and scope
+   - Key responsibilities
+   - Full-time vs. part-time vs. contractor
+   - Estimated cost
+   - Skills to look for
+   - How this role pays for itself (revenue generated, time freed, capacity created)
+
+4. **Delegation playbook** — A practical framework for actually handing things off:
+   - How to document what you do (connect to SOPs)
+   - How to train without micromanaging
+   - How to set clear expectations and check-in rhythms
+   - How to handle the quality dip during transition (it will happen)
+   - How to give feedback without taking the task back
+
+5. **Org chart evolution** — Sketch three org structures:
+   - **Now** — Current state (probably just the owner + anyone they have)
+   - **Next** — After the first 1-2 hires
+   - **Goal** — What the business should look like at their 12-month revenue/team target
+
+   For each, show who reports to whom and what each person owns.
+
+6. **Mindset shifts** — Address the real barriers:
+   - "No one can do it as well as I can" — reframe this
+   - "I can't afford to hire" — show the math on what their time is worth
+   - "It's faster to do it myself" — short-term yes, long-term no
+   - How to measure success by outcomes, not by how things get done
+
+7. **30-60-90 day plan** — A realistic timeline:
+   - Days 1-30: What to document and prepare
+   - Days 31-60: First delegation handoffs
+   - Days 61-90: Adjust, expand, and evaluate what's working
+
+Be direct. If the owner is their own biggest obstacle, say so respectfully. The goal is a business that doesn't depend on one person doing everything.`
             }
         ];
 
