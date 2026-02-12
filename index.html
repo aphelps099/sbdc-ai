@@ -1496,7 +1496,7 @@
     <nav class="filters-section">
         <div class="filters-inner">
             <button class="filter-tab active" data-filter="all">
-                All Prompts<span class="filter-count">76</span>
+                All Prompts<span class="filter-count">74</span>
             </button>
             <button class="filter-tab" data-filter="marketing">
                 Marketing<span class="filter-count">34</span>
@@ -1520,7 +1520,10 @@
                 Training<span class="filter-count">4</span>
             </button>
             <button class="filter-tab" data-filter="customer-service">
-                Customer Service<span class="filter-count">10</span>
+                Customer Service<span class="filter-count">0</span>
+            </button>
+            <button class="filter-tab" data-filter="government">
+                Government Contracting<span class="filter-count">8</span>
             </button>
         </div>
     </nav>
@@ -4416,6 +4419,316 @@ Please provide:
    - Days 61-90: Adjust, expand, and evaluate what's working
 
 Be direct. If the owner is their own biggest obstacle, say so respectfully. The goal is a business that doesn't depend on one person doing everything.`
+            },
+            {
+                id: 67,
+                title: "SAM.gov Registration Walkthrough",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Step-by-step guide to help a small business register in SAM.gov and get ready to bid on federal contracts",
+                tags: ["SAM", "registration", "federal"],
+                prompt: `You are an SBDC advisor who specializes in helping small businesses enter the government contracting space. A client needs help registering in SAM.gov (System for Award Management).
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Business structure: [LLC / S-Corp / Sole Proprietor / etc.]
+- EIN available: [YES / NO]
+- Has a DUNS/UEI number: [YES / NO / UNSURE]
+- Previous government contracting experience: [NONE / SOME / EXPERIENCED]
+
+Walk them through the full SAM.gov registration process:
+
+1. **Pre-registration checklist** — Every document and number they need before starting (EIN, UEI, banking info, NAICS codes, etc.)
+2. **Step-by-step registration flow** — Walk through each SAM.gov section in plain language, explaining what each field means and what to enter
+3. **Common mistakes to avoid** — The errors that delay or reject registrations (wrong NAICS codes, incomplete banking info, entity mismatch, etc.)
+4. **Entity validation timeline** — What to expect for processing time and how to check status
+5. **Post-registration actions** — What to do once active: set up entity alerts, update annually, link to contract opportunity searches
+6. **Quick-start opportunities** — Where to look for their first contract opportunities once registered (SAM.gov contract opportunities, GSA eBuy, state procurement portals)
+
+Keep the language simple and jargon-free. Many clients find this process intimidating — make it feel doable.`
+            },
+            {
+                id: 68,
+                title: "Capability Statement Writer",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Generate a professional one-page capability statement tailored to government buyers",
+                tags: ["capability statement", "marketing", "federal"],
+                prompt: `You are an SBDC advisor helping a small business create a professional capability statement — the single most important marketing document in government contracting.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Owner name: [OWNER NAME]
+- Business description: [BRIEF DESCRIPTION OF WHAT THEY DO]
+- Primary NAICS codes: [NAICS CODES IF KNOWN]
+- Certifications: [8(a) / HUBZone / WOSB / SDVOSB / NONE / UNSURE]
+- Key differentiators: [WHAT MAKES THEM DIFFERENT — SPEED, QUALITY, NICHE EXPERTISE, LOCATION, ETC.]
+- Past performance highlights: [ANY RELEVANT PROJECTS — GOVERNMENT OR COMMERCIAL]
+- Target agency or contract type: [IF KNOWN]
+
+Create a one-page capability statement that includes:
+
+1. **Company overview** — 2-3 sentences that clearly state what the business does, who they serve, and why they're qualified
+2. **Core competencies** — 4-6 bullet points of specific capabilities (not vague claims — concrete, measurable strengths)
+3. **Differentiators** — What sets them apart from competitors in this space
+4. **Past performance** — 2-3 brief project summaries with scope, results, and relevance (adapt commercial experience if no government work yet)
+5. **Company data** — NAICS codes, UEI/CAGE, certifications, size standard, contract vehicles
+6. **Contact block** — Professional layout with name, title, phone, email, website
+
+Also provide:
+- **Formatting guidance** — Layout tips for a clean, scannable one-pager (colors, logo placement, white space)
+- **Tailoring advice** — How to customize the statement for different agencies or opportunities
+- **Common mistakes** — What turns off government buyers (too generic, too long, missing codes, no past performance)
+
+Write in a confident, professional tone. Government buyers skim these in 30 seconds — every word needs to earn its place.`
+            },
+            {
+                id: 69,
+                title: "RFP Response Outline Generator",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Break down an RFP into a structured response outline with section-by-section guidance",
+                tags: ["RFP", "proposal", "bid"],
+                prompt: `You are an SBDC advisor who helps small businesses respond to government RFPs (Requests for Proposal). A client has found an opportunity and needs help structuring their response.
+
+**RFP Details:**
+- Solicitation number: [NUMBER IF AVAILABLE]
+- Issuing agency: [AGENCY NAME]
+- Brief description of the requirement: [WHAT THE GOVERNMENT IS BUYING]
+- Evaluation criteria (if known): [PRICE / TECHNICAL APPROACH / PAST PERFORMANCE / OTHER]
+- Page limits or format requirements: [IF KNOWN]
+- Due date: [DATE]
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Relevant experience: [BRIEF SUMMARY OF RELATED WORK]
+- Team size/key personnel: [WHO WOULD WORK ON THIS]
+
+Build a complete response outline:
+
+1. **RFP compliance checklist** — Every requirement, document, and deliverable the solicitation asks for, organized as a checklist so nothing gets missed
+2. **Section-by-section outline** — For each required section (technical approach, management plan, past performance, pricing, etc.):
+   - What the evaluator is looking for
+   - Suggested structure and content
+   - How to connect their experience to the specific requirement
+3. **Win themes** — 2-3 key messages that should echo throughout the proposal (why this team, why this approach, why now)
+4. **Compliance matrix** — A table mapping each RFP requirement to where it's addressed in the response
+5. **Pricing strategy notes** — How to structure the cost volume, common pricing mistakes, and how to be competitive without underbidding
+6. **Review and submission timeline** — Working backward from the due date: when each section should be drafted, reviewed, and finalized
+
+Be practical. Most SBDC clients are writing their first or second proposal — give them a clear roadmap they can actually follow.`
+            },
+            {
+                id: 70,
+                title: "Past Performance Narrative Builder",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Turn commercial or prior project experience into compelling past performance narratives for proposals",
+                tags: ["past performance", "proposal", "narrative"],
+                prompt: `You are an SBDC advisor helping a small business write past performance narratives for a government proposal. Many small businesses struggle here — they have relevant experience but don't know how to present it in a way that government evaluators value.
+
+**Project to Document:**
+- Project/contract name: [NAME]
+- Client (government or commercial): [CLIENT NAME]
+- Contract value (approximate): [DOLLAR AMOUNT]
+- Period of performance: [START DATE - END DATE]
+- Scope of work: [WHAT DID YOU DO — DESCRIBE THE WORK]
+- Key results or outcomes: [WHAT WAS DELIVERED, METRICS IF AVAILABLE]
+- Challenges overcome: [ANY PROBLEMS SOLVED OR OBSTACLES MANAGED]
+- Relevance to target opportunity: [HOW THIS RELATES TO THE CONTRACT THEY'RE BIDDING ON]
+
+Create a polished past performance narrative that includes:
+
+1. **Project overview** — Clear, concise summary of the work (who, what, where, when, how much)
+2. **Scope and approach** — What the client did and how they delivered — focus on methodology and process
+3. **Results and outcomes** — Quantified wherever possible (on-time delivery, cost savings, quality metrics, customer satisfaction)
+4. **Relevance mapping** — Explicit connections between this project and the target opportunity's requirements
+5. **Challenges and solutions** — How problems were identified and resolved (evaluators love this — it shows maturity)
+6. **Reference formatting** — How to present the client reference (name, title, phone, email) and tips for prepping references
+
+Also provide:
+- **Tips for adapting commercial work** — How to frame private-sector projects in government-friendly language
+- **What evaluators actually look for** — The scoring criteria behind past performance evaluation
+- **Red flags to avoid** — Vague claims, missing metrics, unverifiable references, irrelevant examples
+
+Write in a factual, confident tone. No fluff — evaluators score these against specific criteria.`
+            },
+            {
+                id: 71,
+                title: "Government Buyer Persona Identifier",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Identify which government agencies are most likely to buy what the client sells and how to reach them",
+                tags: ["market research", "agencies", "targeting"],
+                prompt: `You are an SBDC advisor helping a small business figure out which government agencies are the best targets for their products or services. Most small businesses waste time casting too wide a net — help them get focused.
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Products/services offered: [WHAT THEY SELL]
+- Primary NAICS codes: [CODES IF KNOWN]
+- Geographic location: [CITY, STATE]
+- Willingness to travel/deliver nationally: [YES / NO / REGIONAL ONLY]
+- Current certifications: [8(a) / HUBZone / WOSB / SDVOSB / NONE]
+- Annual revenue: [APPROXIMATE — HELPS DETERMINE SIZE STANDARD FIT]
+
+Provide a targeted government market analysis:
+
+1. **Top 5 federal agencies** — Which agencies spend the most in their NAICS codes, with approximate annual spend data. Explain *why* each agency is a fit, not just that they spend money there
+2. **State and local opportunities** — Relevant state agencies, municipalities, school districts, or special districts in their region that buy what they sell
+3. **Decision-maker profiles** — Who actually makes buying decisions at these agencies (contracting officers, program managers, small business specialists) and how to find them
+4. **Procurement vehicles** — Which contract vehicles these agencies use most (GSA Schedule, BPAs, GWACs, state master contracts) and which ones the client should pursue first
+5. **Set-aside opportunities** — Based on their certifications and size, which set-asides they qualify for and how much is spent through those set-asides
+6. **Outreach strategy** — Concrete steps to get in front of the right people:
+   - Industry days and forecast briefings
+   - Small business office outreach
+   - Subcontracting with established primes
+   - Online research tools (USASpending.gov, FPDS, GovWin)
+7. **Quick wins** — Low-dollar or micro-purchase opportunities where they can build past performance fast
+
+Be specific. Don't just say "the Department of Defense" — point them toward specific sub-agencies, offices, or buying commands that match their niche.`
+            },
+            {
+                id: 72,
+                title: "NAICS Code Selection Helper",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Help a client identify the right NAICS codes for their business and understand size standard implications",
+                tags: ["NAICS", "codes", "size standards"],
+                prompt: `You are an SBDC advisor helping a small business select the right NAICS codes for government contracting. This seems simple but getting it wrong can disqualify them from opportunities or put them in the wrong competitive pool.
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Primary products/services: [DESCRIBE WHAT THEY SELL — BE SPECIFIC]
+- Secondary services (if any): [OTHER THINGS THEY DO]
+- Annual revenue: [APPROXIMATE]
+- Number of employees: [APPROXIMATE]
+- Current NAICS codes (if any): [CODES THEY CURRENTLY USE]
+
+Provide a complete NAICS code analysis:
+
+1. **Primary NAICS code recommendation** — The single best code that represents their core business, with the full code number, title, and description. Explain why this is the best fit
+2. **Secondary NAICS codes** — 3-5 additional codes they should list in SAM.gov for their other service lines. For each: code, title, and how it applies to their work
+3. **Size standard analysis** — For each recommended code:
+   - Revenue-based or employee-based size standard
+   - The threshold (e.g., $16.5M, 500 employees)
+   - Whether the client qualifies as "small" under each code
+   - Implications if they're close to the threshold
+4. **Common mistakes** — Codes that look right but aren't (and why), codes that are too broad or too narrow, and what happens if you pick the wrong one on a bid
+5. **Strategic considerations** — How NAICS code selection affects:
+   - Which opportunities they see and can bid on
+   - Their competitive pool (who they're competing against)
+   - Set-aside eligibility
+   - SBA certification applications
+6. **How to verify** — Where to look up codes (census.gov NAICS search), how to check what codes agencies use for similar procurements (FPDS), and when to request a size standard determination from SBA
+
+Keep this practical. The goal is codes that match their work AND put them in the best competitive position.`
+            },
+            {
+                id: 73,
+                title: "Subcontracting Opportunity Finder",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Help a client identify and pursue subcontracting opportunities as a path into government work",
+                tags: ["subcontracting", "teaming", "primes"],
+                prompt: `You are an SBDC advisor helping a small business break into government contracting through subcontracting — often the smartest first step for businesses with no government past performance.
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Products/services: [WHAT THEY DO]
+- NAICS codes: [IF KNOWN]
+- Certifications: [8(a) / HUBZone / WOSB / SDVOSB / NONE]
+- Geographic area: [LOCATION]
+- Target agencies or industries: [IF KNOWN]
+- Annual revenue: [APPROXIMATE]
+
+Create a subcontracting strategy:
+
+1. **Why subcontracting first** — Explain the strategic value: building past performance, learning the process, establishing relationships, generating revenue, and positioning for future prime contracts
+2. **Finding prime contractors** — How to identify primes who need subs in their space:
+   - SBA Subcontracting Network (SubNet)
+   - USASpending.gov to find who holds current contracts
+   - Agency small business office referrals
+   - Industry events and matchmaking sessions
+   - Prime contractor small business liaison officers
+3. **Making the approach** — How to reach out to a prime contractor:
+   - What to say in the initial email
+   - What documents to have ready (capability statement, past performance, certifications)
+   - How to articulate their value proposition as a sub
+   - What NOT to do (cold pitching without research, being too generic)
+4. **Teaming agreement basics** — What should be in a teaming agreement, key terms to negotiate, and red flags to watch for
+5. **Subcontracting plan targets** — How large prime contracts have mandatory small business subcontracting goals, and how the client's certifications make them attractive to primes
+6. **Building toward prime** — A timeline for transitioning from sub to prime:
+   - Phase 1: Sub on 2-3 contracts, build past performance
+   - Phase 2: Mentor-protégé programs, joint ventures
+   - Phase 3: Bid as prime with established track record
+7. **Local resources** — Remind them about PTAC (Procurement Technical Assistance Center), SBDC advising, and SBA district office matchmaking events
+
+Be encouraging but realistic. Subcontracting takes hustle and relationship-building — give them a concrete game plan.`
+            },
+            {
+                id: 74,
+                title: "Contract Compliance Checklist",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Generate a compliance checklist for a small business that just won their first government contract",
+                tags: ["compliance", "post-award", "management"],
+                prompt: `You are an SBDC advisor helping a small business navigate compliance after winning a government contract. Winning is exciting — but non-compliance can lead to termination, bad past performance ratings, or even debarment. Help them get it right from day one.
+
+**Contract Info:**
+- Contract type: [FIRM FIXED PRICE / TIME & MATERIALS / COST REIMBURSEMENT / IDIQ / BPA]
+- Awarding agency: [AGENCY NAME]
+- Approximate value: [DOLLAR AMOUNT]
+- Period of performance: [START - END DATE]
+- Key deliverables: [WHAT THEY NEED TO DELIVER]
+- Is this their first government contract? [YES / NO]
+- Subcontractors involved? [YES / NO]
+
+Create a comprehensive compliance checklist:
+
+1. **Post-award setup** — Immediate actions after award:
+   - Confirm SAM.gov registration is active and current
+   - Review all contract terms and conditions line by line
+   - Identify the Contracting Officer (CO) and Contracting Officer's Representative (COR)
+   - Set up project files and documentation system
+   - Brief the team on government contract requirements vs. commercial work
+
+2. **Financial compliance** — What they need to track and how:
+   - Invoicing requirements and schedule (correct format, submission portal, supporting docs)
+   - Cost tracking by contract line item
+   - Accounting system requirements (adequate vs. approved system)
+   - Progress payment or milestone billing procedures
+   - Record retention requirements (typically 3+ years after contract closeout)
+
+3. **Performance compliance** — Meeting the terms:
+   - Deliverable tracking against the statement of work
+   - Quality standards and inspection procedures
+   - Reporting requirements (monthly, quarterly, progress reports)
+   - Key personnel commitments and substitution procedures
+   - Subcontractor management and flow-down requirements
+
+4. **Regulatory compliance** — Federal requirements that apply:
+   - FAR clauses specific to their contract (walk through the key ones)
+   - Labor standards (Service Contract Act, Davis-Bacon if applicable)
+   - Small business subcontracting plan compliance (if applicable)
+   - Cybersecurity requirements (especially NIST 800-171 for DoD)
+   - Insurance and bonding requirements
+
+5. **Communication protocol** — How to interact with the government:
+   - What needs to go through the CO vs. COR
+   - How to request modifications or changes
+   - How to handle scope creep (don't just do extra work — get it authorized)
+   - Documenting everything in writing
+
+6. **Common pitfalls** — What gets small businesses in trouble:
+   - Starting work before notice to proceed
+   - Unauthorized scope changes
+   - Missing invoice deadlines
+   - Poor documentation habits
+   - Ignoring reporting requirements
+
+7. **Contract closeout prep** — What to prepare throughout performance so closeout goes smoothly
+
+Make this feel manageable, not terrifying. Break compliance into daily habits and monthly reviews rather than an overwhelming wall of rules.`
             }
         ];
 
