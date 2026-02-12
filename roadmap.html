@@ -614,6 +614,124 @@
             width: 18px;
             height: 18px;
         }
+        .cta-challenge {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 0 auto 28px;
+            max-width: 540px;
+            text-align: left;
+        }
+        .cta-challenge-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--sky-light);
+            margin-bottom: 8px;
+        }
+        .cta-challenge p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Metrics Section */
+        .metrics-section {
+            margin-top: 64px;
+        }
+        .metrics-section-header {
+            margin-bottom: 32px;
+        }
+        .metrics-section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+        .metrics-section-header p {
+            font-size: 1rem;
+            color: var(--gray-70);
+            max-width: 700px;
+            line-height: 1.6;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .metrics-card {
+            border: 1px solid var(--gray-20);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.2s;
+        }
+        .metrics-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border-color: var(--sky);
+        }
+        .metrics-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .metrics-card-header svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .metrics-card-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-90);
+        }
+        .metrics-card.short-term .metrics-card-header svg {
+            color: var(--success);
+        }
+        .metrics-card.long-term .metrics-card-header svg {
+            color: var(--sky);
+        }
+        .metric-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-10);
+        }
+        .metric-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .metric-item:first-child {
+            padding-top: 0;
+        }
+        .metric-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-90);
+            margin-bottom: 2px;
+        }
+        .metric-desc {
+            font-size: 13px;
+            color: var(--gray-50);
+            line-height: 1.5;
+        }
+        .metric-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+        .metric-dot.green {
+            background: var(--success);
+        }
+        .metric-dot.blue {
+            background: var(--sky);
+        }
 
         /* Footer */
         footer {
@@ -686,6 +804,12 @@
             }
             .cta-section h2 {
                 font-size: 1.25rem;
+            }
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .metrics-card {
+                padding: 24px;
             }
         }
     </style>
@@ -877,6 +1001,20 @@
                         <p>A calendar of Zoom training sessions and drop-in office hours so resources are accessible to the full network &mdash; not just the early adopters. Open to all advisors regardless of skill level.</p>
                         <span class="initiative-tag">Scheduling</span>
                     </div>
+                    <!-- NotebookLM -->
+                    <div class="initiative-card">
+                        <div class="initiative-card-icon sky">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                                <line x1="8" y1="7" x2="16" y2="7"/>
+                                <line x1="8" y1="11" x2="14" y2="11"/>
+                            </svg>
+                        </div>
+                        <h3>NotebookLM &mdash; Network Catalog</h3>
+                        <p>Catalog the entire network's processes, training resources, and compliance documentation into AI-powered notebooks. This foundational knowledge base directly feeds the design of custom GPTs later &mdash; the better we understand our own workflows now, the better tools we build next.</p>
+                        <span class="initiative-tag">Starting now</span>
+                    </div>
                 </div>
             </div>
 
@@ -921,36 +1059,109 @@
                             </svg>
                         </div>
                         <h3>Custom GPTs</h3>
-                        <p>Purpose-built GPTs for complex, multi-step advising processes. These require real data and careful design &mdash; more care, testing, and auditing than the prompt library. The payoff is significant for structured workflows.</p>
-                        <span class="initiative-tag">Design phase</span>
+                        <p>Purpose-built GPTs for complex, multi-step advising processes. Built on the network catalog from NotebookLM, these require real data and careful design &mdash; more care, testing, and auditing than the prompt library. The payoff is significant for structured workflows.</p>
+                        <span class="initiative-tag">Informed by Phase 1 catalog</span>
                     </div>
-                    <!-- NotebookLM -->
-                    <div class="initiative-card">
-                        <div class="initiative-card-icon sky">
+                </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="metrics-section">
+                <div class="metrics-section-header">
+                    <h2>How We'll Measure Success</h2>
+                    <p>Simple, trackable indicators to know if our AI initiatives are landing. These help us iterate and justify continued investment to network leadership.</p>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metrics-card short-term">
+                        <div class="metrics-card-header">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-                                <line x1="8" y1="7" x2="16" y2="7"/>
-                                <line x1="8" y1="11" x2="14" y2="11"/>
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
                             </svg>
+                            <h3>Short-Term (0&ndash;3 months)</h3>
                         </div>
-                        <h3>NotebookLM</h3>
-                        <p>AI-powered notebooks for the network's internal knowledge bases, training resources, and client-facing compliance documentation. High potential, and probably the lowest-hanging fruit in the next phase.</p>
-                        <span class="initiative-tag">Lowest-hanging fruit</span>
+                        <div class="metric-item">
+                            <div class="metric-dot green"></div>
+                            <div>
+                                <div class="metric-label">Prompt Library engagement</div>
+                                <div class="metric-desc">Page visits, unique users, and copy-to-clipboard actions per week</div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-dot green"></div>
+                            <div>
+                                <div class="metric-label">Office hours attendance</div>
+                                <div class="metric-desc">Number of advisors attending Zoom sessions and repeat attendance rate</div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-dot green"></div>
+                            <div>
+                                <div class="metric-label">First-use adoption</div>
+                                <div class="metric-desc">% of network advisors who have tried at least one AI prompt with a real client</div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-dot green"></div>
+                            <div>
+                                <div class="metric-label">NotebookLM coverage</div>
+                                <div class="metric-desc">Number of centers and processes cataloged into the network knowledge base</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metrics-card long-term">
+                        <div class="metrics-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                            <h3>Long-Term (3&ndash;12 months)</h3>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-dot blue"></div>
+                            <div>
+                                <div class="metric-label">Regular AI usage rate</div>
+                                <div class="metric-desc">% of advisors reporting weekly AI use in client work (target: 50%+)</div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-dot blue"></div>
+                            <div>
+                                <div class="metric-label">Custom GPT adoption</div>
+                                <div class="metric-desc">Number of active custom GPTs in use and advisor satisfaction scores</div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-dot blue"></div>
+                            <div>
+                                <div class="metric-label">Time savings</div>
+                                <div class="metric-desc">Self-reported hours saved per advisor per month on routine tasks</div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-dot blue"></div>
+                            <div>
+                                <div class="metric-label">Network confidence score</div>
+                                <div class="metric-desc">Follow-up survey measuring advisor comfort and confidence with AI tools vs. baseline</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- CTA -->
             <div class="cta-section">
-                <h2>Ready to experiment?</h2>
-                <p>Build something you think would improve your team's workflows and bring it back to the group. Start with the prompt library.</p>
+                <h2>Your challenge this month</h2>
+                <p>Don't wait for the full rollout. Pick one prompt, try it with a real client, and share what happened.</p>
+                <div class="cta-challenge">
+                    <div class="cta-challenge-label">The ask</div>
+                    <p>Use one prompt from the library in a real advising session this month. Then tell the group: What did you try? What happened? Would you use it again?</p>
+                </div>
                 <a href="index.html" class="cta-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="4"/>
                         <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
                     </svg>
-                    Explore the Prompt House
+                    Pick a prompt and start
                 </a>
             </div>
 
