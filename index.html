@@ -4,40 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SBDC AI Prompt House</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* Font Face Declarations */
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-RegularItalic.woff2') format('woff2'); font-weight: 400; font-style: italic; }
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Light.otf') format('opentype'); font-weight: 300; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Regular.otf') format('opentype'); font-weight: 400; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Medium.otf') format('opentype'); font-weight: 500; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Bold.otf') format('opentype'); font-weight: 700; }
+        @font-face { font-family: 'GT America Mono'; src: url('fonts/GT-America-Mono-Regular.otf') format('opentype'); font-weight: 400; }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         :root {
-            --navy: #0f2233;
-            --navy-light: #1a3a5c;
-            --sky: #4a90d9;
-            --sky-light: #7eb3f1;
-            --sky-pale: #e8f2fc;
+            --navy: #0f1c2e;
+            --navy-light: #1a3050;
+            --royal: #1D5AA7;
+            --pool: #8FC5D9;
+            --cream: #f0efeb;
             --white: #ffffff;
-            --gray-10: #f4f4f4;
-            --gray-20: #e0e0e0;
-            --gray-30: #c6c6c6;
-            --gray-50: #8d8d8d;
-            --gray-70: #525252;
-            --gray-90: #262626;
-            --gray-100: #161616;
-            --focus: #0f62fe;
+            --gray-10: #f7f7f5;
+            --gray-20: #e8e7e3;
+            --gray-30: #c6c5c1;
+            --gray-50: #8d8c88;
+            --gray-70: #525150;
+            --gray-90: #262524;
+            --gray-100: #161615;
+            --focus: #1D5AA7;
             --success: #24a148;
+            --sans: 'GT America', -apple-system, Helvetica, sans-serif;
+            --serif: 'Tobias', Georgia, serif;
+            --mono: 'GT America Mono', 'SF Mono', monospace;
         }
         html {
             scroll-behavior: smooth;
         }
         body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--sans);
             color: var(--gray-90);
-            background: var(--white);
+            background: var(--cream);
             line-height: 1.5;
+            font-weight: 300;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -74,7 +86,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
         .menu-btn:hover .menu-line {
-            background: var(--sky-light);
+            background: var(--pool);
         }
         .menu-btn.active .menu-line:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
@@ -168,7 +180,7 @@
         }
         .side-menu-label {
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--gray-50);
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -195,15 +207,15 @@
             margin-bottom: 12px;
         }
         .side-menu-link:hover {
-            background: var(--sky-pale);
-            border-color: var(--sky);
+            background: var(--cream);
+            border-color: var(--royal);
             color: var(--navy);
             transform: translateX(4px);
         }
         .side-menu-link svg {
             width: 20px;
             height: 20px;
-            color: var(--sky);
+            color: var(--royal);
             flex-shrink: 0;
         }
         .side-menu-link:hover svg {
@@ -220,7 +232,7 @@
         .contact-item svg {
             width: 18px;
             height: 18px;
-            color: var(--sky);
+            color: var(--royal);
             flex-shrink: 0;
         }
         .contact-item a {
@@ -229,11 +241,11 @@
             transition: color 0.15s;
         }
         .contact-item a:hover {
-            color: var(--sky);
+            color: var(--royal);
         }
         .side-menu-footer {
             padding: 20px 24px;
-            background: var(--gray-10);
+            background: var(--cream);
             border-top: 1px solid var(--gray-20);
         }
         .side-menu-footer-text {
@@ -245,7 +257,7 @@
         /* Header */
         header {
             background: var(--navy);
-            border-bottom: 3px solid var(--sky);
+            border-bottom: 1px solid var(--royal);
             position: relative;
             z-index: 200;
         }
@@ -287,12 +299,12 @@
             align-items: center;
             gap: 4px;
             padding: 2px 8px;
-            background: var(--sky);
+            background: var(--royal);
             border-radius: 2px;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--white);
-            letter-spacing: 0.03em;
+            letter-spacing: 0.05em;
         }
         .ai-badge svg {
             width: 12px;
@@ -335,7 +347,7 @@
         .policy-header-btn svg {
             width: 16px;
             height: 16px;
-            color: var(--sky-light);
+            color: var(--pool);
         }
         .policy-header-btn-text {
             color: inherit;
@@ -379,7 +391,7 @@
 
         /* Hero Search Section */
         .hero {
-            background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
+            background: var(--navy);
             padding: 80px 2rem 96px;
             position: relative;
             z-index: 2;
@@ -390,19 +402,21 @@
             text-align: center;
         }
         .hero-title {
+            font-family: var(--serif);
             font-size: 3rem;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--white);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
             margin-bottom: 16px;
             line-height: 1.15;
         }
         .hero-title span {
-            color: var(--sky-light);
+            color: var(--pool);
         }
         .hero-desc {
             font-size: 1.125rem;
-            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            color: rgba(255,255,255,0.65);
             margin-bottom: 40px;
             max-width: 560px;
             margin-left: auto;
@@ -467,7 +481,7 @@
             position: absolute;
             right: 16px;
             padding: 5px 10px;
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
             background: rgba(255, 255, 255, 0.1);
@@ -498,7 +512,7 @@
             display: inline-block;
             width: 2px;
             height: 1.2em;
-            background: var(--sky);
+            background: var(--pool);
             margin-left: 1px;
             animation: blink 1s step-end infinite;
         }
@@ -507,9 +521,9 @@
             51%, 100% { opacity: 0; }
         }
 
-        /* Filter Tabs - Carbon Style */
+        /* Filter Tabs */
         .filters-section {
-            background: var(--gray-10);
+            background: var(--white);
             border-bottom: 1px solid var(--gray-20);
             position: sticky;
             top: 0;
@@ -541,8 +555,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: var(--sky);
+            height: 2px;
+            background: var(--royal);
             transform: scaleX(0);
             transition: transform 0.15s;
         }
@@ -571,7 +585,7 @@
             border-radius: 10px;
         }
         .filter-tab.active .filter-count {
-            background: var(--sky);
+            background: var(--royal);
             color: var(--white);
         }
 
@@ -590,11 +604,11 @@
             justify-content: space-between;
         }
         .prompts-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray-70);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gray-50);
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.08em;
         }
         .prompts-count {
             font-size: 14px;
@@ -613,7 +627,7 @@
             background: var(--white);
             padding: 24px;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: all 0.2s;
             display: flex;
             flex-direction: column;
             min-height: 180px;
@@ -625,15 +639,15 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 3px;
+            width: 2px;
             height: 100%;
-            background: var(--sky);
+            background: var(--royal);
             transform: scaleY(0);
             transform-origin: top;
             transition: transform 0.2s;
         }
         .prompt-card:hover {
-            background: var(--sky-pale);
+            background: var(--cream);
         }
         .prompt-card:hover::before {
             transform: scaleY(1);
@@ -645,28 +659,30 @@
             margin-bottom: 12px;
         }
         .prompt-category {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--sky);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--royal);
             text-transform: uppercase;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.06em;
         }
         .prompt-number {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: 12px;
             color: var(--gray-30);
         }
         .prompt-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--gray-100);
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--navy);
             margin-bottom: 8px;
             line-height: 1.3;
         }
         .prompt-desc {
             font-size: 14px;
+            font-weight: 300;
             color: var(--gray-70);
-            line-height: 1.5;
+            line-height: 1.6;
             flex-grow: 1;
         }
         .prompt-card-footer {
@@ -678,7 +694,7 @@
             border-top: 1px solid var(--gray-20);
         }
         .prompt-card:hover .prompt-card-footer {
-            border-top-color: rgba(74, 144, 217, 0.3);
+            border-top-color: rgba(29, 90, 167, 0.2);
         }
         .prompt-tags {
             display: flex;
@@ -702,7 +718,7 @@
             transition: all 0.15s;
         }
         .prompt-card:hover .prompt-arrow {
-            color: var(--sky);
+            color: var(--royal);
             transform: translateX(4px);
         }
 
@@ -730,7 +746,7 @@
             color: var(--gray-50);
         }
 
-        /* Modal - Carbon Style */
+        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -751,7 +767,7 @@
             width: 100%;
             max-width: 640px;
             height: 100%;
-            background: var(--gray-10);
+            background: var(--cream);
             transform: translateX(100%);
             transition: transform 0.25s cubic-bezier(0.2, 0, 0.38, 0.9);
             display: flex;
@@ -774,15 +790,16 @@
             gap: 4px;
         }
         .modal-category {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--sky-light);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--pool);
             text-transform: uppercase;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.06em;
         }
         .modal-title {
+            font-family: var(--serif);
             font-size: 20px;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--white);
         }
         .modal-close {
@@ -814,12 +831,12 @@
             border-bottom: 1px solid var(--gray-20);
         }
         .prompt-box {
-            background: var(--gray-100);
-            border-left: 3px solid var(--sky);
+            background: var(--navy);
+            border-left: 2px solid var(--royal);
             padding: 20px;
         }
         .prompt-text {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: var(--mono);
             font-size: 13px;
             line-height: 1.7;
             color: var(--gray-10);
@@ -827,8 +844,8 @@
             word-break: break-word;
         }
         .prompt-text .placeholder {
-            background: rgba(74, 144, 217, 0.3);
-            color: var(--sky-light);
+            background: rgba(29, 90, 167, 0.3);
+            color: var(--pool);
             padding: 1px 4px;
             border-radius: 2px;
         }
@@ -850,7 +867,7 @@
         .modal-tip svg {
             width: 16px;
             height: 16px;
-            color: var(--sky);
+            color: var(--royal);
         }
         .btn-copy {
             display: inline-flex;
@@ -939,8 +956,9 @@
             margin-bottom: 8px;
         }
         .policy-modal-title {
+            font-family: var(--serif);
             font-size: 20px;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--white);
             line-height: 1.3;
         }
@@ -1103,7 +1121,7 @@
             color: var(--gray-90);
         }
         .policy-modal-footer {
-            background: var(--gray-10);
+            background: var(--cream);
             padding: 16px 24px;
             border-top: 1px solid var(--gray-20);
         }
@@ -1117,7 +1135,7 @@
         .policy-contact svg {
             width: 16px;
             height: 16px;
-            color: var(--sky);
+            color: var(--royal);
             flex-shrink: 0;
         }
         .policy-contact a {
@@ -1126,7 +1144,7 @@
             text-decoration: none;
         }
         .policy-contact a:hover {
-            color: var(--sky);
+            color: var(--royal);
             text-decoration: underline;
         }
 
@@ -1140,7 +1158,7 @@
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            font-family: 'IBM Plex Sans', sans-serif;
+            font-family: var(--sans);
             animation: cardSlideIn 0.2s ease-out;
         }
         @keyframes cardSlideIn {
@@ -1176,7 +1194,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--sky-light);
+            color: var(--pool);
             margin-bottom: 12px;
         }
         .context-card-person {
@@ -1187,7 +1205,7 @@
         .context-card-avatar {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, var(--sky) 0%, var(--sky-light) 100%);
+            background: linear-gradient(135deg, var(--royal) 0%, var(--pool) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1212,7 +1230,7 @@
         }
         .context-card-email {
             font-size: 13px;
-            color: var(--sky-light);
+            color: var(--pool);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -1252,7 +1270,7 @@
 
         /* Footer */
         footer {
-            background: var(--gray-100);
+            background: var(--navy);
             padding: 32px 2rem;
             position: relative;
             z-index: 5;
@@ -1526,7 +1544,7 @@
     <main class="prompts-section">
         <div class="prompts-header">
             <span class="prompts-title">Prompt Library</span>
-            <span class="prompts-count" id="promptsCount">49 prompts</span>
+            <span class="prompts-count" id="promptsCount">87 prompts</span>
         </div>
         <div class="prompts-grid" id="promptsGrid"></div>
     </main>
