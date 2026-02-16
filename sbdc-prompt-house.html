@@ -1390,6 +1390,19 @@
                 <!-- Resources Section -->
                 <div class="side-menu-section">
                     <div class="side-menu-label">Resources</div>
+                    <a href="survey.html" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            <path d="M9 12h6m-6 4h6"/>
+                        </svg>
+                        SBDC AI Survey Results
+                    </a>
+                    <a href="roadmap.html" class="side-menu-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        AI Pillar Roadmap
+                    </a>
                     <a href="https://youtube.com/@norcalsbdc" target="_blank" rel="noopener" class="side-menu-link">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
@@ -1501,19 +1514,28 @@
     <nav class="filters-section">
         <div class="filters-inner">
             <button class="filter-tab active" data-filter="all">
-                All Prompts<span class="filter-count">49</span>
+                All Prompts<span class="filter-count">87</span>
             </button>
             <button class="filter-tab" data-filter="marketing">
-                Marketing<span class="filter-count">34</span>
+                Marketing<span class="filter-count">35</span>
             </button>
             <button class="filter-tab" data-filter="advising">
-                Client Advising<span class="filter-count">6</span>
+                Client Advising<span class="filter-count">12</span>
+            </button>
+            <button class="filter-tab" data-filter="startup">
+                Startup & Pre-Venture<span class="filter-count">2</span>
+            </button>
+            <button class="filter-tab" data-filter="operations">
+                Operations & HR<span class="filter-count">21</span>
             </button>
             <button class="filter-tab" data-filter="admin">
                 Admin & Reporting<span class="filter-count">5</span>
             </button>
             <button class="filter-tab" data-filter="training">
                 Training<span class="filter-count">4</span>
+            </button>
+            <button class="filter-tab" data-filter="government">
+                Government Contracting<span class="filter-count">8</span>
             </button>
         </div>
     </nav>
@@ -1522,7 +1544,7 @@
     <main class="prompts-section">
         <div class="prompts-header">
             <span class="prompts-title">Prompt Library</span>
-            <span class="prompts-count" id="promptsCount">49 prompts</span>
+            <span class="prompts-count" id="promptsCount">87 prompts</span>
         </div>
         <div class="prompts-grid" id="promptsGrid"></div>
     </main>
@@ -3500,6 +3522,2056 @@ I want to move beyond basic segmentation to true 1:1 personalization that treats
 - Privacy requirements: [REGULATORY AND POLICY CONSTRAINTS]
 
 Please provide a hyper-personalization framework including data integration strategy, personalization rule engine design, AI/ML optimization opportunities, privacy-compliant implementation, and measurement framework.`
+            },
+            {
+                id: 50,
+                title: "New Client Needs Assessment",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Structured intake questions that surface what a client actually needs vs. what they say they need",
+                tags: ["intake", "discovery", "client management"],
+                prompt: `You are an experienced SBDC business advisor conducting an initial needs assessment with a new client. Your goal is to go beyond what the client says they need and uncover what they actually need.
+
+# CLIENT INFORMATION
+- Name: [CLIENT NAME]
+- Business name: [BUSINESS NAME or "Pre-venture / idea stage"]
+- Industry: [INDUSTRY / BUSINESS TYPE]
+- How they described their need: [WHAT THE CLIENT SAID THEY WANT HELP WITH — use their own words]
+- Business stage: [Idea / Startup / Established / Scaling / Struggling / Transitioning]
+- Time in business: [YEARS/MONTHS, or N/A if pre-venture]
+
+# WHAT I ALREADY KNOW
+[PASTE ANY NOTES, INTAKE FORM ANSWERS, OR PRIOR CONTEXT YOU HAVE — or write "First contact, no prior info"]
+
+Based on this, please provide:
+
+1. **Likely underlying needs** — What are 3-4 deeper issues this client probably has based on their stated need and business stage? (e.g., someone asking for "help with marketing" often actually needs positioning clarity or revenue model work first)
+
+2. **Recommended discovery questions** — Give me 8-10 specific questions to ask in our first session that will help me understand the full picture. Prioritize questions that reveal financial health, decision-making clarity, and immediate risks.
+
+3. **Red flags to watch for** — What warning signs should I listen for that indicate the client may need to be redirected before we work on what they asked about?
+
+4. **Suggested session agenda** — A 60-minute first session outline that balances listening, discovery, and giving the client something useful to walk away with.
+
+5. **Resource recommendations** — Based on what I know so far, which SBDC resources, workshops, or referral partners might be relevant? (Include SBA resources, SCORE, local programs if applicable.)
+
+6. **Advising path options** — Suggest 2-3 possible multi-session engagement paths depending on what we discover in the first meeting.
+
+Keep your tone practical. I'm a working advisor — give me things I can use in the room.`
+            },
+            {
+                id: 51,
+                title: "SBA Loan Package Prep",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Help clients build a complete, lender-ready SBA loan application package",
+                tags: ["financing", "SBA", "lending"],
+                prompt: `You are an experienced SBDC advisor who specializes in helping small business clients prepare SBA loan packages. You understand what lenders look for and how to present a client's case as strongly and honestly as possible.
+
+# CLIENT INFORMATION
+- Business name: [BUSINESS NAME]
+- Industry: [INDUSTRY / BUSINESS TYPE]
+- Years in business: [NUMBER — or "startup" if pre-revenue]
+- Loan purpose: [WHAT THE FUNDS WILL BE USED FOR — equipment, working capital, real estate, acquisition, etc.]
+- Approximate amount requested: [DOLLAR AMOUNT]
+- Current annual revenue: [AMOUNT or "pre-revenue"]
+- Estimated credit score range: [EXCELLENT / GOOD / FAIR / NEEDS WORK / UNKNOWN]
+- Collateral available: [DESCRIBE ANY ASSETS — property, equipment, inventory, or "limited/none"]
+- Existing debt: [DESCRIBE CURRENT LOANS OR OBLIGATIONS, if any]
+
+# ADDITIONAL CONTEXT
+[ANYTHING ELSE RELEVANT — prior loan denials, business partners, franchise, special circumstances]
+
+Please provide:
+
+1. **Loan package checklist** — A complete list of documents this client needs to assemble, organized by category (personal, business, financial, legal). Flag which items are critical vs. supporting.
+
+2. **Narrative guidance** — Help me coach the client on writing the business description and loan purpose narrative. What should they emphasize? What should they avoid? Give me a suggested outline they can follow.
+
+3. **Financial preparation** — What financial statements need to be in order? What ratios will the lender likely examine? Flag any areas where this client's profile might raise questions and suggest how to address them proactively.
+
+4. **Strengths to highlight** — Based on what I've shared, what are the strongest parts of this application? How should we frame them?
+
+5. **Gaps and risks** — Be honest: where is this application weak? What should we shore up before submitting? Are there deal-breakers we need to address?
+
+6. **Timeline and next steps** — Give me a realistic 2-4 week preparation timeline with specific milestones so the client knows what to do and when.
+
+7. **Lender matching guidance** — What type of SBA loan product fits this situation best (7(a), 504, microloan, etc.)? Any suggestions on the type of lending institution to approach (community bank, CDFI, credit union)?
+
+Be direct. If this client isn't ready, say so and tell me what needs to happen first.`
+            },
+            {
+                id: 52,
+                title: "Startup Cost Estimator",
+                category: "startup",
+                categoryLabel: "Startup & Pre-Venture",
+                description: "Build a realistic pre-launch budget with industry-aware cost categories",
+                tags: ["startup", "financial", "planning"],
+                prompt: `You are a practical SBDC business advisor helping a prospective entrepreneur build a realistic startup cost estimate. Your job is to make sure they account for what they don't know they'll need — not just the obvious expenses.
+
+# BUSINESS CONCEPT
+- Business type: [DESCRIBE THE BUSINESS — e.g., "mobile dog grooming," "coffee shop," "freelance bookkeeping," "e-commerce clothing brand"]
+- Location: [CITY/STATE — or "home-based" / "online only"]
+- Physical space needed: [YES — retail/office/warehouse / NO — home-based or mobile]
+- Number of employees at launch: [NUMBER, or "just me"]
+- Target launch timeframe: [WHEN THEY WANT TO OPEN]
+- Funding source: [PERSONAL SAVINGS / LOAN / INVESTORS / COMBINATION / NOT SURE]
+
+# WHAT THEY'VE ALREADY IDENTIFIED
+[LIST ANY COSTS THE CLIENT HAS ALREADY THOUGHT OF — or "hasn't started estimating yet"]
+
+Please provide:
+
+1. **Complete startup cost worksheet** — Organized into these categories:
+   - One-time costs (before opening)
+   - Monthly recurring costs (first 6 months)
+   - Often-forgotten costs (the things first-timers miss)
+
+   For each line item, provide a realistic cost range based on this business type and location. Use low/mid/high estimates where helpful.
+
+2. **Cash reserve recommendation** — How many months of operating expenses should they have in reserve before launch? Why?
+
+3. **Where to save vs. where to spend** — Identify 3-4 areas where they can bootstrap or go lean, and 3-4 areas where cutting corners will cost them more later.
+
+4. **DIY vs. hire decisions** — For common startup tasks (logo, website, legal setup, bookkeeping), advise which ones are safe to DIY and which ones they should pay for.
+
+5. **Funding gap analysis** — Based on the total estimated costs, what's the likely gap between what they have and what they need? Suggest realistic options to close the gap.
+
+6. **Pre-launch spending timeline** — A month-by-month spending sequence so they know when each cost hits and can plan cash flow.
+
+Use plain language. This person may have never built a budget before.`
+            },
+            {
+                id: 53,
+                title: "Entity Selection Guide",
+                category: "startup",
+                categoryLabel: "Startup & Pre-Venture",
+                description: "Walk through LLC vs. S-Corp vs. sole proprietorship based on the client's real situation",
+                tags: ["startup", "legal", "entity structure"],
+                prompt: `You are an experienced SBDC advisor helping a client understand which business entity structure makes sense for their situation. You are not providing legal or tax advice — you're helping them ask the right questions and understand the trade-offs so they can have a more productive conversation with an attorney or CPA.
+
+# CLIENT SITUATION
+- Business concept: [DESCRIBE THE BUSINESS]
+- Number of owners: [1 / 2+ — describe ownership split if multiple]
+- Expected first-year revenue: [ROUGH ESTIMATE or "not sure"]
+- Personal liability concerns: [HIGH — physical products, clients on premises, etc. / MODERATE / LOW — consulting, online services, etc.]
+- Plans to seek funding: [YES — loans or investors / NO / MAYBE LATER]
+- State of formation: [STATE]
+- Currently operating as: [NOTHING YET / SOLE PROPRIETOR / INFORMAL PARTNERSHIP / ALREADY FORMED AN ENTITY]
+
+# ADDITIONAL CONTEXT
+[ANY OTHER RELEVANT DETAILS — spouse involved, real estate, employees planned, side hustle vs. full-time, etc.]
+
+Please provide:
+
+1. **Entity options explained** — In plain language, explain the realistic options for this client. For most small businesses, this means:
+   - Sole Proprietorship
+   - Single-Member LLC
+   - Multi-Member LLC
+   - S-Corporation (or LLC taxed as S-Corp)
+   - C-Corporation (only if relevant to their situation)
+
+   For each, explain what it is, what it protects, and what it costs — in 2-3 sentences, not paragraphs.
+
+2. **Side-by-side comparison** — Create a simple comparison table covering: liability protection, tax treatment, setup cost, ongoing compliance, and ease of formation for the options that are realistic for this client.
+
+3. **My recommendation and why** — Based on what you know, which 1-2 options make the most sense for this person's situation? Explain the reasoning simply.
+
+4. **Common mistakes to avoid** — What do people in this situation typically get wrong? (e.g., forming an LLC but not getting an operating agreement, choosing S-Corp too early, not separating finances)
+
+5. **Action steps** — A clear, numbered list of what to do next — including what they can do themselves and where they need professional help (attorney, CPA).
+
+6. **Questions to ask their CPA/attorney** — Give them 5-6 specific questions to bring to a professional so the meeting is productive.
+
+Important: Remind the client that this is educational guidance, not legal or tax advice, and that they should consult a licensed professional before making a final decision.`
+            },
+            {
+                id: 54,
+                title: "Pricing Strategy Workshop",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Help clients move beyond guessing to a pricing strategy grounded in costs, value, and market reality",
+                tags: ["pricing", "strategy", "financial"],
+                prompt: `You are an SBDC advisor who is very good at helping small business owners think clearly about pricing. Most of your clients are either guessing, copying competitors, or undercharging. Your goal is to help them arrive at a pricing approach they can explain and defend.
+
+# CLIENT INFORMATION
+- Business: [BUSINESS NAME] — [DESCRIBE WHAT THEY SELL — products, services, or both]
+- Industry: [INDUSTRY / SECTOR]
+- Target customer: [WHO BUYS FROM THEM — consumer, small business, enterprise, etc.]
+- Current pricing approach: [HOW THEY SET PRICES NOW — guessing, cost-plus, matching competitors, "what feels right," etc.]
+- Current prices: [LIST KEY PRODUCTS/SERVICES AND THEIR PRICES — or "hasn't set prices yet"]
+- Known costs: [LIST WHAT THEY KNOW ABOUT THEIR COSTS — materials, labor, overhead — or "not sure"]
+- Competitive landscape: [WHO ARE THEIR MAIN COMPETITORS AND ROUGHLY WHAT DO THEY CHARGE?]
+- Pain point: [WHAT PROMPTED THIS CONVERSATION — losing deals on price? not profitable? launching something new? no idea where to start?]
+
+Please provide:
+
+1. **Pricing approach assessment** — Based on this business type, which pricing methodology makes the most sense and why? Evaluate:
+   - Cost-plus pricing (margin on top of costs)
+   - Value-based pricing (price based on perceived value to customer)
+   - Competitive pricing (based on market rates)
+   - Tiered/packaged pricing (good-better-best)
+
+   Recommend the best primary approach for this specific business and explain the reasoning.
+
+2. **Cost foundation** — Help me walk the client through identifying their true costs. What questions should I ask? What costs do business owners in this industry typically forget?
+
+3. **Pricing math** — Using the information provided, sketch out a rough pricing model. Show the client what their margins actually look like and where they might be leaving money on the table.
+
+4. **Competitive positioning** — Based on their market, are they priced correctly relative to the value they deliver? Should they be positioned as budget, mid-market, or premium — and what would need to change to support that positioning?
+
+5. **Price increase playbook** — If they need to raise prices, give me a practical script and timeline for how to do it without losing customers. Include what to say, how much notice to give, and how to handle pushback.
+
+6. **Pricing experiments** — Suggest 2-3 low-risk pricing tests they could run in the next 30 days to learn what their market will actually bear.
+
+Be practical and specific. Avoid theory — give them numbers they can work with.`
+            },
+            {
+                id: 55,
+                title: "Google Business Profile Optimizer",
+                category: "marketing",
+                categoryLabel: "Marketing",
+                description: "Audit and improve a client's Google Business Profile for local search visibility",
+                tags: ["local SEO", "Google", "digital presence"],
+                prompt: `You are a practical digital marketing advisor working with SBDC clients. Most of your clients are local small businesses who need to show up when people search for their services nearby. Google Business Profile is usually the highest-impact, lowest-cost thing they can do — but most profiles are incomplete or neglected.
+
+# CLIENT INFORMATION
+- Business name: [BUSINESS NAME]
+- Business type: [WHAT THEY DO — e.g., "plumber," "bakery," "tax preparer," "yoga studio"]
+- Location: [CITY, STATE]
+- Service area: [LOCAL ONLY / MULTI-CITY / STATEWIDE — describe if relevant]
+- Physical location: [YES — storefront or office / NO — service area business, home-based, or online]
+- Current GBP status: [HAS A PROFILE / NOT SURE / DOESN'T HAVE ONE YET]
+- Current reviews: [APPROXIMATE NUMBER AND AVERAGE RATING — or "not sure"]
+- Website: [HAS ONE / DOESN'T HAVE ONE / HAS ONE BUT IT'S OUTDATED]
+
+# WHAT THEY'VE ALREADY DONE
+[DESCRIBE ANYTHING THEY'VE DONE WITH THEIR PROFILE — or "nothing yet" / "set it up years ago and never touched it"]
+
+Please provide:
+
+1. **Profile completeness audit** — Walk through every section of a Google Business Profile and tell me what this client should have filled out. For each section, give a specific recommendation (not generic advice). Include:
+   - Business category (primary + secondary recommendations)
+   - Business description (write a draft for them, ~750 characters)
+   - Services/products listing
+   - Attributes to enable
+   - Hours and special hours
+   - Photos (what types, how many, what to show)
+   - Q&A section strategy
+
+2. **Review strategy** — Give the client a simple, repeatable system for getting more Google reviews. Include:
+   - When to ask (timing matters)
+   - How to ask (specific scripts — in person, via text, via email)
+   - How to respond to positive reviews (with an example)
+   - How to respond to negative reviews (with an example)
+   - What NOT to do (Google policy violations)
+
+3. **Google Posts plan** — Explain what Google Posts are and give them a 4-week posting schedule with specific post ideas relevant to their business type.
+
+4. **Local SEO quick wins** — Beyond GBP, what are 3-5 things this client can do in the next 2 weeks to improve local search visibility? (Think directories, citations, website basics.)
+
+5. **Competitor comparison** — Tell me how to do a quick 10-minute competitive audit: search for their service in their area, see what competitors' profiles look like, and identify gaps.
+
+6. **Monthly maintenance checklist** — A 15-minute monthly routine to keep the profile active and performing.
+
+Keep recommendations free or very low cost. These are small business owners, not marketing agencies.`
+            },
+            {
+                id: 56,
+                title: "First Employee Checklist",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Everything a small business owner needs to know and do before making their first hire",
+                tags: ["hiring", "HR", "compliance", "employees"],
+                prompt: `You are an SBDC advisor helping a small business owner prepare to hire their first employee. This is one of the most intimidating steps for a small business — there's real legal compliance involved, and most owners don't know what they don't know.
+
+# CLIENT SITUATION
+- Business name: [BUSINESS NAME]
+- State: [STATE — this matters for employment law]
+- Business entity type: [LLC / SOLE PROP / S-CORP / ETC.]
+- Type of hire: [FULL-TIME / PART-TIME / SEASONAL]
+- Role they're hiring for: [JOB TITLE AND BRIEF DESCRIPTION]
+- Why they're hiring: [OVERWHELMED / GROWING / NEED SPECIFIC SKILLS / REPLACING THEMSELVES IN A FUNCTION]
+- Timeline: [WHEN THEY WANT SOMEONE STARTED]
+- Budget for this hire: [WHAT THEY CAN AFFORD — or "not sure"]
+- Current setup: [JUST THE OWNER / HAS CONTRACTORS / HAS UNPAID HELP (family, interns)]
+
+# ADDITIONAL CONTEXT
+[ANY OTHER RELEVANT DETAILS — paying family members, past experience managing people, industry-specific concerns]
+
+Please provide:
+
+1. **Before-you-hire compliance checklist** — A numbered, step-by-step list of everything they need to set up BEFORE they can legally hire someone. Include:
+   - Federal requirements (EIN, Form W-4, I-9, etc.)
+   - State requirements (state tax registration, unemployment insurance, workers' comp — flag that these vary by state)
+   - Required postings and notices
+   - Payroll setup
+
+   For each item, briefly explain what it is and where to get it. Link to free resources where possible.
+
+2. **Employee vs. contractor decision** — Based on what they've described, help me determine: should this actually be an employee or could it be a contractor? Explain the IRS guidelines simply and the risks of misclassification.
+
+3. **Compensation guidance** — For this role in this location, what's a realistic pay range? How should they think about:
+   - Hourly vs. salary
+   - Total cost of an employee beyond wages (taxes, insurance, etc. — the "true cost" multiplier)
+   - Benefits expectations for this type of role
+
+4. **Job description template** — Draft a simple, effective job description for this specific role that they can post. Include the key sections: role summary, responsibilities, qualifications, compensation range, and how to apply.
+
+5. **Hiring process** — A practical, small-business-appropriate hiring process:
+   - Where to post (free and low-cost options)
+   - How to screen (what to look for in applications)
+   - Interview questions (5-7 specific to this role, plus 2-3 they should never ask for legal reasons)
+   - How to make an offer
+
+6. **Day-one and first-week setup** — What needs to happen on the employee's first day and first week? Include paperwork, training basics, and how to set expectations.
+
+7. **Ongoing obligations** — What regular employer responsibilities do they now have? (Payroll taxes, record-keeping, posting updates, etc.)
+
+Be thorough but not overwhelming. Prioritize what they need to do FIRST vs. what can wait a few weeks.`
+            },
+            {
+                id: 57,
+                title: "Employee Handbook Builder",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Create a bare-minimum employee handbook for a small business with fewer than 15 employees",
+                tags: ["HR", "handbook", "policies", "compliance"],
+                prompt: `You are an SBDC advisor helping a small business owner create their first employee handbook. The goal is a practical, legally sound document that covers what they actually need — not a 200-page corporate manual. The handbook should protect the business and set clear expectations for employees.
+
+# BUSINESS INFORMATION
+- Business name: [BUSINESS NAME]
+- State: [STATE — employment law varies significantly by state]
+- Number of current employees: [NUMBER]
+- Industry: [INDUSTRY / BUSINESS TYPE]
+- Work environment: [ON-SITE / REMOTE / HYBRID / FIELD-BASED]
+- Current schedule: [STANDARD HOURS — e.g., "M-F 9-5" / "Varies by role" / "Shifts"]
+- Existing policies: [DO THEY HAVE ANY WRITTEN POLICIES ALREADY? If so, which ones?]
+- Specific concerns: [ANY ISSUES THAT PROMPTED THIS? — e.g., employee disputes, inconsistent enforcement, growing team]
+
+# BENEFITS OFFERED (if any)
+[LIST WHAT THEY CURRENTLY OFFER — PTO, health insurance, sick leave, holidays, retirement, etc. — or "nothing formal yet"]
+
+Please provide:
+
+1. **Handbook outline** — A recommended table of contents for a small business handbook. Organize into sections and flag which items are:
+   - **Required** (legally mandated in their state)
+   - **Strongly recommended** (protects the business)
+   - **Optional but valuable** (good practice, can add later)
+
+2. **Core policy drafts** — Write ready-to-use policy language for these essential sections:
+   - At-will employment statement
+   - Equal opportunity / anti-discrimination
+   - Anti-harassment policy and reporting procedure
+   - Attendance and punctuality
+   - PTO / sick leave / holidays (based on what they offer)
+   - Code of conduct and professional standards
+   - Social media and technology use
+   - Disciplinary process
+   - Separation / termination procedures
+
+   Write these in plain, professional language — not legalese. Each policy should be 1-2 paragraphs max.
+
+3. **State-specific requirements** — Flag any policies that are specifically required in their state (meal/rest breaks, sick leave mandates, final paycheck timing, etc.) and provide the relevant policy language.
+
+4. **Acknowledgment page** — Draft the employee acknowledgment and signature page they'll need every employee to sign.
+
+5. **Distribution and rollout plan** — How should they introduce the handbook to existing employees? What should the meeting look like? How do they handle employees who have questions or pushback?
+
+6. **Maintenance guidance** — When should they update the handbook? What triggers a revision? Do they need to have employees re-sign?
+
+Important: Note that this handbook is a starting point and should be reviewed by an employment attorney in their state before distribution. Include this disclaimer in the draft.`
+            },
+            {
+                id: 58,
+                title: "Job Description Writer",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Turn a rough idea of a role into a clear, postable job description for any position",
+                tags: ["hiring", "job posting", "recruiting"],
+                prompt: `You are an SBDC advisor helping a small business owner write an effective job description. Most small business owners either write too little (a vague paragraph) or copy corporate-style postings that don't fit their business. Your job is to help them create something clear, honest, and attractive to the right candidates.
+
+# ROLE INFORMATION
+- Job title: [WHAT THEY'RE CALLING THE ROLE]
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Location: [CITY, STATE / REMOTE / HYBRID]
+- Employment type: [FULL-TIME / PART-TIME / SEASONAL / CONTRACT]
+- Reports to: [WHO THIS PERSON REPORTS TO — often "the owner"]
+- Compensation range: [WHAT THEY CAN PAY — hourly rate or salary range, or "not sure yet"]
+
+# WHAT THIS PERSON WILL DO
+[IN THE OWNER'S OWN WORDS — describe what they need this person to handle day-to-day. Can be rough, messy, bullet points, whatever they've got.]
+
+# MUST-HAVES vs. NICE-TO-HAVES
+- Must-have skills/experience: [WHAT THEY ABSOLUTELY NEED]
+- Nice-to-have: [WHAT WOULD BE A BONUS BUT ISN'T REQUIRED]
+- Any required certifications or licenses: [LIST OR "none"]
+
+# ABOUT THE WORK ENVIRONMENT
+[ANYTHING RELEVANT — small team, fast-paced, physical labor, customer-facing, independent work, etc.]
+
+Please provide:
+
+1. **Polished job description** — A complete, ready-to-post job description with these sections:
+   - **Job title** (suggest a better title if theirs is unclear or non-standard)
+   - **About the company** (2-3 sentences — help them sell the opportunity)
+   - **Role summary** (1 paragraph — what this person does and why it matters)
+   - **Key responsibilities** (6-10 bullet points, specific and action-oriented)
+   - **Qualifications** — clearly separated into required and preferred
+   - **Compensation & benefits** (what to include even if benefits are minimal)
+   - **How to apply** (simple instructions)
+
+2. **Title recommendations** — If their title is too vague ("helper"), too inflated ("VP of Operations" for a 3-person shop), or non-standard, suggest 2-3 alternative titles that will attract the right candidates and perform better in job search results.
+
+3. **Red flag review** — Flag anything in their description that could create legal issues (discriminatory language, requirements that aren't actually necessary, age/gender implications). Suggest compliant alternatives.
+
+4. **Where to post** — Recommend 5-7 places to post this specific role, prioritizing free or low-cost options. Consider the industry, location, and role type. Include both general platforms and any industry-specific job boards.
+
+5. **Screening criteria** — Based on this role, suggest 3-4 quick screening questions they can include in the application to filter candidates before interviews.
+
+Write the job description in a tone that feels authentic for a small business — professional but not corporate. Candidates should get a real sense of what it's like to work there.`
+            },
+            {
+                id: 59,
+                title: "Contractor vs. Employee Decision Tool",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Determine whether a role should be classified as employee or independent contractor using IRS guidelines",
+                tags: ["compliance", "contractors", "classification", "IRS"],
+                prompt: `You are an SBDC advisor who helps small business owners correctly classify workers as employees or independent contractors. Misclassification is one of the most common and costly compliance mistakes small businesses make — it can result in back taxes, penalties, and legal liability. Your job is to walk through the analysis clearly and honestly.
+
+# THE WORKING RELATIONSHIP
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- State: [STATE]
+- Worker's role: [WHAT THIS PERSON DOES OR WILL DO]
+- How they're currently classified: [EMPLOYEE / CONTRACTOR / HAVEN'T DECIDED YET / "been paying them as a contractor but not sure if that's right"]
+
+# HOW THE WORK IS PERFORMED
+Answer as honestly as possible:
+- Who controls WHEN the work is done? [BUSINESS SETS SCHEDULE / WORKER CHOOSES THEIR OWN HOURS]
+- Who controls WHERE the work is done? [MUST WORK AT BUSINESS LOCATION / WORKER CHOOSES]
+- Who controls HOW the work is done? [BUSINESS DIRECTS METHODS AND PROCESSES / WORKER USES OWN METHODS]
+- Does the business provide tools/equipment? [YES / NO / SOME OF EACH]
+- Is this an ongoing relationship or project-based? [ONGOING, INDEFINITE / SPECIFIC PROJECT WITH END DATE]
+- Does the worker serve other clients? [YES / NO / NOT SURE]
+- Can the worker hire helpers or subcontract? [YES / NO]
+- How is the worker paid? [HOURLY / SALARY / PER PROJECT / COMMISSION]
+- Does the worker have their own business entity or insurance? [YES / NO / NOT SURE]
+- Is this type of work a core part of the business? [YES — it's central to what we do / NO — it's a support function]
+
+# ADDITIONAL CONTEXT
+[ANYTHING ELSE — have they been doing this for a while? Is this a common arrangement in their industry? Any concerns?]
+
+Please provide:
+
+1. **Classification analysis** — Walk through the IRS three-factor test (Behavioral Control, Financial Control, Relationship Type) using their specific answers. For each factor, explain:
+   - What the factor measures
+   - How their situation maps to it
+   - Whether it points toward employee or contractor
+
+2. **Assessment** — Based on the analysis, what is the likely correct classification? Be direct. If it's clearly one or the other, say so. If it's a gray area, explain why and what the risk factors are.
+
+3. **Misclassification risk** — If they've been classifying incorrectly:
+   - What are the specific financial risks? (Back taxes, penalties, interest)
+   - What agencies could take action? (IRS, state labor department, workers' comp board)
+   - What's the exposure in dollars, roughly?
+
+4. **How to fix it** — If reclassification is needed:
+   - Steps to transition from contractor to employee (or vice versa)
+   - IRS Voluntary Classification Settlement Program — what it is and whether it applies
+   - How to handle the conversation with the worker
+   - Timeline for getting compliant
+
+5. **If contractor is correct** — What documentation do they need?
+   - Independent contractor agreement essentials
+   - W-9 and 1099 requirements
+   - What NOT to do that could undermine the contractor classification
+
+6. **Industry context** — Are there any industry-specific guidelines, common practices, or recent enforcement trends they should know about?
+
+Be straightforward. If they're at risk, don't soften it. Better to hear it from their advisor than from the IRS.`
+            },
+            {
+                id: 60,
+                title: "Performance Review Framework",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Simple, practical performance review structure for small business owners who have never managed a review process",
+                tags: ["management", "performance", "reviews", "HR"],
+                prompt: `You are an SBDC advisor helping a small business owner set up their first performance review process. This person has probably never formally evaluated an employee before. They need something simple, consistent, and useful — not an HR department's 15-page form.
+
+# BUSINESS CONTEXT
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Number of employees: [NUMBER]
+- Roles on the team: [LIST THE ROLES — e.g., "2 technicians, 1 front desk, 1 part-time bookkeeper"]
+- How they give feedback currently: [INFORMAL / BARELY AT ALL / OCCASIONAL CONVERSATIONS / "I wait until there's a problem"]
+- Any current performance issues: [YES — describe briefly / NO / "nothing major but want to set expectations"]
+- Review frequency goal: [ANNUAL / SEMI-ANNUAL / QUARTERLY / NOT SURE]
+
+# WHAT THEY WANT TO ACCOMPLISH
+[WHY ARE THEY DOING THIS NOW? — e.g., "team is growing," "want to tie raises to performance," "need documentation," "one employee is struggling and I need a paper trail"]
+
+Please provide:
+
+1. **Review template** — Create a one-page performance review form that includes:
+   - Employee information (name, role, review period)
+   - 5-7 core performance areas rated on a simple scale (suggest the right scale — not too granular)
+   - Space for specific examples under each area
+   - Goals from last period (or initial goals if first review)
+   - Goals for next period
+   - Employee self-assessment section (3-4 questions)
+   - Overall rating and summary
+   - Signatures
+
+   Make the areas relevant to their specific business and team roles, not generic corporate competencies.
+
+2. **Conversation guide** — A step-by-step script for how to actually conduct the review meeting:
+   - How to open (set the tone)
+   - How to deliver positive feedback (with an example)
+   - How to deliver constructive feedback (with an example)
+   - How to handle defensive reactions
+   - How to set goals collaboratively
+   - How to close and follow up
+   - Approximate time to allow
+
+3. **Self-assessment questions** — 5-6 questions to send employees before the review so they come prepared. Write these in plain language, not corporate HR speak.
+
+4. **Rating calibration** — Help the owner understand how to rate consistently. What does "meets expectations" actually look like vs. "exceeds" or "needs improvement"? Give examples relevant to their business.
+
+5. **Goal-setting framework** — Show them how to set 2-3 specific, measurable goals per employee for the next review period. Give examples for the roles they listed.
+
+6. **Documentation and legal protection** — What to document, where to keep it, how long to retain it, and how performance reviews connect to disciplinary action or termination decisions. What to NEVER put in a review.
+
+7. **Rollout plan** — How to introduce reviews to a team that's never had them. Include what to say to employees, when to schedule, and how to handle the first round when there's no prior baseline.
+
+Keep it simple. If it takes more than 30 minutes per employee, they won't do it.`
+            },
+            {
+                id: 61,
+                title: "Difficult Employee Conversation Prep",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Coach advisors to help clients navigate tough workplace conversations with scripts and legal guardrails",
+                tags: ["management", "HR", "conflict", "termination"],
+                prompt: `You are an SBDC advisor helping a small business owner prepare for a difficult conversation with an employee. These are the moments where most small business owners freeze — they either avoid the conversation entirely or handle it emotionally. Your job is to help them prepare, stay professional, and protect both the relationship and the business.
+
+# SITUATION
+- Business: [BUSINESS NAME]
+- State: [STATE]
+- Number of employees: [NUMBER]
+- The employee: [NAME OR "Employee A"] — [THEIR ROLE, HOW LONG THEY'VE BEEN THERE]
+- The issue: [DESCRIBE THE PROBLEM — e.g., chronic lateness, poor work quality, attitude issues, policy violation, performance decline, personal hygiene, conflict with coworkers, need to reduce hours, termination, etc.]
+- How long this has been going on: [TIMELINE]
+- Previous conversations about this: [NONE / INFORMAL MENTION / VERBAL WARNING / WRITTEN WARNING — describe what was said]
+- Documentation: [DO THEY HAVE ANYTHING IN WRITING? — emails, write-ups, incident reports, performance reviews]
+- Desired outcome: [WHAT DOES THE OWNER WANT TO HAPPEN? — behavior change, formal warning, termination, mutual resolution, etc.]
+
+# COMPLICATING FACTORS
+[ANYTHING THAT MAKES THIS HARDER — small team, employee is a family member, long-tenured employee, potential discrimination claim, other employees are watching, employee is going through personal difficulties, etc.]
+
+Please provide:
+
+1. **Situation assessment** — Based on what they've described, what kind of conversation is this? (Coaching, formal warning, final warning, termination, or something else.) Be honest if what they want to do doesn't match what the situation calls for.
+
+2. **Legal guardrails** — Before they walk into this conversation, what do they need to know legally?
+   - Are there any protected class considerations?
+   - At-will employment rights and limits in their state
+   - Documentation they should have (or create) before the meeting
+   - Should they have a witness present?
+   - Anything they absolutely should NOT say
+
+3. **Conversation script** — A practical, section-by-section script they can follow:
+   - **Opening** — How to set the tone (2-3 sentences they can say verbatim)
+   - **Stating the issue** — How to describe the problem factually without being accusatory (specific language)
+   - **Listening** — What to ask, how to create space for the employee's perspective
+   - **Setting expectations** — Clear statement of what needs to change, by when
+   - **Consequences** — How to explain what happens if things don't improve
+   - **Closing** — How to end on a constructive note (or a definitive one, if terminating)
+
+4. **Emotional preparation** — Help the owner anticipate likely employee reactions:
+   - If the employee gets angry
+   - If the employee cries
+   - If the employee denies everything
+   - If the employee threatens to quit
+   - If the employee brings up other employees or claims unfair treatment
+
+   For each, provide a 1-2 sentence response the owner can use.
+
+5. **Documentation template** — A written summary template to complete after the conversation that captures what was discussed, what was agreed to, and next steps. This becomes part of the employee's file.
+
+6. **Follow-up plan** — What happens after the conversation? Check-in schedule, monitoring period, and how to handle the situation if the employee improves vs. if they don't.
+
+Be direct and practical. The owner is probably nervous. Give them the confidence to handle this professionally.`
+            },
+            {
+                id: 62,
+                title: "Employee Retention on a Budget",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Identify low-cost retention strategies when a small business can't compete on salary alone",
+                tags: ["retention", "culture", "benefits", "management"],
+                prompt: `You are an SBDC advisor who helps small business owners keep good employees without breaking the bank. Most of your clients lose people to larger companies that can pay more. Your job is to help them find the retention levers that don't depend on having the biggest paycheck.
+
+# BUSINESS CONTEXT
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Number of employees: [NUMBER]
+- Industry: [INDUSTRY]
+- Location: [CITY/STATE — cost of living context matters]
+- Current pay range: [WHAT THEY PAY THEIR TEAM — rough ranges are fine]
+- Benefits currently offered: [LIST — health insurance, PTO, retirement, etc. / "nothing formal" / "we're flexible but nothing official"]
+- Turnover problem: [YES — describe / NO — trying to prevent it / "lost a key person recently"]
+
+# RETENTION PAIN POINTS
+- Who are they worried about losing? [SPECIFIC ROLES or "the whole team"]
+- Why do people leave? [BETTER PAY / BURNOUT / NO GROWTH / DON'T KNOW / OTHER]
+- What's the competitive landscape for talent? [HARD TO FIND PEOPLE / EASY TO FIND BUT HARD TO KEEP / INDUSTRY-SPECIFIC CHALLENGES]
+- Current culture: [HOW WOULD THE OWNER DESCRIBE THE WORK ENVIRONMENT?]
+- Budget for retention improvements: [MINIMAL / SOME ROOM / FLEXIBLE — or specific amount per employee]
+
+Please provide:
+
+1. **Retention audit** — Based on what they've described, what are the most likely reasons employees leave (or will leave)? Rank the top 5 risk factors for this specific business, not generic reasons.
+
+2. **Free and low-cost retention strategies** — Give me 10-12 specific, actionable strategies this business can implement that cost little or nothing. For each one:
+   - What it is
+   - Why it works (the psychology)
+   - How to implement it this month
+   - Which employees it will resonate with most
+
+   Focus on: flexibility, autonomy, recognition, growth, belonging, and meaning.
+
+3. **Benefits on a budget** — What benefits or perks can they realistically offer at their size and budget? Think creatively:
+   - Low-cost insurance options for small businesses
+   - Simple retirement plan options (SIMPLE IRA, etc.)
+   - Non-traditional benefits (schedule flexibility, remote work days, professional development stipend, etc.)
+   - Estimate monthly cost per employee where possible
+
+4. **Stay interview template** — Instead of exit interviews (too late), give them a "stay interview" framework. Provide 6-8 questions to ask current employees to find out what keeps them and what might push them away. Include how to conduct these without making people nervous.
+
+5. **Recognition system** — Design a simple, sustainable recognition system that doesn't feel forced. Not "employee of the month" — something that fits a small team culture. Include peer-to-peer and owner-to-team options.
+
+6. **Growth path design** — Even in a small business with no corporate ladder, employees need to feel like they're going somewhere. Show the owner how to create growth opportunities through:
+   - Skill development
+   - Expanded responsibility
+   - Title progression
+   - Mentoring and teaching roles
+   - Cross-training
+
+7. **Compensation strategy** — Without necessarily raising base pay:
+   - How to structure small, frequent raises vs. large annual ones
+   - Bonus structures that work for small businesses
+   - Profit-sharing or gain-sharing models
+   - When it IS time to just pay more (don't dance around it)
+
+8. **Retention warning signs** — Help the owner spot flight risks before they give notice. What behavioral changes to watch for, and what to do when they see them.
+
+Be realistic. Don't suggest ping pong tables and unlimited PTO. These are small businesses with thin margins.`
+            },
+            {
+                id: 63,
+                title: "Workplace Compliance Basics",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "State-aware compliance checklist covering what's legally required at different employee thresholds",
+                tags: ["compliance", "labor law", "regulations", "employment"],
+                prompt: `You are an SBDC advisor helping a small business owner understand their employment compliance obligations. Most small business owners don't know what they're required to do until something goes wrong. Your job is to give them a clear, prioritized picture of their legal obligations based on their size and state.
+
+# BUSINESS INFORMATION
+- Business: [BUSINESS NAME]
+- State: [STATE]
+- Number of employees: [CURRENT NUMBER]
+- Planning to grow to: [EXPECTED NUMBER IN NEXT 12 MONTHS — or "staying the same"]
+- Industry: [INDUSTRY — some have additional requirements]
+- Employee types: [FULL-TIME / PART-TIME / MIX — describe]
+- Any employees under 18: [YES / NO]
+- Any tipped employees: [YES / NO]
+- Current compliance measures: [WHAT THEY ALREADY HAVE IN PLACE — or "not sure" / "nothing formal"]
+
+# SPECIFIC CONCERNS
+[ANY PARTICULAR QUESTIONS OR SITUATIONS — e.g., "someone asked about FMLA," "we had an OSHA complaint," "opening a second location," "hiring in a different state"]
+
+Please provide:
+
+1. **Current obligations checklist** — Based on their current employee count and state, what are they legally required to have RIGHT NOW? Organize by category:
+   - **Wage and hour** (minimum wage, overtime rules, meal/rest break requirements, pay frequency, final paycheck timing)
+   - **Required postings** (federal and state posters — list each one specifically)
+   - **Record-keeping** (what records must they maintain and for how long)
+   - **Tax obligations** (payroll tax filing, unemployment insurance, etc.)
+   - **Safety** (OSHA requirements at their size, industry-specific safety requirements)
+   - **Required policies** (any written policies required by state law)
+   - **Anti-discrimination** (which laws apply at their size — Title VII kicks in at 15, ADA at 15, ADEA at 20, etc.)
+
+   For each item: what it is, whether they're likely in compliance or at risk, and how to fix any gaps.
+
+2. **Threshold alerts** — A clear table showing what NEW requirements kick in as they grow:
+   - At 1 employee (they're here)
+   - At 4-5 employees
+   - At 10-11 employees
+   - At 15 employees
+   - At 20 employees
+   - At 50 employees
+
+   So they can plan ahead and not get surprised.
+
+3. **State-specific requirements** — What does their state require beyond federal minimums? Flag anything where their state is stricter than federal law (paid sick leave, minimum wage, predictive scheduling, ban-the-box, etc.).
+
+4. **Industry-specific requirements** — Based on their industry, are there additional compliance requirements? (e.g., food handler certifications, HIPAA, DOT regulations, professional licensing, etc.)
+
+5. **Quick compliance audit** — A 15-item yes/no checklist they can run through right now to identify their biggest exposure areas. Prioritize by risk level (what's most likely to trigger penalties).
+
+6. **How to stay current** — Where should they go to stay updated on employment law changes? Recommend 2-3 reliable, free resources specific to their state. How often should they audit their compliance?
+
+7. **When to get professional help** — What situations should trigger a call to an employment attorney? Help them understand the line between "you can handle this yourself" and "you need a professional."
+
+Be specific and actionable. "Consult an attorney" is not helpful unless you tell them exactly what to ask about.`
+            },
+            {
+                id: 64,
+                title: "Workers' Comp & Business Insurance Guide",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Help clients understand what insurance coverage they actually need and what questions to ask an agent",
+                tags: ["insurance", "risk management", "workers comp", "liability"],
+                prompt: `You are an SBDC advisor helping a small business owner understand their insurance needs. Most owners either have no coverage, have the wrong coverage, or are overpaying because they didn't know what to ask. Your job is to educate them so they can have a productive conversation with an insurance agent — not to sell them anything.
+
+# BUSINESS INFORMATION
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- State: [STATE]
+- Number of employees: [NUMBER — include owners, part-timers, contractors]
+- Industry: [INDUSTRY]
+- Physical location: [OWN / LEASE / HOME-BASED / MOBILE]
+- Business assets: [EQUIPMENT, VEHICLES, INVENTORY — brief description]
+- Revenue range: [APPROXIMATE ANNUAL REVENUE]
+- Client-facing work: [YES — describe / NO — internal operations only]
+- Current insurance: [LIST WHAT THEY HAVE — or "nothing" / "just personal auto" / "not sure"]
+
+# SPECIFIC RISK FACTORS
+[ANYTHING THAT AFFECTS THEIR RISK — employees drive company vehicles, clients visit the premises, physical labor, food service, professional advice given, products manufactured, etc.]
+
+Please provide:
+
+1. **Insurance needs assessment** — Based on this business, which types of insurance do they need? For each one, explain:
+   - **What it covers** (in plain English, one paragraph max)
+   - **Whether it's required or recommended** for their situation
+   - **Rough cost range** for a business of their size and type
+   - **What happens if they don't have it** (specific risk scenario)
+
+   Cover these types as applicable:
+   - General liability
+   - Professional liability / E&O
+   - Workers' compensation
+   - Commercial property
+   - Business owner's policy (BOP)
+   - Commercial auto
+   - Product liability
+   - Cyber liability
+   - Business interruption
+   - Umbrella / excess liability
+
+   Skip any that genuinely don't apply to their business.
+
+2. **Workers' comp deep dive** — Since this is where most small business owners have questions:
+   - Is workers' comp required in their state at their size?
+   - How premiums are calculated (classification codes, experience modifier)
+   - What happens if an employee gets hurt and they DON'T have coverage
+   - State fund vs. private carrier options
+   - How to keep premiums manageable
+
+3. **Coverage gaps** — Based on what they currently have vs. what they need, identify the biggest gaps and prioritize them by risk severity. What should they get FIRST?
+
+4. **Questions to ask an insurance agent** — 10-12 specific questions they should ask when shopping for coverage. Include questions about:
+   - Coverage limits and deductibles
+   - Exclusions (what's NOT covered)
+   - Claims process
+   - Premium reduction strategies
+   - Bundling options
+
+5. **Shopping strategy** — How to get the best coverage at a fair price:
+   - How many quotes to get
+   - Independent agent vs. direct carrier
+   - What to compare beyond price
+   - Red flags in a policy or agent
+   - When to reassess (annually, after growth, after claims)
+
+6. **Risk reduction** — 5-7 things they can do operationally to reduce their insurance costs (safety programs, contracts, waivers, procedures). Things that actually show up in lower premiums.
+
+7. **Common mistakes** — What do small business owners in their industry most often get wrong about insurance? What coverage do they skip that they shouldn't? What do they overpay for?
+
+Keep it educational. They should feel informed, not sold to.`
+            },
+            {
+                id: 65,
+                title: "SOP Builder",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Turn a process the owner does from memory into a documented, delegatable standard operating procedure",
+                tags: ["operations", "systems", "delegation", "processes"],
+                prompt: `You are an SBDC advisor helping a small business owner document one of their key business processes as a Standard Operating Procedure (SOP). Most small business owners carry critical processes in their head. When they need to delegate, train someone, or step away, nothing is written down. Your job is to pull the process out of their head and turn it into a clear, usable document.
+
+# THE PROCESS TO DOCUMENT
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Process name: [WHAT ARE WE DOCUMENTING? — e.g., "new client onboarding," "end-of-day closing," "order fulfillment," "responding to a service request," "monthly invoicing"]
+- Who does this currently: [THE OWNER / A SPECIFIC EMPLOYEE / SHARED ACROSS TEAM]
+- How often: [DAILY / WEEKLY / MONTHLY / PER CLIENT / AS NEEDED]
+- Why document this now: [HIRING SOMEONE TO DO IT / OWNER WANTS TO STEP BACK / INCONSISTENT RESULTS / TRAINING PURPOSES / SCALING UP]
+
+# THE PROCESS (in their own words)
+[HAVE THE OWNER DESCRIBE THE PROCESS STEP BY STEP IN THEIR OWN WORDS — messy is fine, brain dump is fine. Ask them: "Walk me through exactly what you do from start to finish. Don't skip the obvious stuff."]
+
+# TOOLS AND SYSTEMS USED
+[WHAT SOFTWARE, EQUIPMENT, FORMS, OR TOOLS ARE INVOLVED? — e.g., "QuickBooks, our CRM, a paper form, the POS system, a specific piece of equipment"]
+
+# WHERE THINGS GO WRONG
+[WHAT ARE THE COMMON MISTAKES, EXCEPTIONS, OR JUDGMENT CALLS IN THIS PROCESS? Where does quality vary?]
+
+Please provide:
+
+1. **Clean SOP document** — Transform their brain dump into a structured, step-by-step procedure document that includes:
+   - **Purpose** — Why this process exists and what a good outcome looks like
+   - **Scope** — When this process applies (and when it doesn't)
+   - **Roles** — Who is responsible for each part
+   - **Prerequisites** — What needs to be in place before starting (tools, information, access)
+   - **Step-by-step procedure** — Numbered steps, clear and specific enough that someone could follow them with no prior experience. Include:
+     - The action to take
+     - How to do it (click this, go here, use this tool)
+     - Expected result at each step
+     - Decision points ("if X, then do Y; if Z, then do W")
+   - **Quality checkpoints** — Key moments where you verify the work is correct
+   - **Exceptions and troubleshooting** — Common variations and what to do when something goes wrong
+
+2. **Missing steps** — Based on what they described, what steps did they probably skip because they're "obvious" to them but wouldn't be to someone new? Ask about these gaps.
+
+3. **Process improvement suggestions** — While documenting, did you spot any inefficiencies, unnecessary steps, or opportunities to simplify? Flag 2-3 improvements they could make.
+
+4. **Training plan** — How should they use this SOP to train someone?
+   - Watch and learn phase (how many times)
+   - Supervised practice phase
+   - Independent with check-ins phase
+   - Fully independent
+   - How to verify quality during the handoff
+
+5. **Template format** — Provide the SOP in a format they can actually use — clean enough to print or share digitally. Include version number, last updated date, and a revision log section.
+
+6. **Next SOPs to document** — Based on this business type, what are the other 3-5 most critical processes they should document next? Prioritize by impact (what would hurt most if the owner got sick for a week?).
+
+Write it in clear, direct language. No jargon. If a new employee can't follow this on day one, it's not done.`
+            },
+            {
+                id: 66,
+                title: "Delegation & Role Design",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Help owners who do everything identify what to delegate first and how to build roles as they grow",
+                tags: ["delegation", "management", "scaling", "org design"],
+                prompt: `You are an SBDC advisor helping a small business owner who does too much themselves. They're the bottleneck in their own business — they handle sales, operations, customer service, bookkeeping, and more. They know they need to let go but don't know what, how, or to whom. Your job is to help them think clearly about delegation, role design, and building a team structure that lets the business run without them in the middle of everything.
+
+# CURRENT SITUATION
+- Business: [BUSINESS NAME] — [WHAT THE BUSINESS DOES]
+- Owner's role: [DESCRIBE EVERYTHING THE OWNER CURRENTLY DOES — be specific]
+- Current team: [NUMBER OF EMPLOYEES AND THEIR ROLES — or "just me" / "me and one part-timer"]
+- Hours the owner works per week: [NUMBER]
+- Revenue: [APPROXIMATE ANNUAL REVENUE]
+- Growth goal: [WHERE DO THEY WANT TO BE IN 12 MONTHS — revenue, team size, or lifestyle]
+
+# WHAT THEY WANT TO CHANGE
+- What's burning them out: [WHAT TASKS DO THEY HATE OR DREAD?]
+- What only they can do: [WHAT TASKS GENUINELY REQUIRE THE OWNER — or "I think everything requires me"]
+- What they've tried to delegate before: [ANY PAST ATTEMPTS AND HOW THEY WENT]
+- Biggest fear about delegating: [QUALITY WILL DROP / CAN'T AFFORD IT / NO ONE WILL CARE AS MUCH / DON'T HAVE TIME TO TRAIN / TRUST ISSUES]
+- Budget for new help: [WHAT THEY CAN INVEST IN PEOPLE — per month or per year]
+
+Please provide:
+
+1. **Time and task audit** — Categorize everything the owner does into four buckets:
+   - **Only the owner can do this** (strategic decisions, key relationships, vision)
+   - **Owner does it but someone else could** (with training and systems)
+   - **Owner shouldn't be doing this** (tasks below their effective hourly rate)
+   - **Owner doesn't do but should** (things they're neglecting because they're too busy)
+
+   Be honest about what's really "only me" vs. what feels that way.
+
+2. **Delegation priority matrix** — Of everything that CAN be delegated, rank by:
+   - Time freed up (hours per week)
+   - Ease of delegation (how hard to hand off)
+   - Impact on the business (what happens if this gets done better or more consistently)
+
+   Recommend the first 3-5 things to delegate and the order in which to do it.
+
+3. **Role design** — Based on what needs to be delegated, design the next 1-2 roles they should hire for:
+   - Role title and scope
+   - Key responsibilities
+   - Full-time vs. part-time vs. contractor
+   - Estimated cost
+   - Skills to look for
+   - How this role pays for itself (revenue generated, time freed, capacity created)
+
+4. **Delegation playbook** — A practical framework for actually handing things off:
+   - How to document what you do (connect to SOPs)
+   - How to train without micromanaging
+   - How to set clear expectations and check-in rhythms
+   - How to handle the quality dip during transition (it will happen)
+   - How to give feedback without taking the task back
+
+5. **Org chart evolution** — Sketch three org structures:
+   - **Now** — Current state (probably just the owner + anyone they have)
+   - **Next** — After the first 1-2 hires
+   - **Goal** — What the business should look like at their 12-month revenue/team target
+
+   For each, show who reports to whom and what each person owns.
+
+6. **Mindset shifts** — Address the real barriers:
+   - "No one can do it as well as I can" — reframe this
+   - "I can't afford to hire" — show the math on what their time is worth
+   - "It's faster to do it myself" — short-term yes, long-term no
+   - How to measure success by outcomes, not by how things get done
+
+7. **30-60-90 day plan** — A realistic timeline:
+   - Days 1-30: What to document and prepare
+   - Days 31-60: First delegation handoffs
+   - Days 61-90: Adjust, expand, and evaluate what's working
+
+Be direct. If the owner is their own biggest obstacle, say so respectfully. The goal is a business that doesn't depend on one person doing everything.`
+            },
+            {
+                id: 67,
+                title: "SAM.gov Registration Walkthrough",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Step-by-step guide to help a small business register in SAM.gov and get ready to bid on federal contracts",
+                tags: ["SAM", "registration", "federal"],
+                prompt: `You are an SBDC advisor who specializes in helping small businesses enter the government contracting space. A client needs help registering in SAM.gov (System for Award Management).
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Business structure: [LLC / S-Corp / Sole Proprietor / etc.]
+- EIN available: [YES / NO]
+- Has a DUNS/UEI number: [YES / NO / UNSURE]
+- Previous government contracting experience: [NONE / SOME / EXPERIENCED]
+
+Walk them through the full SAM.gov registration process:
+
+1. **Pre-registration checklist** — Every document and number they need before starting (EIN, UEI, banking info, NAICS codes, etc.)
+2. **Step-by-step registration flow** — Walk through each SAM.gov section in plain language, explaining what each field means and what to enter
+3. **Common mistakes to avoid** — The errors that delay or reject registrations (wrong NAICS codes, incomplete banking info, entity mismatch, etc.)
+4. **Entity validation timeline** — What to expect for processing time and how to check status
+5. **Post-registration actions** — What to do once active: set up entity alerts, update annually, link to contract opportunity searches
+6. **Quick-start opportunities** — Where to look for their first contract opportunities once registered (SAM.gov contract opportunities, GSA eBuy, state procurement portals)
+
+Keep the language simple and jargon-free. Many clients find this process intimidating — make it feel doable.`
+            },
+            {
+                id: 68,
+                title: "Capability Statement Writer",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Generate a professional one-page capability statement tailored to government buyers",
+                tags: ["capability statement", "marketing", "federal"],
+                prompt: `You are an SBDC advisor helping a small business create a professional capability statement — the single most important marketing document in government contracting.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Owner name: [OWNER NAME]
+- Business description: [BRIEF DESCRIPTION OF WHAT THEY DO]
+- Primary NAICS codes: [NAICS CODES IF KNOWN]
+- Certifications: [8(a) / HUBZone / WOSB / SDVOSB / NONE / UNSURE]
+- Key differentiators: [WHAT MAKES THEM DIFFERENT — SPEED, QUALITY, NICHE EXPERTISE, LOCATION, ETC.]
+- Past performance highlights: [ANY RELEVANT PROJECTS — GOVERNMENT OR COMMERCIAL]
+- Target agency or contract type: [IF KNOWN]
+
+Create a one-page capability statement that includes:
+
+1. **Company overview** — 2-3 sentences that clearly state what the business does, who they serve, and why they're qualified
+2. **Core competencies** — 4-6 bullet points of specific capabilities (not vague claims — concrete, measurable strengths)
+3. **Differentiators** — What sets them apart from competitors in this space
+4. **Past performance** — 2-3 brief project summaries with scope, results, and relevance (adapt commercial experience if no government work yet)
+5. **Company data** — NAICS codes, UEI/CAGE, certifications, size standard, contract vehicles
+6. **Contact block** — Professional layout with name, title, phone, email, website
+
+Also provide:
+- **Formatting guidance** — Layout tips for a clean, scannable one-pager (colors, logo placement, white space)
+- **Tailoring advice** — How to customize the statement for different agencies or opportunities
+- **Common mistakes** — What turns off government buyers (too generic, too long, missing codes, no past performance)
+
+Write in a confident, professional tone. Government buyers skim these in 30 seconds — every word needs to earn its place.`
+            },
+            {
+                id: 69,
+                title: "RFP Response Outline Generator",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Break down an RFP into a structured response outline with section-by-section guidance",
+                tags: ["RFP", "proposal", "bid"],
+                prompt: `You are an SBDC advisor who helps small businesses respond to government RFPs (Requests for Proposal). A client has found an opportunity and needs help structuring their response.
+
+**RFP Details:**
+- Solicitation number: [NUMBER IF AVAILABLE]
+- Issuing agency: [AGENCY NAME]
+- Brief description of the requirement: [WHAT THE GOVERNMENT IS BUYING]
+- Evaluation criteria (if known): [PRICE / TECHNICAL APPROACH / PAST PERFORMANCE / OTHER]
+- Page limits or format requirements: [IF KNOWN]
+- Due date: [DATE]
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Relevant experience: [BRIEF SUMMARY OF RELATED WORK]
+- Team size/key personnel: [WHO WOULD WORK ON THIS]
+
+Build a complete response outline:
+
+1. **RFP compliance checklist** — Every requirement, document, and deliverable the solicitation asks for, organized as a checklist so nothing gets missed
+2. **Section-by-section outline** — For each required section (technical approach, management plan, past performance, pricing, etc.):
+   - What the evaluator is looking for
+   - Suggested structure and content
+   - How to connect their experience to the specific requirement
+3. **Win themes** — 2-3 key messages that should echo throughout the proposal (why this team, why this approach, why now)
+4. **Compliance matrix** — A table mapping each RFP requirement to where it's addressed in the response
+5. **Pricing strategy notes** — How to structure the cost volume, common pricing mistakes, and how to be competitive without underbidding
+6. **Review and submission timeline** — Working backward from the due date: when each section should be drafted, reviewed, and finalized
+
+Be practical. Most SBDC clients are writing their first or second proposal — give them a clear roadmap they can actually follow.`
+            },
+            {
+                id: 70,
+                title: "Past Performance Narrative Builder",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Turn commercial or prior project experience into compelling past performance narratives for proposals",
+                tags: ["past performance", "proposal", "narrative"],
+                prompt: `You are an SBDC advisor helping a small business write past performance narratives for a government proposal. Many small businesses struggle here — they have relevant experience but don't know how to present it in a way that government evaluators value.
+
+**Project to Document:**
+- Project/contract name: [NAME]
+- Client (government or commercial): [CLIENT NAME]
+- Contract value (approximate): [DOLLAR AMOUNT]
+- Period of performance: [START DATE - END DATE]
+- Scope of work: [WHAT DID YOU DO — DESCRIBE THE WORK]
+- Key results or outcomes: [WHAT WAS DELIVERED, METRICS IF AVAILABLE]
+- Challenges overcome: [ANY PROBLEMS SOLVED OR OBSTACLES MANAGED]
+- Relevance to target opportunity: [HOW THIS RELATES TO THE CONTRACT THEY'RE BIDDING ON]
+
+Create a polished past performance narrative that includes:
+
+1. **Project overview** — Clear, concise summary of the work (who, what, where, when, how much)
+2. **Scope and approach** — What the client did and how they delivered — focus on methodology and process
+3. **Results and outcomes** — Quantified wherever possible (on-time delivery, cost savings, quality metrics, customer satisfaction)
+4. **Relevance mapping** — Explicit connections between this project and the target opportunity's requirements
+5. **Challenges and solutions** — How problems were identified and resolved (evaluators love this — it shows maturity)
+6. **Reference formatting** — How to present the client reference (name, title, phone, email) and tips for prepping references
+
+Also provide:
+- **Tips for adapting commercial work** — How to frame private-sector projects in government-friendly language
+- **What evaluators actually look for** — The scoring criteria behind past performance evaluation
+- **Red flags to avoid** — Vague claims, missing metrics, unverifiable references, irrelevant examples
+
+Write in a factual, confident tone. No fluff — evaluators score these against specific criteria.`
+            },
+            {
+                id: 71,
+                title: "Government Buyer Persona Identifier",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Identify which government agencies are most likely to buy what the client sells and how to reach them",
+                tags: ["market research", "agencies", "targeting"],
+                prompt: `You are an SBDC advisor helping a small business figure out which government agencies are the best targets for their products or services. Most small businesses waste time casting too wide a net — help them get focused.
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Products/services offered: [WHAT THEY SELL]
+- Primary NAICS codes: [CODES IF KNOWN]
+- Geographic location: [CITY, STATE]
+- Willingness to travel/deliver nationally: [YES / NO / REGIONAL ONLY]
+- Current certifications: [8(a) / HUBZone / WOSB / SDVOSB / NONE]
+- Annual revenue: [APPROXIMATE — HELPS DETERMINE SIZE STANDARD FIT]
+
+Provide a targeted government market analysis:
+
+1. **Top 5 federal agencies** — Which agencies spend the most in their NAICS codes, with approximate annual spend data. Explain *why* each agency is a fit, not just that they spend money there
+2. **State and local opportunities** — Relevant state agencies, municipalities, school districts, or special districts in their region that buy what they sell
+3. **Decision-maker profiles** — Who actually makes buying decisions at these agencies (contracting officers, program managers, small business specialists) and how to find them
+4. **Procurement vehicles** — Which contract vehicles these agencies use most (GSA Schedule, BPAs, GWACs, state master contracts) and which ones the client should pursue first
+5. **Set-aside opportunities** — Based on their certifications and size, which set-asides they qualify for and how much is spent through those set-asides
+6. **Outreach strategy** — Concrete steps to get in front of the right people:
+   - Industry days and forecast briefings
+   - Small business office outreach
+   - Subcontracting with established primes
+   - Online research tools (USASpending.gov, FPDS, GovWin)
+7. **Quick wins** — Low-dollar or micro-purchase opportunities where they can build past performance fast
+
+Be specific. Don't just say "the Department of Defense" — point them toward specific sub-agencies, offices, or buying commands that match their niche.`
+            },
+            {
+                id: 72,
+                title: "NAICS Code Selection Helper",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Help a client identify the right NAICS codes for their business and understand size standard implications",
+                tags: ["NAICS", "codes", "size standards"],
+                prompt: `You are an SBDC advisor helping a small business select the right NAICS codes for government contracting. This seems simple but getting it wrong can disqualify them from opportunities or put them in the wrong competitive pool.
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Primary products/services: [DESCRIBE WHAT THEY SELL — BE SPECIFIC]
+- Secondary services (if any): [OTHER THINGS THEY DO]
+- Annual revenue: [APPROXIMATE]
+- Number of employees: [APPROXIMATE]
+- Current NAICS codes (if any): [CODES THEY CURRENTLY USE]
+
+Provide a complete NAICS code analysis:
+
+1. **Primary NAICS code recommendation** — The single best code that represents their core business, with the full code number, title, and description. Explain why this is the best fit
+2. **Secondary NAICS codes** — 3-5 additional codes they should list in SAM.gov for their other service lines. For each: code, title, and how it applies to their work
+3. **Size standard analysis** — For each recommended code:
+   - Revenue-based or employee-based size standard
+   - The threshold (e.g., $16.5M, 500 employees)
+   - Whether the client qualifies as "small" under each code
+   - Implications if they're close to the threshold
+4. **Common mistakes** — Codes that look right but aren't (and why), codes that are too broad or too narrow, and what happens if you pick the wrong one on a bid
+5. **Strategic considerations** — How NAICS code selection affects:
+   - Which opportunities they see and can bid on
+   - Their competitive pool (who they're competing against)
+   - Set-aside eligibility
+   - SBA certification applications
+6. **How to verify** — Where to look up codes (census.gov NAICS search), how to check what codes agencies use for similar procurements (FPDS), and when to request a size standard determination from SBA
+
+Keep this practical. The goal is codes that match their work AND put them in the best competitive position.`
+            },
+            {
+                id: 73,
+                title: "Subcontracting Opportunity Finder",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Help a client identify and pursue subcontracting opportunities as a path into government work",
+                tags: ["subcontracting", "teaming", "primes"],
+                prompt: `You are an SBDC advisor helping a small business break into government contracting through subcontracting — often the smartest first step for businesses with no government past performance.
+
+**Client Info:**
+- Business name: [BUSINESS NAME]
+- Products/services: [WHAT THEY DO]
+- NAICS codes: [IF KNOWN]
+- Certifications: [8(a) / HUBZone / WOSB / SDVOSB / NONE]
+- Geographic area: [LOCATION]
+- Target agencies or industries: [IF KNOWN]
+- Annual revenue: [APPROXIMATE]
+
+Create a subcontracting strategy:
+
+1. **Why subcontracting first** — Explain the strategic value: building past performance, learning the process, establishing relationships, generating revenue, and positioning for future prime contracts
+2. **Finding prime contractors** — How to identify primes who need subs in their space:
+   - SBA Subcontracting Network (SubNet)
+   - USASpending.gov to find who holds current contracts
+   - Agency small business office referrals
+   - Industry events and matchmaking sessions
+   - Prime contractor small business liaison officers
+3. **Making the approach** — How to reach out to a prime contractor:
+   - What to say in the initial email
+   - What documents to have ready (capability statement, past performance, certifications)
+   - How to articulate their value proposition as a sub
+   - What NOT to do (cold pitching without research, being too generic)
+4. **Teaming agreement basics** — What should be in a teaming agreement, key terms to negotiate, and red flags to watch for
+5. **Subcontracting plan targets** — How large prime contracts have mandatory small business subcontracting goals, and how the client's certifications make them attractive to primes
+6. **Building toward prime** — A timeline for transitioning from sub to prime:
+   - Phase 1: Sub on 2-3 contracts, build past performance
+   - Phase 2: Mentor-protégé programs, joint ventures
+   - Phase 3: Bid as prime with established track record
+7. **Local resources** — Remind them about PTAC (Procurement Technical Assistance Center), SBDC advising, and SBA district office matchmaking events
+
+Be encouraging but realistic. Subcontracting takes hustle and relationship-building — give them a concrete game plan.`
+            },
+            {
+                id: 74,
+                title: "Contract Compliance Checklist",
+                category: "government",
+                categoryLabel: "Government Contracting",
+                description: "Generate a compliance checklist for a small business that just won their first government contract",
+                tags: ["compliance", "post-award", "management"],
+                prompt: `You are an SBDC advisor helping a small business navigate compliance after winning a government contract. Winning is exciting — but non-compliance can lead to termination, bad past performance ratings, or even debarment. Help them get it right from day one.
+
+**Contract Info:**
+- Contract type: [FIRM FIXED PRICE / TIME & MATERIALS / COST REIMBURSEMENT / IDIQ / BPA]
+- Awarding agency: [AGENCY NAME]
+- Approximate value: [DOLLAR AMOUNT]
+- Period of performance: [START - END DATE]
+- Key deliverables: [WHAT THEY NEED TO DELIVER]
+- Is this their first government contract? [YES / NO]
+- Subcontractors involved? [YES / NO]
+
+Create a comprehensive compliance checklist:
+
+1. **Post-award setup** — Immediate actions after award:
+   - Confirm SAM.gov registration is active and current
+   - Review all contract terms and conditions line by line
+   - Identify the Contracting Officer (CO) and Contracting Officer's Representative (COR)
+   - Set up project files and documentation system
+   - Brief the team on government contract requirements vs. commercial work
+
+2. **Financial compliance** — What they need to track and how:
+   - Invoicing requirements and schedule (correct format, submission portal, supporting docs)
+   - Cost tracking by contract line item
+   - Accounting system requirements (adequate vs. approved system)
+   - Progress payment or milestone billing procedures
+   - Record retention requirements (typically 3+ years after contract closeout)
+
+3. **Performance compliance** — Meeting the terms:
+   - Deliverable tracking against the statement of work
+   - Quality standards and inspection procedures
+   - Reporting requirements (monthly, quarterly, progress reports)
+   - Key personnel commitments and substitution procedures
+   - Subcontractor management and flow-down requirements
+
+4. **Regulatory compliance** — Federal requirements that apply:
+   - FAR clauses specific to their contract (walk through the key ones)
+   - Labor standards (Service Contract Act, Davis-Bacon if applicable)
+   - Small business subcontracting plan compliance (if applicable)
+   - Cybersecurity requirements (especially NIST 800-171 for DoD)
+   - Insurance and bonding requirements
+
+5. **Communication protocol** — How to interact with the government:
+   - What needs to go through the CO vs. COR
+   - How to request modifications or changes
+   - How to handle scope creep (don't just do extra work — get it authorized)
+   - Documenting everything in writing
+
+6. **Common pitfalls** — What gets small businesses in trouble:
+   - Starting work before notice to proceed
+   - Unauthorized scope changes
+   - Missing invoice deadlines
+   - Poor documentation habits
+   - Ignoring reporting requirements
+
+7. **Contract closeout prep** — What to prepare throughout performance so closeout goes smoothly
+
+Make this feel manageable, not terrifying. Break compliance into daily habits and monthly reviews rather than an overwhelming wall of rules.`
+            },
+            {
+                id: 75,
+                title: "Customer Experience Audit",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Map every customer touchpoint and identify where the experience breaks down, with a gap analysis and quick fixes",
+                tags: ["audit", "touchpoints", "experience"],
+                prompt: `You are an SBDC advisor helping a small business owner audit their entire customer experience. Most small businesses have never mapped this — they know their product but haven't walked through the experience from the customer's perspective.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- How customers find them: [GOOGLE / SOCIAL MEDIA / REFERRALS / WALK-INS / ADS / OTHER]
+- How customers make purchases: [IN-STORE / ONLINE / PHONE / COMBINATION]
+- Current pain points (if known): [COMPLAINTS THEY HEAR, DROP-OFF POINTS, THINGS THAT FEEL CLUNKY]
+- Number of employees who interact with customers: [NUMBER]
+
+Conduct a full customer experience audit:
+
+1. **Touchpoint map** — Walk through every interaction a customer has with the business from first awareness to post-purchase, including:
+   - **Discovery** — Website, social media, Google listing, signage, word of mouth
+   - **First contact** — Phone call, walk-in, email inquiry, online chat, DM
+   - **Evaluation** — How they learn about pricing, options, quality, reviews
+   - **Purchase** — Checkout process, payment options, paperwork, wait times
+   - **Delivery/fulfillment** — How the product or service is actually delivered
+   - **Post-purchase** — Follow-up, receipts, thank-you, feedback requests
+   - **Ongoing** — Repeat purchase triggers, loyalty, referral opportunities
+
+2. **Gap analysis** — For each touchpoint, identify:
+   - What's working well (keep doing this)
+   - What's creating friction or confusion
+   - What's missing entirely (no follow-up? no greeting script? no online booking?)
+   - How it compares to what customers likely expect based on the industry
+
+3. **Quick fixes (implement this week)** — 5-7 specific, low-cost changes they can make immediately that will noticeably improve the customer experience
+
+4. **Medium-term improvements (30-60 days)** — Changes that require some setup — new processes, tools, or training
+
+5. **Experience scorecard** — A simple framework they can use quarterly to re-evaluate their customer experience across key dimensions (speed, friendliness, consistency, follow-through, ease)
+
+Be specific to their business type. A restaurant audit looks very different from a consulting firm audit. Don't give generic advice — make it feel like you walked through their front door.`
+            },
+            {
+                id: 76,
+                title: "Customer Onboarding Process",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Build a structured onboarding process for service-based businesses covering the gap between 'yes' and work starting",
+                tags: ["onboarding", "welcome", "service"],
+                prompt: `You are an SBDC advisor helping a service-based small business build a customer onboarding process. Right now, what happens between a customer saying "yes, I want to hire you" and the actual work starting is probably inconsistent, informal, or nonexistent. That gap is where trust erodes and scope creep begins.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Service type: [WHAT THEY DO — e.g., LANDSCAPING, CONSULTING, HOME REPAIR, ACCOUNTING, PHOTOGRAPHY, ETC.]
+- Typical project length: [ONE-TIME / RECURRING / PROJECT-BASED WITH TIMELINE]
+- Average project value: [APPROXIMATE DOLLAR AMOUNT]
+- Current onboarding process: [DESCRIBE WHAT HAPPENS NOW — EVEN IF IT'S "NOTHING FORMAL"]
+- Biggest onboarding issues: [MISCOMMUNICATION / SCOPE CREEP / CLIENT GHOSTING / DELAYED STARTS / OTHER]
+- Tools currently used: [EMAIL / TEXT / CRM / PROJECT MANAGEMENT SOFTWARE / PAPER / NONE]
+
+Build a complete customer onboarding system:
+
+1. **Welcome sequence** — What happens in the first 24-48 hours after a client says yes:
+   - Welcome message (email/text template)
+   - What to include: enthusiasm, next steps, timeline, what you need from them
+   - How to set the professional tone without being corporate or cold
+
+2. **Expectation-setting framework** — A structured conversation or document that covers:
+   - Scope of work (what's included and what's NOT included)
+   - Timeline and milestones
+   - Communication preferences (how, when, and how often you'll update them)
+   - Their responsibilities (what you need from them and by when)
+   - Change/addition process (how to handle "while you're at it, can you also...")
+   - Payment terms and schedule
+
+3. **Communication timeline** — Map out every planned touchpoint from signed agreement to project kickoff:
+   - Day 1: Welcome message
+   - Day 2-3: Information gathering (questionnaire, documents, access)
+   - Day 5-7: Kickoff call or meeting
+   - Ongoing: Progress updates at defined intervals
+   - Include templates for each touchpoint
+
+4. **Information gathering kit** — What you need from the client before starting, packaged as a simple form or checklist they can complete (not a scavenger hunt of back-and-forth emails)
+
+5. **Red flag protocols** — How to handle:
+   - Client who goes silent after signing
+   - Client who wants to start before paperwork is done
+   - Client who immediately starts expanding scope
+   - Client who pushes back on your process
+
+6. **Onboarding checklist** — A printable/digital checklist the owner or team can follow for every new client to ensure nothing gets missed
+
+Make this feel professional but warm. The goal is a process that makes the client think "wow, they have their act together" while protecting the business from the chaos that usually comes with winging it.`
+            },
+            {
+                id: 77,
+                title: "Phone & In-Person Scripts",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Create standardized scripts for answering phones, greeting walk-ins, and handling common customer inquiries",
+                tags: ["scripts", "phone", "greeting"],
+                prompt: `You are an SBDC advisor helping a small business create customer interaction scripts. Right now, every employee handles things differently — some are great, some are awkward, and the owner can't be everywhere. Scripts fix this without making people sound robotic.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL OFFICE / OTHER]
+- Typical customer interactions: [PHONE CALLS / WALK-INS / BOTH]
+- Number of customer-facing employees: [NUMBER]
+- Common customer inquiries: [PRICING / AVAILABILITY / APPOINTMENTS / PRODUCT QUESTIONS / COMPLAINTS / OTHER]
+- Current biggest issue: [INCONSISTENT GREETINGS / MISSED CALLS / EMPLOYEES DON'T KNOW WHAT TO SAY / LOST LEADS / OTHER]
+- Business personality/tone: [CASUAL & FRIENDLY / PROFESSIONAL / WARM & WELCOMING / HIGH-ENERGY / OTHER]
+
+Create role-specific customer interaction scripts:
+
+1. **Phone answering script** —
+   - Standard greeting (under 10 seconds — name, welcome, offer to help)
+   - How to handle: pricing questions, appointment requests, "is the owner available?", requests for information they don't have
+   - Hold protocol (what to say before, during, and after a hold)
+   - Voicemail script (what to record as the greeting)
+   - How to transfer calls without losing the customer
+   - Closing the call (confirm next steps, thank them)
+
+2. **Walk-in greeting script** —
+   - First 5 seconds: what to say, body language, eye contact
+   - "Just browsing" response (acknowledge without hovering)
+   - "I need help with..." response (active listening, ask smart follow-ups)
+   - Wait time management (what to say when they'll need to wait)
+   - Handoff script (when another employee needs to take over)
+
+3. **Common inquiry responses** — Scripts for the 8-10 most frequent questions this type of business gets:
+   - Pricing inquiries (how to discuss cost without giving everything away or scaring people off)
+   - Availability/scheduling
+   - "Do you do [specific thing]?"
+   - Comparison questions ("how are you different from...?")
+   - Complaint or concern (initial response before escalating)
+
+4. **Upsell and cross-sell scripts** — Natural, non-pushy ways to mention related products or services during conversation
+
+5. **Closing scripts** — How to wrap up an interaction:
+   - Getting contact info for follow-up
+   - Confirming next steps
+   - Asking for reviews (when and how)
+   - Thank-you language
+
+6. **Training notes** — How to teach these scripts:
+   - Scripts are frameworks, not word-for-word readings
+   - Role-play scenarios for practice
+   - How to adapt tone while keeping the structure
+   - When it's okay to go off-script
+
+Write scripts that match their business personality. A surf shop and a law office need very different energy. Make them feel natural — the goal is confidence, not a call center.`
+            },
+            {
+                id: 78,
+                title: "Complaint Response System",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Build a repeatable framework for handling complaints across all channels with de-escalation scripts and authority levels",
+                tags: ["complaints", "de-escalation", "resolution"],
+                prompt: `You are an SBDC advisor helping a small business build a complaint response system. Right now, complaints probably get handled differently every time depending on who's working and how bad the situation is. That inconsistency costs customers and burns out the owner.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Most common complaints: [DESCRIBE THE TOP 3-5 COMPLAINTS THEY HEAR]
+- Channels where complaints come in: [IN-PERSON / PHONE / EMAIL / SOCIAL MEDIA / ONLINE REVIEWS / ALL]
+- Current process: [OWNER HANDLES EVERYTHING / NO PROCESS / AD HOC / OTHER]
+- Number of employees who deal with complaints: [NUMBER]
+- Authority to resolve issues: [ONLY THE OWNER / MANAGERS / ANY EMPLOYEE / UNCLEAR]
+
+Build a complete complaint response system:
+
+1. **Complaint intake protocol** — For each channel (in-person, phone, email, social media):
+   - How to acknowledge the complaint within the first 30 seconds
+   - What information to capture (who, what, when, desired resolution)
+   - Documentation template — a simple form to log every complaint consistently
+   - Escalation triggers — when to handle it yourself vs. get the owner/manager
+
+2. **De-escalation scripts** — Step-by-step language for the hardest moments:
+   - The angry customer who's raising their voice
+   - The customer who threatens to "tell everyone" or "leave a bad review"
+   - The customer who wants something unreasonable
+   - The customer who's wrong but doesn't know it
+   - The repeat complainer
+   - Key phrases that calm people down and phrases that make it worse
+
+3. **Resolution authority matrix** — A clear table showing:
+   | Situation | Front-line employee can... | Manager can... | Owner must... |
+   - Define dollar limits for discounts, refunds, comps, and freebies at each level
+   - When to say yes immediately vs. when to say "let me check"
+   - Empower employees to fix small problems without owner approval
+
+4. **Resolution playbook** — For the top 5-7 most common complaints, provide:
+   - Recommended resolution (what to offer)
+   - Script for delivering the resolution
+   - Follow-up action (check back in 24-48 hours)
+   - When to go above standard resolution
+
+5. **Documentation and tracking** — A simple system to:
+   - Log every complaint
+   - Track resolution and outcome
+   - Identify patterns (same complaint keeps coming up = system problem, not people problem)
+   - Monthly review: what are we learning from complaints?
+
+6. **Recovery metrics** — How to know if the system is working:
+   - Complaint-to-resolution time
+   - Customer retention after complaint
+   - Repeat complaint rate
+   - Employee confidence in handling issues
+
+The goal is a system where the owner doesn't have to personally handle every upset customer, and employees feel confident resolving problems on the spot.`
+            },
+            {
+                id: 79,
+                title: "Online Review Response Playbook",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Templates and strategies for responding to online reviews — negative and positive — across Google, Yelp, and Facebook",
+                tags: ["reviews", "reputation", "online"],
+                prompt: `You are an SBDC advisor helping a small business owner respond to online reviews strategically. Most owners either ignore reviews, get defensive on negative ones, or write the same "Thanks for your review!" on every positive one. All three are missed opportunities.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / OTHER]
+- Primary review platforms: [GOOGLE / YELP / FACEBOOK / INDUSTRY-SPECIFIC / OTHER]
+- Current star rating (approximate): [RATING]
+- Biggest review challenge: [NEGATIVE REVIEWS / NO REVIEWS / DON'T KNOW WHAT TO SAY / FAKE REVIEWS / OTHER]
+- Who currently responds to reviews: [OWNER / MANAGER / NO ONE]
+
+Create a complete online review response playbook:
+
+1. **Response timing and rules** —
+   - How quickly to respond (ideal: 24-48 hours, never more than a week)
+   - Always respond publicly first, then take it offline if needed
+   - Never argue, never get sarcastic, never blame the customer publicly
+   - One designated person should own review responses for consistency
+
+2. **Negative review templates** — Customizable responses for the 5 most common scenarios:
+   - **The legitimate complaint** — They had a real bad experience and they're right
+   - **The exaggerator** — Something went wrong but the review blows it out of proportion
+   - **The unreasonable expectation** — They expected something you never promised
+   - **The competitor or fake review** — Suspected fake or malicious review
+   - **The vague one-star** — No details, just a low rating
+
+   For each: what to say publicly, how to take it offline, and when to request removal
+
+3. **Positive review templates** — Not just "Thanks!" but responses that:
+   - Reference something specific from their review (shows you actually read it)
+   - Reinforce what you want to be known for
+   - Include a subtle invitation to return or try something new
+   - Vary in structure so they don't all sound copy-pasted
+
+4. **Review generation strategy** — How to get more reviews without being pushy:
+   - When to ask (the moment of peak satisfaction)
+   - How to ask (in person, email, text — with scripts for each)
+   - Making it easy (direct links to review pages)
+   - Who to ask (happy customers who've said something positive)
+   - What NOT to do (incentivize reviews, buy reviews, review-gate)
+
+5. **Damage control protocol** — When a really bad review hits:
+   - Step 1: Don't panic, don't respond immediately
+   - Step 2: Investigate what actually happened
+   - Step 3: Craft a response that future customers will read
+   - Step 4: Follow up offline to resolve
+   - Step 5: If resolved, politely ask if they'd consider updating their review
+
+6. **Monitoring setup** — Simple tools and habits to stay on top of reviews:
+   - Google Alerts and notification settings
+   - Weekly review check routine
+   - Tracking review trends over time
+
+Remember: your response isn't really for the person who left the review — it's for the hundreds of potential customers who will read it later. Every response is a public demonstration of how you treat people.`
+            },
+            {
+                id: 80,
+                title: "Service Recovery & Save Plays",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "A tiered recovery framework for when things go wrong — what's worth a discount, a redo, a refund, or just an apology",
+                tags: ["recovery", "retention", "save"],
+                prompt: `You are an SBDC advisor helping a small business build a service recovery playbook. Things go wrong in every business — late deliveries, botched services, billing errors, miscommunication. What separates great businesses from average ones is what happens next.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Average transaction value: [APPROXIMATE DOLLAR AMOUNT]
+- Most common service failures: [DESCRIBE THE TOP 3-5 THINGS THAT GO WRONG]
+- Current recovery approach: [WING IT / OWNER DECIDES EACH TIME / REFUND EVERYTHING / NOTHING FORMAL]
+- Customer lifetime value (approximate): [HOW MUCH IS A LOYAL CUSTOMER WORTH OVER TIME]
+
+Build a tiered service recovery framework:
+
+1. **Recovery tiers** — Match the response to the severity:
+
+   **Tier 1: Minor inconvenience** (slight delay, small error, minor miscommunication)
+   - Response: Genuine apology + acknowledgment
+   - Action: Fix the issue immediately
+   - Cost to business: $0 — just attention and speed
+   - Example scripts for this tier
+
+   **Tier 2: Moderate failure** (missed deadline, wrong order, noticeable quality issue)
+   - Response: Apology + fix + goodwill gesture
+   - Action: Correct the problem + offer something extra (discount on next visit, free add-on, expedited service)
+   - Cost guidelines: Up to [X%] of transaction value
+   - Example scripts for this tier
+
+   **Tier 3: Significant failure** (major quality problem, repeated errors, customer's time/money wasted)
+   - Response: Apology + immediate fix + meaningful compensation
+   - Action: Redo the work at no charge OR partial refund + future credit
+   - Cost guidelines: Up to [X%] of transaction value
+   - Example scripts for this tier
+
+   **Tier 4: Critical failure** (safety issue, major financial impact, trust completely broken)
+   - Response: Full ownership + immediate resolution + above-and-beyond recovery
+   - Action: Full refund + additional compensation + personal follow-up from owner
+   - When to involve insurance or legal counsel
+   - Example scripts for this tier
+
+2. **The recovery conversation** — A step-by-step framework:
+   - **Listen** — Let them tell the full story without interrupting
+   - **Acknowledge** — Name what went wrong and validate their frustration
+   - **Apologize** — Genuine, specific, no excuses or deflection
+   - **Fix** — State exactly what you'll do and by when
+   - **Extra** — Offer something they didn't ask for (this is where loyalty is built)
+   - **Follow up** — Check back within 48 hours to confirm resolution
+
+3. **Decision matrix** — A quick-reference guide:
+   | What went wrong | Tier | Who can authorize | Standard recovery offer |
+   Fill this in for their top 10 most common failures
+
+4. **Save plays for at-risk customers** — Specific tactics for:
+   - The customer who says "I'm never coming back"
+   - The customer who goes quiet (stops booking, stops buying)
+   - The customer who's been loyal but had one bad experience
+   - The customer who's comparing you to a competitor after a failure
+
+5. **Team empowerment** — How to give employees the authority and confidence to recover on the spot:
+   - Pre-approved recovery offers by tier
+   - "You don't need to ask me" list (things any employee can do immediately)
+   - When to escalate vs. handle it themselves
+
+6. **Learning from failures** — A simple post-recovery review:
+   - What went wrong?
+   - Was it a one-off or a pattern?
+   - What would prevent this next time?
+   - Did the recovery work? (Did the customer come back?)
+
+The best service recovery turns an angry customer into your most loyal advocate. The data shows customers who have a problem that gets resolved well are MORE loyal than customers who never had a problem at all.`
+            },
+            {
+                id: 81,
+                title: "Customer Service Standards Guide",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Define 'what good looks like' with response times, tone guidelines, resolution authority, and a one-page standards doc",
+                tags: ["standards", "quality", "consistency"],
+                prompt: `You are an SBDC advisor helping a small business define their customer service standards. Most small businesses have unwritten expectations — the owner knows what "good" looks like but has never put it on paper. When they hire, train, or evaluate performance, there's nothing to point to. Fix that.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Number of customer-facing employees: [NUMBER]
+- Customer interaction channels: [IN-PERSON / PHONE / EMAIL / CHAT / SOCIAL MEDIA]
+- Biggest consistency issue: [DIFFERENT EMPLOYEES GIVE DIFFERENT EXPERIENCES / NO DEFINED EXPECTATIONS / GREAT WHEN OWNER IS THERE, NOT WHEN THEY'RE GONE / OTHER]
+- What they want to be known for: [SPEED / FRIENDLINESS / EXPERTISE / RELIABILITY / PERSONAL TOUCH / OTHER]
+
+Create a customer service standards guide:
+
+1. **Service vision statement** — One sentence that captures what customer service means for this specific business. Not corporate fluff — something real that employees can internalize. Examples: "Every customer leaves feeling like we actually cared about their problem" or "We're the place people recommend because we made it easy."
+
+2. **Response time standards** — Specific, measurable expectations:
+   - Phone: Answer within [X] rings, return voicemails within [X] hours
+   - Email: Acknowledge within [X] hours, resolve within [X] business days
+   - In-person: Greet within [X] seconds, never let someone wait without acknowledgment
+   - Social media/messages: Respond within [X] hours during business hours
+   - Make these realistic for a small business — not Amazon-level promises they can't keep
+
+3. **Communication tone guidelines** — How to sound like THIS business:
+   - 3-5 "always" behaviors (always use the customer's name, always confirm understanding, always offer a next step)
+   - 3-5 "never" behaviors (never say "that's not my department," never blame another employee, never make the customer repeat themselves)
+   - Language swaps: Replace cold/corporate phrases with warm/human ones
+   - Adjust for channel: in-person warmth vs. email professionalism vs. text brevity
+
+4. **Resolution standards** — What "resolved" actually means:
+   - First-contact resolution goal (what percentage of issues should be fixed on the spot?)
+   - Maximum escalation time (if it can't be fixed now, when will the customer hear back?)
+   - Authority levels: what can each role resolve independently?
+   - When to involve the owner and how
+
+5. **Quality indicators** — How to know if standards are being met:
+   - 3-5 observable behaviors a manager/owner can spot-check
+   - Simple mystery shopper approach (have a friend call or visit)
+   - Customer feedback signals to watch for
+   - Monthly check-in questions for the team
+
+6. **One-page standards doc** — Format all of the above into a clean, printable one-page reference:
+   - Service vision at the top
+   - Response time commitments
+   - 5 "always" and 5 "never" rules
+   - Resolution authority quick-reference
+   - Post this in the break room, back office, or wherever the team gathers
+
+Keep it simple enough to fit on one page and specific enough that a new hire could read it and know exactly what's expected on day one.`
+            },
+            {
+                id: 82,
+                title: "Customer Service Training Plan",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "A week-one training outline for new customer-facing hires with scripts, scenarios, and role-play exercises",
+                tags: ["training", "hiring", "onboarding"],
+                prompt: `You are an SBDC advisor helping a small business owner build a customer service training plan. They're hiring people to interact with customers — maybe for the first time — and need a structured way to get new employees ready without the owner shadowing them for a month.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / OTHER]
+- Role being trained: [FRONT DESK / SALES FLOOR / PHONE SUPPORT / FIELD SERVICE / OTHER]
+- Current training approach: [SHADOW THE OWNER / FIGURE IT OUT / BRIEF WALKTHROUGH / NOTHING FORMAL]
+- Top 10 situations this role handles: [LIST THE MOST COMMON CUSTOMER INTERACTIONS]
+- Biggest training gap: [NEW HIRES DON'T KNOW WHAT TO SAY / INCONSISTENT SERVICE / TOO LONG TO GET UP TO SPEED / OTHER]
+- Available training time: [HOW MANY HOURS/DAYS BEFORE THEY'RE ON THEIR OWN]
+
+Create a week-one customer service training plan:
+
+**Day 1: Foundation**
+- Business overview — What we do, who our customers are, what we're known for
+- Service standards review — Walk through the standards doc, explain the "why" behind each one
+- Shadowing — Watch the owner or best employee handle 5-10 interactions
+- Debrief — What did you notice? What questions do you have?
+
+**Day 2: Scripts & Language**
+- Phone script training — Practice the greeting, hold protocol, common inquiries, and closing
+- In-person script training — Greeting, "just browsing" response, product/service questions
+- Language workshop — Phrases we use, phrases we avoid, tone calibration
+- Practice rounds — Employee practices scripts with trainer giving feedback
+
+**Day 3: Scenario Training**
+- The 10 most common situations — Walk through each one:
+  - What the customer says/does
+  - What the right response is
+  - What the wrong response looks like
+  - When to escalate
+- Role-play exercises — Trainer plays the customer, employee responds
+- Feedback and adjustment after each scenario
+
+**Day 4: Problem Handling**
+- Complaint response training — De-escalation basics, the listen-acknowledge-apologize-fix framework
+- Difficult customer scenarios — Practice with the 5 hardest situations:
+  - Angry customer
+  - Customer who wants a refund
+  - Customer who's wrong
+  - Customer asking for something you can't do
+  - Customer comparing you to a competitor
+- Resolution authority — What they can fix on their own, what needs approval
+
+**Day 5: Supervised Solo**
+- Employee handles real customer interactions with trainer nearby
+- Trainer observes but doesn't intervene unless necessary
+- End-of-day debrief — What went well, what felt hard, what they need more practice on
+- Confidence check — Are they ready to fly solo? If not, what needs another day?
+
+**Ongoing (Weeks 2-4):**
+- Daily 5-minute check-ins for the first two weeks
+- Weekly role-play refresher on the hardest scenarios
+- 30-day review against service standards
+
+Also include:
+- **Role-play scenario cards** — Printable cards with customer scenarios they can practice anytime
+- **Self-assessment checklist** — How the new hire can gauge their own readiness
+- **Manager observation form** — Simple checklist for evaluating customer interactions
+
+Make this doable for a small business owner who doesn't have an HR department or a training budget. If they have 5 days, give them a 5-day plan. If they only have 2 days, note what to prioritize.`
+            },
+            {
+                id: 83,
+                title: "Customer Feedback Engine",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Build a simple, sustainable system to collect, analyze, and act on customer feedback with survey templates and follow-up scripts",
+                tags: ["feedback", "surveys", "insights"],
+                prompt: `You are an SBDC advisor helping a small business build a customer feedback system. Most small businesses only hear from customers when something goes wrong. The quiet majority — happy or mildly dissatisfied — say nothing and either come back or don't. A simple feedback system changes that.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Average transactions per week: [APPROXIMATE NUMBER]
+- Current feedback collection: [NONE / OCCASIONAL SURVEYS / ONLINE REVIEWS ONLY / INFORMAL CONVERSATIONS / OTHER]
+- Biggest feedback gap: [DON'T KNOW WHAT CUSTOMERS THINK / GET FEEDBACK BUT DON'T USE IT / ONLY HEAR COMPLAINTS / OTHER]
+- Tools available: [EMAIL / TEXT / SOCIAL MEDIA / POS SYSTEM / CRM / GOOGLE FORMS / OTHER]
+
+Build a complete customer feedback engine:
+
+1. **What to ask** — The right questions for their business:
+   - Core satisfaction question (NPS, CSAT, or a simpler alternative that fits small business)
+   - 2-3 specific questions about the experience (not generic — tailored to what matters in their business)
+   - One open-ended question that actually gets useful answers
+   - Questions to AVOID (leading, double-barreled, too many, too vague)
+
+2. **When to ask** — Timing matters more than the questions:
+   - The peak moment (right after the positive experience, not 3 days later)
+   - Frequency (don't survey every visit — guidelines on cadence)
+   - Trigger-based feedback (after first purchase, after a complaint resolution, after a milestone)
+
+3. **How to collect** — Channel-specific methods:
+   - **In-person**: One-question card, verbal ask at checkout, QR code
+   - **Email**: Post-service survey (template provided, 3 questions max)
+   - **Text/SMS**: Quick satisfaction check (template provided)
+   - **Online**: Review prompts, website feedback widget
+   - Keep it under 60 seconds to complete — anything longer tanks response rates
+
+4. **Survey templates** — Ready-to-use templates for:
+   - Post-purchase/post-service feedback (3-question email survey)
+   - Quick satisfaction check (1-question text)
+   - Quarterly relationship check-in (for ongoing clients)
+   - "We miss you" feedback request (for lapsed customers)
+
+5. **How to analyze it** — A small business doesn't need dashboards:
+   - Simple spreadsheet tracker (what to log, how to categorize)
+   - Weekly 10-minute review routine
+   - Identifying patterns vs. one-off complaints
+   - When a trend means "fix the system" vs. "coach the person"
+
+6. **How to act on it** — The part most businesses skip:
+   - Close the loop: follow up with customers who gave feedback (scripts provided)
+   - Share insights with the team (monthly 5-minute huddle format)
+   - Prioritize changes: what to fix first based on frequency and impact
+   - Track whether changes actually improved satisfaction
+
+7. **Follow-up scripts** —
+   - Thanking someone who gave positive feedback (and asking for a review)
+   - Responding to constructive feedback (and what you're doing about it)
+   - Re-engaging a customer who flagged a problem
+
+Keep the system lightweight. If it takes more than 15 minutes per week to manage, a small business owner won't stick with it.`
+            },
+            {
+                id: 84,
+                title: "Repeat Business & Referral Builder",
+                category: "operations",
+                categoryLabel: "Operations & HR",
+                description: "Relationship-based strategies to drive repeat business and referrals without gimmicky loyalty programs",
+                tags: ["retention", "referrals", "loyalty"],
+                prompt: `You are an SBDC advisor helping a small business owner increase repeat business and referrals. Not with punch cards or points programs — with real relationship-based tactics that make customers want to come back and tell their friends.
+
+**Business Info:**
+- Business name: [BUSINESS NAME]
+- Business type: [RETAIL / RESTAURANT / SERVICE / PROFESSIONAL / E-COMMERCE / OTHER]
+- Average transaction value: [APPROXIMATE]
+- Purchase frequency: [HOW OFTEN DOES A TYPICAL CUSTOMER BUY — WEEKLY / MONTHLY / QUARTERLY / ONE-TIME]
+- Current repeat rate (estimated): [WHAT PERCENTAGE COME BACK]
+- Current referral sources: [WORD OF MOUTH / NONE / REFERRAL PROGRAM / REVIEWS / OTHER]
+- What keeps customers coming back now: [CONVENIENCE / QUALITY / RELATIONSHIP / PRICE / HABIT / DON'T KNOW]
+
+Build a repeat business and referral strategy:
+
+1. **Repeat business tactics** — Specific, implementable strategies:
+
+   **Follow-up timing** — When and how to reach out after a purchase:
+   - Service businesses: Follow-up schedule (24 hours, 1 week, 1 month, quarterly)
+   - Retail: Restock reminders, seasonal reach-outs, new arrival alerts
+   - Templates for each touchpoint (email, text, even handwritten note scripts)
+
+   **Personal touches that scale** — Things that feel personal but don't require the owner's time on every one:
+   - Birthday/anniversary acknowledgments
+   - Remembering preferences and past purchases
+   - Milestone recognition ("You've been with us for a year!")
+   - Simple CRM habits even without a CRM (a notebook works)
+
+   **Re-engagement campaigns** — For customers who've gone quiet:
+   - How to identify lapsed customers
+   - "We miss you" outreach (templates that don't sound desperate)
+   - Win-back offers that feel like genuine invitations, not discounts
+   - When to let go (not every customer is worth chasing)
+
+2. **Referral strategies** — Getting recommendations without being awkward:
+
+   **When to ask** — The exact moment in the customer relationship when a referral ask feels natural (hint: right after they express satisfaction, not right after they pay)
+
+   **How to ask** — Scripts that don't feel salesy:
+   - The direct ask: "Who do you know who could use [what we do]?"
+   - The specific ask: "If you know anyone who's dealing with [specific problem], I'd love to help them"
+   - The passive ask: Making it easy to share (referral cards, text-a-friend links, shareable content)
+
+   **Making it worth their while** — Without formal referral programs:
+   - Thank-you gestures that feel personal, not transactional
+   - Recognition and appreciation (public shout-outs, handwritten notes)
+   - Reciprocal referrals (referring business back to them if applicable)
+   - When a formal incentive DOES make sense and how to structure it simply
+
+   **Referral follow-up** — What to do when a referral comes in:
+   - Mention who referred them (builds trust instantly)
+   - Thank the referrer (within 24 hours, every time)
+   - Track referral sources (simple spreadsheet or CRM note)
+
+3. **Loyalty without a "loyalty program"** — Relationship-based retention:
+   - VIP treatment for best customers (early access, preferred scheduling, direct line to the owner)
+   - Community building (events, groups, insider updates)
+   - Surprise and delight moments (unexpected upgrades, handwritten thanks, small gifts)
+   - Consistency as loyalty driver — the most powerful retention tool is being reliably good
+
+4. **Metrics to track** — Simple numbers that matter:
+   - Repeat purchase rate (are more customers coming back?)
+   - Referral source tracking (where are new customers coming from?)
+   - Customer lifetime value trend (are customers spending more over time?)
+   - Net Promoter Score or simple satisfaction trend
+
+5. **90-day implementation plan** —
+   - Month 1: Set up follow-up sequences and start tracking referral sources
+   - Month 2: Launch re-engagement outreach for lapsed customers
+   - Month 3: Implement referral ask into standard customer interactions
+
+No gimmicks, no complicated software, no loyalty apps. Just smart, consistent relationship-building that a small business owner can actually maintain.`
+            },
+            {
+                id: 85,
+                title: "TFG Eligibility Screener",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Quickly assess whether a client meets Tech Futures Group eligibility criteria before making a referral",
+                tags: ["TFG", "eligibility", "tech", "referral"],
+                prompt: `You are an SBDC advisor determining whether a client is a good fit for Tech Futures Group (TFG) — a specialized SBDC program that provides no-cost, no-equity advisory services to qualified technology companies in the NorCal SBDC network.
+
+**TFG Eligibility Requirements:**
+- Located in one of the 36 counties of the NorCal SBDC network
+- Must be a "technology company" where revenues are derived primarily from technological innovation
+- Must meet at least one of: possesses intellectual property or patents providing defensible competitive advantage; has high potential for growth in funding, jobs, or revenue; has developed an innovative product, service, or process based on proprietary R&D; OR has a product using a novel combination of existing technologies
+- Focus sectors: Software & SaaS, BioTech, Climate Tech (also: embedded software, Internet/cloud solutions, technology-driven process innovation)
+- Must demonstrate potential for economic impact
+
+**Client Information:**
+- Business name: [BUSINESS NAME]
+- Location (city/county): [LOCATION]
+- What the business does: [DESCRIBE THE PRODUCT OR SERVICE]
+- Stage: [IDEA / PROTOTYPE / REVENUE / SCALING]
+- Technology involved: [DESCRIBE THE TECHNOLOGY — SOFTWARE, HARDWARE, BIOTECH, CLEANTECH, OTHER]
+- Intellectual property: [PATENTS / TRADE SECRETS / PROPRIETARY ALGORITHMS / NONE / UNSURE]
+- Current revenue: [NONE / UNDER $100K / $100K-$500K / $500K-$1M / OVER $1M]
+- Funding raised: [NONE / BOOTSTRAPPED / GRANTS / ANGEL / VC / OTHER]
+- Growth potential: [JOB CREATION PLANS / MARKET SIZE / REVENUE TRAJECTORY]
+- What they need help with: [GO-TO-MARKET / FUNDING / SBIR-STTR / CUSTOMER DISCOVERY / IP STRATEGY / OTHER]
+
+Provide a TFG eligibility assessment:
+
+1. **Location check** — Are they in the NorCal SBDC 36-county coverage area? (If unclear, flag for verification)
+
+2. **Technology qualification** — Does this company meet TFG's definition of a "technology company"?
+   - Is the core value proposition driven by technological innovation?
+   - Do they have or are they developing IP, proprietary technology, or novel tech combinations?
+   - Which TFG sector do they best fit: Software/SaaS, BioTech, Climate Tech, or other qualifying tech?
+   - If borderline: explain specifically what makes them qualify or not
+
+3. **Growth and impact potential** — Would TFG likely see this as a high-impact client?
+   - Market opportunity size
+   - Job creation potential
+   - Capital raise trajectory
+   - SBIR/STTR grant potential (if applicable)
+
+4. **Readiness assessment** — Is the client at a stage where TFG advising would be most valuable?
+   - Do they have enough traction or clarity for TFG's advisory model?
+   - Are they too early (just an idea) or too mature (already have a full advisory board)?
+   - What specific TFG services would benefit them most?
+
+5. **Fit verdict** — One of three outcomes:
+   - **Strong fit** — Meets all criteria, recommend referral immediately
+   - **Possible fit** — Meets some criteria, needs clarification on [specific items]
+   - **Not a fit** — Doesn't meet TFG criteria, but here are alternative resources
+
+6. **Next steps** — If a fit:
+   - What to tell the client about TFG
+   - How to frame the value proposition
+   - Link to apply: techfuturesgroup.org/apply
+   - What to prepare before applying
+
+   If not a fit:
+   - Alternative SBDC resources or programs that would serve them
+   - What would need to change for them to qualify in the future
+
+Be direct. Don't stretch to make someone fit if they don't. TFG has limited capacity and accepts clients who will deliver the most impact.`
+            },
+            {
+                id: 86,
+                title: "TFG Readiness Assessment",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Deep-dive assessment to determine if a tech founder is ready to get maximum value from TFG advisory services",
+                tags: ["TFG", "readiness", "tech startups", "assessment"],
+                prompt: `You are an SBDC advisor conducting a deeper readiness assessment for a client you believe may qualify for Tech Futures Group (TFG). They likely meet the basic eligibility criteria — now you need to determine if they're at the right stage and mindset to get real value from TFG's advisory model.
+
+**Context:** TFG pairs selected founders with experienced advisors who work one-on-one, focused on the founder's highest-priority challenges. Clients are accepted on a 3-month basis with renewal possible. TFG advisors specialize in go-to-market strategy, customer discovery & validation, positioning, commercialization, financial strategy, financial modeling, IP, and SBIR/STTR grant navigation.
+
+**Client Information:**
+- Business name: [BUSINESS NAME]
+- Founder background: [TECHNICAL / BUSINESS / ACADEMIC / FIRST-TIME FOUNDER / SERIAL ENTREPRENEUR]
+- Product/technology: [DESCRIBE WHAT THEY'VE BUILT OR ARE BUILDING]
+- Current stage: [CONCEPT / MVP / BETA / LAUNCHED / REVENUE / SCALING]
+- Target market: [WHO THEY'RE SELLING TO AND HOW BIG THE OPPORTUNITY IS]
+- Customer validation: [HAVE THEY TALKED TO CUSTOMERS? HOW MANY? WHAT DID THEY LEARN?]
+- Business model: [HOW THEY MAKE MONEY OR PLAN TO]
+- Team: [SOLO FOUNDER / CO-FOUNDERS / EMPLOYEES / CONTRACTORS]
+- Current challenges: [WHAT'S KEEPING THEM UP AT NIGHT — LIST TOP 3]
+- Previous advising/mentorship: [ACCELERATOR / INCUBATOR / MENTORS / NONE]
+- Coachability: [OPEN TO FEEDBACK / DEFENSIVE / UNSURE]
+
+Assess their TFG readiness across these dimensions:
+
+1. **Problem-solution clarity** — Do they have a clear understanding of the problem they're solving and for whom?
+   - Can they articulate the customer pain point in one sentence?
+   - Have they validated that real people will pay for this?
+   - Red flags: solution looking for a problem, "everyone is my customer," no customer conversations
+
+2. **Technology differentiation** — Is there real innovation here?
+   - What's proprietary or defensible about their technology?
+   - Could a competitor replicate this easily?
+   - Is the tech novel or just a new wrapper on existing tools?
+   - Where does their IP stand (filed, provisional, trade secret, nothing)?
+
+3. **Founder readiness** — Are they ready for high-level advisory?
+   - Can they clearly articulate what they need help with?
+   - Are they coachable — willing to hear hard truths and pivot?
+   - Do they have the bandwidth to act on advisory input?
+   - Red flags: wants someone to do the work for them, can't take feedback, too scattered
+
+4. **Business fundamentals** — Is there enough foundation to advise on?
+   - Revenue model clarity (even if pre-revenue)
+   - Unit economics understanding (or willingness to learn)
+   - Market sizing (TAM/SAM/SOM awareness)
+   - Financial projections (even rough ones)
+
+5. **Strategic timing** — Is NOW the right time for TFG?
+   - What specific decisions or milestones would TFG advisory accelerate?
+   - Is the founder at a critical inflection point (fundraising, launch, pivot, grant application)?
+   - Would they get more value from general SBDC advising first to build fundamentals?
+
+6. **SBIR/STTR potential** — If applicable:
+   - Is their technology aligned with federal research priorities?
+   - Are they at the right stage for Phase I or Phase II?
+   - Do they have the technical team to execute on a grant?
+   - TFG clients win SBIR grants at 57% vs. the state average of 15% — is this client in a position to leverage that advantage?
+
+7. **Readiness verdict:**
+   - **Ready now** — Clear value alignment, recommend applying immediately. Here's how to prepare.
+   - **Almost ready** — Needs to address [specific gaps] first. Give them a 30-60 day action plan, then apply.
+   - **Not yet** — Needs more foundational work. Recommend specific SBDC resources to build readiness.
+
+8. **Preparation checklist** — If ready, what should they prepare before applying:
+   - One-page business summary
+   - Clear articulation of their top 3 challenges
+   - Basic financial snapshot
+   - Technology overview and IP status
+   - What success looks like in 3 months of TFG advisory
+
+Be honest. Sending an underprepared founder to TFG wastes everyone's time and a limited slot. It's better to get them ready first.`
+            },
+            {
+                id: 87,
+                title: "TFG Referral Preparation",
+                category: "advising",
+                categoryLabel: "Client Advising",
+                description: "Prepare a qualified client for the TFG application with talking points, materials checklist, and positioning guidance",
+                tags: ["TFG", "referral", "application", "preparation"],
+                prompt: `You are an SBDC advisor helping a client who qualifies for Tech Futures Group (TFG) prepare the strongest possible application. TFG has limited capacity and selects clients based on technology qualification, growth potential, and economic impact. Your job is to help this founder present themselves clearly and compellingly.
+
+**Context:** TFG provides no-cost, no-equity advisory to NorCal tech startups. Advisors work one-on-one with founders on go-to-market strategy, customer discovery, positioning, commercialization, financial strategy, IP, and SBIR/STTR grants. Clients are accepted on a 3-month basis. TFG has helped founders raise over $1.4B and their SBIR grant success rate is 57% vs. 15% state average.
+
+**Client Information:**
+- Business name: [BUSINESS NAME]
+- Founder name(s): [NAMES AND ROLES]
+- Technology/product: [WHAT THEY'VE BUILT — BE SPECIFIC]
+- Sector: [SOFTWARE/SAAS / BIOTECH / CLIMATE TECH / OTHER QUALIFYING TECH]
+- Stage: [MVP / BETA / LAUNCHED / REVENUE]
+- Traction: [CUSTOMERS / USERS / REVENUE / PILOTS / LOIs / GRANTS — WHATEVER THEY HAVE]
+- IP status: [PATENT FILED / PROVISIONAL / TRADE SECRET / PROPRIETARY CODE / NONE]
+- Funding to date: [BOOTSTRAPPED / GRANTS / ANGEL / VC / AMOUNT IF KNOWN]
+- What they need help with: [TOP 3 PRIORITIES]
+- Why now: [WHAT'S THE INFLECTION POINT — FUNDRAISE / LAUNCH / PIVOT / GRANT APP / SCALING]
+
+Help prepare them for the TFG application:
+
+1. **Elevator pitch refinement** — Help them articulate in 2-3 sentences:
+   - What they do (technology + customer problem)
+   - Why it matters (market opportunity + impact)
+   - Why now (timing + traction + momentum)
+   - Draft 2-3 versions they can choose from
+
+2. **Technology narrative** — How to describe their tech in a way that demonstrates TFG-qualifying innovation:
+   - Lead with the problem, not the technology
+   - Explain the proprietary or novel element clearly
+   - Avoid jargon overload — clarity beats complexity
+   - Position the IP/defensibility without overstating
+
+3. **Traction summary** — Package what they've accomplished so far:
+   - Organize metrics by category (customers, revenue, partnerships, grants, recognition)
+   - Frame early traction in context ("3 pilot customers in a market with no existing solution" > "3 customers")
+   - If pre-revenue: highlight validation signals (LOIs, waitlists, pilot results, user engagement)
+
+4. **Growth and impact case** — TFG selects for economic impact potential:
+   - Market size framing (TAM/SAM/SOM in plain language)
+   - Job creation potential (realistic near-term hires)
+   - Revenue trajectory (even conservative projections)
+   - Community/economic impact for NorCal region
+   - SBIR/STTR alignment if applicable
+
+5. **Advisory needs framing** — How to articulate what they need:
+   - Be specific: "I need help with go-to-market strategy for enterprise sales" not "I need business advice"
+   - Frame needs as strategic decisions, not tasks
+   - Show they've thought about it: "I'm deciding between X and Y approach and need experienced guidance"
+   - Connect needs to milestones: "With advisory support on pricing strategy, I can close my first 10 enterprise deals in Q2"
+
+6. **Application talking points** — Key messages to hit:
+   - Why TFG specifically (not just "free advice" — show alignment with TFG's strengths)
+   - What 3 months of advisory would unlock (be specific and measurable)
+   - Founder commitment and coachability signals
+   - How this fits into a larger growth plan
+
+7. **Materials checklist** — What to have ready:
+   - [ ] One-page business summary or pitch deck
+   - [ ] Technology overview with IP status
+   - [ ] Traction/metrics snapshot
+   - [ ] Financial summary (revenue, burn rate, runway, projections)
+   - [ ] Clear statement of top 3 advisory needs
+   - [ ] 90-day goals (what success looks like with TFG support)
+
+8. **Common mistakes to avoid:**
+   - Describing the technology without explaining the business
+   - Being vague about what help they need
+   - Overselling traction or understating challenges
+   - Treating TFG like a general business advisor instead of a tech-focused strategic resource
+   - Not being specific about the 3-month goals
+
+The goal is an application that makes TFG think: "This founder is building something real, they know exactly what they need, and 3 months of our advisory will meaningfully accelerate their trajectory."`
             }
         ];
 
