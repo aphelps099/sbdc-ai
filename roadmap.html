@@ -4,40 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Roadmap - SBDC AI Resources</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* Font Face Declarations */
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-RegularItalic.woff2') format('woff2'); font-weight: 400; font-style: italic; }
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Tobias'; src: url('fonts/TobiasTRIAL-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Light.otf') format('opentype'); font-weight: 300; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Regular.otf') format('opentype'); font-weight: 400; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Medium.otf') format('opentype'); font-weight: 500; }
+        @font-face { font-family: 'GT America'; src: url('fonts/GT-America-Standard-Bold.otf') format('opentype'); font-weight: 700; }
+        @font-face { font-family: 'GT America Mono'; src: url('fonts/GT-America-Mono-Regular.otf') format('opentype'); font-weight: 400; }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         :root {
-            --navy: #0f2233;
-            --navy-light: #1a3a5c;
-            --sky: #4a90d9;
-            --sky-light: #7eb3f1;
-            --sky-pale: #e8f2fc;
+            --navy: #0f1c2e;
+            --navy-light: #1a3050;
+            --royal: #1D5AA7;
+            --pool: #8FC5D9;
+            --cream: #f0efeb;
             --white: #ffffff;
-            --gray-10: #f4f4f4;
-            --gray-20: #e0e0e0;
-            --gray-30: #c6c6c6;
-            --gray-50: #8d8d8d;
-            --gray-70: #525252;
-            --gray-90: #262626;
-            --gray-100: #161616;
-            --focus: #0f62fe;
+            --gray-10: #f7f7f5;
+            --gray-20: #e8e7e3;
+            --gray-30: #c6c5c1;
+            --gray-50: #8d8c88;
+            --gray-70: #525150;
+            --gray-90: #262524;
+            --gray-100: #161615;
+            --focus: #1D5AA7;
             --success: #24a148;
+            --sans: 'GT America', -apple-system, Helvetica, sans-serif;
+            --serif: 'Tobias', Georgia, serif;
+            --mono: 'GT America Mono', 'SF Mono', monospace;
         }
         html {
             scroll-behavior: smooth;
         }
         body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--sans);
             color: var(--gray-90);
-            background: var(--white);
+            background: var(--cream);
             line-height: 1.5;
+            font-weight: 300;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -74,7 +86,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
         .menu-btn:hover .menu-line {
-            background: var(--sky-light);
+            background: var(--pool);
         }
         .menu-btn.active .menu-line:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
@@ -168,7 +180,7 @@
         }
         .side-menu-label {
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--gray-50);
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -195,15 +207,15 @@
             margin-bottom: 12px;
         }
         .side-menu-link:hover {
-            background: var(--sky-pale);
-            border-color: var(--sky);
+            background: var(--cream);
+            border-color: var(--royal);
             color: var(--navy);
             transform: translateX(4px);
         }
         .side-menu-link svg {
             width: 20px;
             height: 20px;
-            color: var(--sky);
+            color: var(--royal);
             flex-shrink: 0;
         }
         .side-menu-link:hover svg {
@@ -220,7 +232,7 @@
         .contact-item svg {
             width: 18px;
             height: 18px;
-            color: var(--sky);
+            color: var(--royal);
             flex-shrink: 0;
         }
         .contact-item a {
@@ -229,11 +241,11 @@
             transition: color 0.15s;
         }
         .contact-item a:hover {
-            color: var(--sky);
+            color: var(--royal);
         }
         .side-menu-footer {
             padding: 20px 24px;
-            background: var(--gray-10);
+            background: var(--cream);
             border-top: 1px solid var(--gray-20);
         }
         .side-menu-footer-text {
@@ -245,7 +257,7 @@
         /* Header */
         header {
             background: var(--navy);
-            border-bottom: 3px solid var(--sky);
+            border-bottom: 1px solid var(--royal);
             position: relative;
             z-index: 200;
         }
@@ -287,12 +299,12 @@
             align-items: center;
             gap: 4px;
             padding: 2px 8px;
-            background: var(--sky);
+            background: var(--royal);
             border-radius: 2px;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--white);
-            letter-spacing: 0.03em;
+            letter-spacing: 0.05em;
         }
         .ai-badge svg {
             width: 12px;
@@ -332,7 +344,7 @@
         .back-header-btn svg {
             width: 16px;
             height: 16px;
-            color: var(--sky-light);
+            color: var(--pool);
         }
         .back-header-btn-text {
             color: inherit;
@@ -351,7 +363,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
+            background: var(--navy);
             padding: 60px 2rem 80px;
             position: relative;
             z-index: 2;
@@ -362,19 +374,21 @@
             text-align: center;
         }
         .hero-title {
+            font-family: var(--serif);
             font-size: 2.5rem;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--white);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
             margin-bottom: 16px;
             line-height: 1.15;
         }
         .hero-title span {
-            color: var(--sky-light);
+            color: var(--pool);
         }
         .hero-desc {
             font-size: 1.125rem;
-            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            color: rgba(255,255,255,0.65);
             margin-bottom: 24px;
             max-width: 760px;
             margin-left: auto;
@@ -386,7 +400,7 @@
         main {
             position: relative;
             z-index: 2;
-            background: var(--white);
+            background: var(--cream);
             min-height: 60vh;
         }
         .container {
@@ -397,9 +411,9 @@
 
         /* Philosophy Intro */
         .philosophy-card {
-            background: var(--sky-pale);
-            border: 2px solid var(--sky);
-            border-radius: 12px;
+            background: var(--white);
+            border: 1px solid var(--gray-20);
+            border-radius: 0;
             padding: 32px;
             margin-bottom: 56px;
         }
@@ -414,7 +428,7 @@
         .philosophy-card h2 svg {
             width: 22px;
             height: 22px;
-            color: var(--sky);
+            color: var(--royal);
             flex-shrink: 0;
         }
         .philosophy-card p {
@@ -454,12 +468,13 @@
             color: var(--white);
         }
         .phase-indicator.upcoming {
-            background: var(--sky);
+            background: var(--royal);
             color: var(--white);
         }
         .phase-header-text h2 {
+            font-family: var(--serif);
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--navy);
             line-height: 1.2;
         }
@@ -478,8 +493,8 @@
             color: var(--success);
         }
         .phase-label.upcoming {
-            background: rgba(74, 144, 217, 0.12);
-            color: var(--sky);
+            background: rgba(29, 90, 167, 0.1);
+            color: var(--royal);
         }
 
         /* Timeline connector */
@@ -502,19 +517,19 @@
         .initiative-card {
             background: var(--white);
             border: 1px solid var(--gray-20);
-            border-radius: 12px;
+            border-radius: 0;
             padding: 28px;
             transition: all 0.2s;
             position: relative;
         }
         .initiative-card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            border-color: var(--sky);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border-color: var(--royal);
         }
         .initiative-card-icon {
             width: 44px;
             height: 44px;
-            border-radius: 10px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -529,11 +544,11 @@
             color: var(--success);
         }
         .initiative-card-icon.blue {
-            background: rgba(74, 144, 217, 0.1);
-            color: var(--sky);
+            background: rgba(29, 90, 167, 0.08);
+            color: var(--royal);
         }
         .initiative-card-icon.navy {
-            background: rgba(15, 34, 51, 0.08);
+            background: rgba(15, 28, 46, 0.06);
             color: var(--navy);
         }
         .initiative-card-icon.purple {
@@ -545,13 +560,13 @@
             color: #009d9a;
         }
         .initiative-card-icon.sky {
-            background: rgba(126, 179, 241, 0.1);
-            color: var(--sky-light);
+            background: rgba(143, 197, 217, 0.15);
+            color: var(--pool);
         }
         .initiative-card h3 {
             font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--gray-90);
+            font-weight: 500;
+            color: var(--navy);
             margin-bottom: 8px;
         }
         .initiative-card p {
@@ -566,7 +581,7 @@
             padding: 3px 10px;
             border-radius: 2px;
             margin-top: 16px;
-            background: var(--gray-10);
+            background: var(--cream);
             color: var(--gray-50);
             letter-spacing: 0.02em;
         }
@@ -575,13 +590,14 @@
         .cta-section {
             margin-top: 64px;
             background: var(--navy);
-            border-radius: 12px;
+            border-radius: 0;
             padding: 40px;
             text-align: center;
         }
         .cta-section h2 {
+            font-family: var(--serif);
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--white);
             margin-bottom: 12px;
         }
@@ -597,18 +613,19 @@
             align-items: center;
             gap: 8px;
             padding: 14px 28px;
-            background: var(--sky);
+            background: var(--royal);
             color: var(--white);
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 0;
             font-weight: 500;
             font-size: 15px;
             transition: all 0.2s;
         }
         .cta-btn:hover {
-            background: var(--sky-light);
+            background: var(--pool);
+            color: var(--navy);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(74, 144, 217, 0.3);
+            box-shadow: 0 4px 12px rgba(29, 90, 167, 0.2);
         }
         .cta-btn svg {
             width: 18px;
@@ -617,7 +634,7 @@
         .cta-challenge {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
+            border-radius: 0;
             padding: 20px 24px;
             margin: 0 auto 28px;
             max-width: 540px;
@@ -628,7 +645,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--sky-light);
+            color: var(--pool);
             margin-bottom: 8px;
         }
         .cta-challenge p {
@@ -646,8 +663,9 @@
             margin-bottom: 32px;
         }
         .metrics-section-header h2 {
+            font-family: var(--serif);
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--navy);
             margin-bottom: 8px;
         }
@@ -664,13 +682,13 @@
         }
         .metrics-card {
             border: 1px solid var(--gray-20);
-            border-radius: 12px;
+            border-radius: 0;
             padding: 28px;
             transition: all 0.2s;
         }
         .metrics-card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            border-color: var(--sky);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border-color: var(--royal);
         }
         .metrics-card-header {
             display: flex;
@@ -685,21 +703,21 @@
         }
         .metrics-card-header h3 {
             font-size: 1rem;
-            font-weight: 600;
-            color: var(--gray-90);
+            font-weight: 500;
+            color: var(--navy);
         }
         .metrics-card.short-term .metrics-card-header svg {
             color: var(--success);
         }
         .metrics-card.long-term .metrics-card-header svg {
-            color: var(--sky);
+            color: var(--royal);
         }
         .metric-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
             padding: 12px 0;
-            border-bottom: 1px solid var(--gray-10);
+            border-bottom: 1px solid var(--gray-20);
         }
         .metric-item:last-child {
             border-bottom: none;
@@ -730,13 +748,13 @@
             background: var(--success);
         }
         .metric-dot.blue {
-            background: var(--sky);
+            background: var(--royal);
         }
 
         /* Footer */
         footer {
-            background: var(--gray-10);
-            border-top: 1px solid var(--gray-20);
+            background: var(--navy);
+            border-top: none;
             padding: 40px 2rem;
             position: relative;
             z-index: 2;
@@ -748,7 +766,7 @@
         }
         .footer-text {
             font-size: 14px;
-            color: var(--gray-50);
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 16px;
         }
         .footer-logo {
